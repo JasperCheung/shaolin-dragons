@@ -23,3 +23,17 @@ Example timestamp (for copy/pasting) : topherM -- 1999-12-31 23:59
 cheungJ -- 2017-12-15 17:15
 ------------------
 gave birth to the devlog
+
+cheungJ, lauS, yeH -- 2017-12-21 13:19
+------------------
+worked on design doc
+
+
+cheungJ, lauS, yeH -- 2017-12-22 13:19
+------------------
+reviewed design doc
+changes:
+    - sitemap - add direct path to category
+    - specify that we're using Bootstrap
+    - add info about letter limit and point system
+    - specify caching guest history
