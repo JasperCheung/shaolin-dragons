@@ -1,0 +1,3 @@
+foodstuff
+beverage
+sport

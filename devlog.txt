@@ -28,7 +28,6 @@ cheungJ, lauS, yeH -- 2017-12-21 13:19
 ------------------
 worked on design doc
 
-
 cheungJ, lauS, yeH -- 2017-12-22 13:19
 ------------------
 reviewed design doc
@@ -37,3 +36,8 @@ changes:
     - specify that we're using Bootstrap
     - add info about letter limit and point system
     - specify caching guest history
+
+yeH -- 2017-12-26 12:00
+------------------
+Add category text file for easy editing
+Add methods to return words for use from Datamuse
