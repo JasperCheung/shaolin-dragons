@@ -58,3 +58,7 @@ lauS -- 2017-12-29 3:22
 ------------------
 Created app.py with basic skeleton
 Cleaned up CSS
+
+lauS -- 2017-12-29 15:54
+------------------
+Created base.html for other templates
