@@ -48,3 +48,8 @@ Created home Page
 Added some fire css!
 Created necessary dirs and files
 Next: working on log-in/sign-up and linking it to app.py
+
+lauS -- 2017-12-29 3:22
+------------------
+Created app.py with basic skeleton
+Cleaned up CSS 
