@@ -41,3 +41,10 @@ yeH -- 2017-12-26 12:00
 ------------------
 Add category text file for easy editing
 Add methods to return words for use from Datamuse
+
+lauS -- 2017-12-28 10:10
+------------------
+Created home Page
+Added some fire css!
+Created necessary dirs and files
+Next: working on log-in/sign-up and linking it to app.py

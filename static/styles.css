@@ -7,11 +7,17 @@
 }
 
 .color-gradient {
-  background: #ff5e62;
+  color: black;
+  /*background: #ff5e62;
   background: -webkit-linear-gradient(to right, #ff9966, #ff5e62);
   background: linear-gradient(to right, #ff9966 0%, #ff5e62 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;*/
+  text-shadow: 2px 2px #ff9966;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
 }
 
 p, a {
@@ -19,7 +25,12 @@ p, a {
 }
 
 .container-fluid {
-  font-size: 25px;
+  font-size: 50px;
+  font-family: 'Baloo Chettan', cursive;
+}
+
+h1 {
+  font-family: 'Baloo Chettan', cursive;
 }
 
 .banner {
@@ -33,6 +44,7 @@ p, a {
 }
 
 .card {
+  font-family: 'Roboto', sans-serif;
   border-radius: 12px;
   box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
   background-color: #FFFFFF;
@@ -56,12 +68,14 @@ p, a {
 }
 
 .row {
+  font-family: 'Roboto', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .btn {
+  font-family: 'Roboto', sans-serif;
   width: 125px;
   border-radius: 30px;
   box-sizing: border-box;
