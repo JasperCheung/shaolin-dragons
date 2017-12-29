@@ -49,7 +49,12 @@ Added some fire css!
 Created necessary dirs and files
 Next: working on log-in/sign-up and linking it to app.py
 
+yeH -- 2017-12-28 23:30
+------------------
+Reformatted Datamuse code for readability
+Added code to make calls to GIPHY
+
 lauS -- 2017-12-29 3:22
 ------------------
 Created app.py with basic skeleton
-Cleaned up CSS 
+Cleaned up CSS

@@ -8,12 +8,13 @@ f.close()
 
 GIPHY_KEY = keys['giphy']
 
-GIPHY_URL = ""
+GIPHY_URL = "http://api.giphy.com/v1/"
 DATAMUSE_URL = "http://api.datamuse.com/words?"
 
 # Read categories in categories file
 with open('categories.txt') as f:
     CATEGORIES = f.readlines()
+
 CATEGORIES = [c.strip() for c in CATEGORIES]
 
 # Given a category, return a list of the words that Datamuse returns
@@ -23,26 +24,55 @@ def find_hyponyms(category):
     words = res.json()
     return words
 
-# Remove words that do not satisfy the following conditions:
-# between 3 - 10 letters
-# no spaces
-# API score > 100
-# a non-proper noun
-def filter_words(words):
-    words = [w for w in words if not ' ' in w['word']]
-    words = [w for w in words if len(w['word']) > 2 and len(w['word']) < 11 \
-            and w['score'] > 100]
-    words = [w for w in words if 'n' in w['tags'] and not 'prop' in w['tags']]
-    return words
+def valid_word(word, allow_proper=False):
+    '''
+    valid_word returns whether a word is allowed based on the
+    following conditions:
+        * between 3-10 letters,
+        * no spaces,
+        * score at least 100,
+        * a noun that is not proper.
+
+    If allow_proper is true, then proper nouns are allowed.
+    '''
+    if ' ' in word['word']:
+        return False
+
+    l = len(word['word'])
+    if l < 3 or l > 10:
+        return False
+
+    if word['score'] < 100:
+        return False
+
+    if 'n' not in word['tags']:
+        return False
+
+    if not allow_proper and 'prop' in word['tags']:
+        return False
+
+    return True
 
 # Return a random hyponym given the list of filtered words
 def random_word(words):
     return random.choice(words)['word']
 
+def find_gifs(query):
+    url = GIPHY_URL + 'gifs/search?'
+    params = {
+            'api_key': GIPHY_KEY,
+            'q': query,
+            'rating': 'pg-13',
+            'limit': 4,
+           }
+    res = requests.get(url, params=params)
+    gifs = res.json()
+    return gifs['data']
+
 if __name__ == "__main__":
     print(CATEGORIES)
-    cat0 = filter_words(find_hyponyms(CATEGORIES[0]))
-    cat1 = filter_words(find_hyponyms(CATEGORIES[1]))
+    cat0 = filter(valid_word, find_hyponyms(CATEGORIES[0]))
+    cat1 = filter(valid_word, find_hyponyms(CATEGORIES[1]))
     print len(cat0)
     print len(cat1)
     # for w in cat0:
@@ -50,3 +80,5 @@ if __name__ == "__main__":
     for i in range(5):
         print "0: " + random_word(cat0)
         print "1: " + random_word(cat1)
+
+    # print find_gifs('donut')
