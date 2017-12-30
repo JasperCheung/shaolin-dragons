@@ -24,7 +24,7 @@ cheungJ -- 2017-12-15 17:15
 ------------------
 gave birth to the devlog
 
-cheungJ, lauS, yeH -- 2017-12-21 13:19
+cheungJ, lauS, panC, yeH -- 2017-12-21 13:19
 ------------------
 worked on design doc
 
