@@ -309,5 +309,7 @@ def update_word(cat,word,giflst):
 #print save_word("c2","w1",["g1","g2"])
 #print save_word("c1","w1",["g1","g2","g3","g4"]) #error
 
-print get_word('c1','w2') #(u'c1', u'w2', u'g1', u'g2', u'g3', None)
-print get_word('c3','w1') # None
+#print get_word('c1','w2') #(u'c1', u'w2', u'g1', u'g2', u'g3', None)
+#print get_word('c3','w1') # None
+
+print update_word('c1','w2', ['g1'])
