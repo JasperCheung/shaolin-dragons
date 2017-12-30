@@ -67,4 +67,13 @@ panC -- 2017-12-29 19:39
 ------------------
 Set up database
 Added accounts to database, tested and working
+Can authenticate a user given username and pwd
 Added history to database, tested and working
+Can call user's history
+
+panC -- 2017-12-29 20:30
+------------------
+Added saved words to database, testing and working
+Can crossreference w/ table and get gif urls
+Added gif flagging and word flagging, tested and working
+Can check to see if a gif or a word has been flagged
