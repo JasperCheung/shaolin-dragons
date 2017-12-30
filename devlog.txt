@@ -62,3 +62,9 @@ Cleaned up CSS
 lauS -- 2017-12-29 15:54
 ------------------
 Created base.html for other templates
+
+panC -- 2017-12-29 19:39
+------------------
+Set up database
+Added accounts to database, tested and working
+Added history to database, tested and working
