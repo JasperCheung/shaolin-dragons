@@ -15,7 +15,7 @@ update_pts(user,pts) - updates points of user
     returns T/F
 
 get_score(user) - gets score of one user
-    returns score
+    returns score or None
 
 get_scores() - gets scores of all users
     returns tuple of scores 
@@ -30,10 +30,22 @@ save_word(cat,word,giflst) - add word to database
     returns T/F
 
 get_word(cat,word) - gets gif urls from db if there
-    returns [T/F, (cat,word,g1-g4)]
+    returns (cat,word,g1-g4) or None
 
 update_word(user,cat,giflst) - updates gif urls
     returns T/F
+
+is_gif_flagged(cat,word,url)
+    returns T/F
+
+flag_gif(cat,word,url) - flags a gif as problematic
+    returns T/F
+
+is_word_flagged(cat,word)
+    returns T/F
+
+flag_word(cat,word) - flags a word as problematic
+    retuns T/F
 '''
 
 global db
@@ -42,14 +54,14 @@ import hashlib
 from time import gmtime, strftime
 
 #open database
-def dbopen():
+def open_db():
     global db
     f = "something.db"
     db = sqlite3.connect(f, check_same_thread = False)
     return db.cursor()
 
 #close database
-def dbclose():
+def close_db():
     global db
     db.commit()
     db.close()
@@ -57,10 +69,10 @@ def dbclose():
 
 #SETUP - TO BE RUN EACH TIME
 #------------------------------------
-c= dbopen()
+c= open_db()
 stmt= "CREATE TABLE IF NOT EXISTS accounts(user TEXT PRIMARY KEY, pass TEXT, pts INTEGER)"
 c.execute(stmt)
-stmt= "CREATE TABLE IF NOT EXISTS flaggedgif(category TEXT, word TEXT, url TEXT, PRIMARY KEY (category, word))"
+stmt= "CREATE TABLE IF NOT EXISTS flaggedgif(category TEXT, word TEXT, url TEXT, PRIMARY KEY (category, word, url))"
 c.execute(stmt)
 stmt = "CREATE TABLE IF NOT EXISTS flaggedword(category TEXT, word TEXT, PRIMARY KEY (category, word))"
 c.execute(stmt)
@@ -68,7 +80,7 @@ stmt = "CREATE TABLE IF NOT EXISTS history(user TEXT, category TEXT, word TEXT, 
 c.execute(stmt)
 stmt = "CREATE TABLE IF NOT EXISTS saved(category TEXT, word TEXT, g1 TEXT, g2 TEXT, g3 TEXT, g4 TEXT, PRIMARY KEY (category, word))"
 c.execute(stmt)
-dbclose()
+close_db()
 #=====================================
 
 
@@ -77,14 +89,14 @@ dbclose()
 def create_acc(user, pwd):
     global db
     try:
-        c = dbopen()
+        c = open_db()
         '''#hashing pwd
         obj = hashlib.sha224(pwd)
         hash_pwd = obj.hexdigest()
         '''
         command = "INSERT INTO accounts VALUES(?,?,0)"
         c.execute(command, (user,pwd))
-        dbclose()
+        close_db()
     except:
         print "Error: account cannot be created"
         return False
@@ -98,11 +110,11 @@ def create_acc(user, pwd):
 def auth(user, pwd):
     global db
     try:
-        c = dbopen()
+        c = open_db()
         command = "SELECT pass FROM accounts WHERE user=?"
         c.execute(command, (user,))
         pwds = c.fetchall()
-        dbclose()
+        close_db()
     except:
         print "Error: authenticate call not made"
         return (False,False)
@@ -120,10 +132,10 @@ def auth(user, pwd):
 def update_pts(user, pts):
     global db
     try:
-        c = dbopen()
+        c = open_db()
         command = "UPDATE accounts SET pts =? WHERE user=?"
         c.execute(command,(pts,user))
-        dbclose()
+        close_db()
     except:
         print "Error: points not updated"
         return False
@@ -136,11 +148,11 @@ def update_pts(user, pts):
 def get_score(user):
     global db
     try:
-        c = dbopen()
+        c = open_db()
         command = "SELECT pts FROM accounts WHERE user=?"
         c.execute(command, (user,))
         score = c.fetchone()[0]
-        dbclose()
+        close_db()
     except:
         print "Error: could not get score"
         return None
@@ -153,11 +165,11 @@ def get_score(user):
 def get_scores():
     global db
     try:
-        c = dbopen()
+        c = open_db()
         command = "SELECT user,pts FROM accounts ORDER BY pts DESC"
         c.execute(command)
         scores = c.fetchall()
-        dbclose()
+        close_db()
     except:
         print "Error: could not get scores"
         return (None)
@@ -170,10 +182,10 @@ def get_scores():
 def add_history(user, cat, word):
     global db
     try:
-        c= dbopen()
+        c= open_db()
         command= "INSERT INTO history VALUES (?,?,?)"
         c.execute(command, (user,cat,word))
-        dbclose()
+        close_db()
     except:
         print "Error: could not add history"
         return False
@@ -186,11 +198,11 @@ def add_history(user, cat, word):
 def user_history(user):
     global db
     try:
-        c= dbopen()
+        c= open_db()
         command= "SELECT category,word FROM history WHERE user=?"
         c.execute(command, (user,))
         data=c.fetchall()
-        dbclose()
+        close_db()
     except:
         print "Error: could not get user history"
         return None
@@ -203,14 +215,14 @@ def user_history(user):
 def save_word(cat,word,giflst):
     global db
     try:
-        c= dbopen()
+        c= open_db()
         lst = [cat,word]
         lst.extend(giflst)
         lst = fill_list(lst,6)
         print lst
         command = "INSERT INTO saved VALUES (?,?,?,?,?,?)"
         c.execute(command, tuple(lst))
-        dbclose()
+        close_db()
     except:
         print "Error: could not save word"
         return False
@@ -228,12 +240,12 @@ def fill_list(lst,n):
 def get_word(cat,word):
     global db
     try:
-        c= dbopen()
+        c= open_db()
         command = "SELECT * FROM saved WHERE category=? AND word=?"
         c.execute(command, (cat,word))
         data= c.fetchone()
        # print data
-        dbclose()
+        close_db()
     except:
         print "Error: could not retrieve word"
         return None
@@ -246,14 +258,14 @@ def get_word(cat,word):
 def update_word(cat,word,giflst):
     global db
     try:
-        c= dbopen()
+        c= open_db()
         lst = fill_list(giflst,4)
         print lst
         lst.append(cat)
         lst.append(word)
         command = "UPDATE saved SET g1=?,g2=?,g3=?,g4=? WHERE category=? AND word=?"
         c.execute(command, tuple(lst))
-        dbclose()
+        close_db()
     except:
         print "Error: could not update word"
         return False
@@ -263,25 +275,63 @@ def update_word(cat,word,giflst):
 
 #CHECK IF GIF IS FLAGGED
 #----------------------------------------
-
+def is_gif_flagged(word, cat, url):
+    global db
+    try:
+        c= open_db()
+        command = "INSERT INTO flaggedgif VALUES (?,?,?)"
+        c.execute(command, (word,cat,url))
+        db.close()
+    except:
+        return True
+    return False  
 #========================================
 
 
 #FLAG A GIF
 #----------------------------------------
-
+def flag_gif(cat, word, url):
+    global db
+    try:
+        c= open_db()
+        command = "INSERT INTO flaggedgif VALUES (?,?,?)"
+        c.execute(command, (cat, word ,url))
+        close_db()
+    except:
+        print "Error: could not flag gif"
+        return False
+    return True
 #========================================
 
 
 #CHECK IF WORD IS FLAGGED
 #----------------------------------------
-
+def is_word_flagged(cat, word):
+    global db
+    try:
+        c=open_db()
+        command = "INSERT INTO flaggedword VALUES(?,?)"
+        c.execute(command, (cat,word))
+        db.close()
+    except:
+        return True
+    return False
 #========================================
 
 
 #FLAG A WORD
 #----------------------------------------
-
+def flag_word(cat, word):
+    global db
+    try:
+        c=open_db()
+        command = "INSERT INTO flaggedword VALUES(?,?)"
+        c.execute(command, (cat,word))
+        close_db()
+    except:
+        print "Error: could not flag word"
+        return False
+    return True
 #========================================
 
 
@@ -312,4 +362,12 @@ def update_word(cat,word,giflst):
 #print get_word('c1','w2') #(u'c1', u'w2', u'g1', u'g2', u'g3', None)
 #print get_word('c3','w1') # None
 
-print update_word('c1','w2', ['g1'])
+#print update_word('c1','w2', ['g1'])
+
+#print is_gif_flagged('c1','w2','ggg') #f
+#print flag_gif('c1','w2','ggg')#t
+#print is_gif_flagged('c1','w2','ggg')#t
+
+print is_word_flagged('c3','w4') #f
+print flag_word('c3','w4') #t
+print is_word_flagged('c3','w4') #t
