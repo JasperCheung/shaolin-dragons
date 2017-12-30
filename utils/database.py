@@ -232,14 +232,12 @@ def get_word(cat,word):
         command = "SELECT * FROM saved WHERE category=? AND word=?"
         c.execute(command, (cat,word))
         data= c.fetchone()
+       # print data
         dbclose()
     except:
         print "Error: could not retrieve word"
-        return [False, None]
-    if len(data) == 0:
-        return [True, None]
-    else:
-        return [True].append(data)
+        return None
+    return data
 #========================================
 
 
@@ -311,4 +309,5 @@ def update_word(cat,word,giflst):
 #print save_word("c2","w1",["g1","g2"])
 #print save_word("c1","w1",["g1","g2","g3","g4"]) #error
 
-print get_word('c1','w2')
+print get_word('c1','w2') #(u'c1', u'w2', u'g1', u'g2', u'g3', None)
+print get_word('c3','w1') # None
