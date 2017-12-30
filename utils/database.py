@@ -204,15 +204,13 @@ def save_word(cat,word,giflst):
     global db
     try:
         c= dbopen()
-        print "diag"
         lst = [cat,word]
         lst.extend(giflst)
-        print lst
         lst = fill_list(lst,6)
         print lst
         command = "INSERT INTO saved VALUES (?,?,?,?,?,?)"
         c.execute(command, tuple(lst))
-        db.close()
+        dbclose()
     except:
         print "Error: could not save word"
         return False
@@ -234,7 +232,7 @@ def get_word(cat,word):
         command = "SELECT * FROM saved WHERE category=? AND word=?"
         c.execute(command, (cat,word))
         data= c.fetchone()
-        db.close()
+        dbclose()
     except:
         print "Error: could not retrieve word"
         return [False, None]
@@ -257,7 +255,7 @@ def update_word(cat,word,giflst):
         lst.append(word)
         command = "UPDATE saved SET g1=?,g2=?,g3=?,g4=? WHERE category=? AND word=?"
         c.execute(command, tuple(lst))
-        db.close()
+        dbclose()
     except:
         print "Error: could not update word"
         return False
@@ -308,6 +306,9 @@ def update_word(cat,word,giflst):
 #print add_history("jon", "phrase", "yolo")
 #print user_history("jon")
 
-print save_word("c1","w1", ["a","b","c","d"])
-print save_word("c2","w2", ["a","b","c"])
-print save_word("c1","w2", ["a"])
+#print save_word("c1","w1",["g1","g2","g3","g4"])
+#print save_word("c1","w2",["g1","g2","g3"])
+#print save_word("c2","w1",["g1","g2"])
+#print save_word("c1","w1",["g1","g2","g3","g4"]) #error
+
+print get_word('c1','w2')
