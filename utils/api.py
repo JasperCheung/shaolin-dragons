@@ -7,7 +7,7 @@ import requests
 import json
 import random
 
-f = open("./.secret.txt", 'rU')
+f = open("./.secrets.txt", 'rU')
 keys = json.loads(f.read())
 f.close()
 
