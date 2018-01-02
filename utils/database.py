@@ -5,11 +5,13 @@
 
 
 ''' List of methods
+setup() - sets up db
+
 create_acc(user,pwd) - adds acc to db
     returns T/F
 
 auth(user,pwd) - checks if user and pwd match
-    returns (T/F,T/F): (if there is a user, if the pwd matches)
+    returns T/F
 
 update_pts(user,pts) - updates points of user
     returns T/F
@@ -56,7 +58,7 @@ from time import gmtime, strftime
 #open database
 def open_db():
     global db
-    f = "something.db"
+    f = "data/something.db"
     db = sqlite3.connect(f, check_same_thread = False)
     return db.cursor()
 
@@ -69,18 +71,20 @@ def close_db():
 
 #SETUP - TO BE RUN EACH TIME
 #------------------------------------
-c= open_db()
-stmt= "CREATE TABLE IF NOT EXISTS accounts(user TEXT PRIMARY KEY, pass TEXT, pts INTEGER)"
-c.execute(stmt)
-stmt= "CREATE TABLE IF NOT EXISTS flaggedgif(category TEXT, word TEXT, url TEXT, PRIMARY KEY (category, word, url))"
-c.execute(stmt)
-stmt = "CREATE TABLE IF NOT EXISTS flaggedword(category TEXT, word TEXT, PRIMARY KEY (category, word))"
-c.execute(stmt)
-stmt = "CREATE TABLE IF NOT EXISTS history(user TEXT, category TEXT, word TEXT, PRIMARY KEY (user, category, word))"
-c.execute(stmt)
-stmt = "CREATE TABLE IF NOT EXISTS saved(category TEXT, word TEXT, g1 TEXT, g2 TEXT, g3 TEXT, g4 TEXT, PRIMARY KEY (category, word))"
-c.execute(stmt)
-close_db()
+def setup():
+    c= open_db()
+    stmt= "CREATE TABLE IF NOT EXISTS accounts(user TEXT PRIMARY KEY, pass TEXT, pts INTEGER)"
+    c.execute(stmt)
+    stmt= "CREATE TABLE IF NOT EXISTS flaggedgif(category TEXT, word TEXT, url TEXT, PRIMARY KEY (category, word, url))"
+    c.execute(stmt)
+    stmt = "CREATE TABLE IF NOT EXISTS flaggedword(category TEXT, word TEXT, PRIMARY KEY (category, word))"
+    c.execute(stmt)
+    stmt = "CREATE TABLE IF NOT EXISTS history(user TEXT, category TEXT, word TEXT, PRIMARY KEY (user, category, word))"
+    c.execute(stmt)
+    stmt = "CREATE TABLE IF NOT EXISTS saved(category TEXT, word TEXT, g1 TEXT, g2 TEXT, g3 TEXT, g4 TEXT, PRIMARY KEY (category, word))"
+    c.execute(stmt)
+    close_db()
+    return
 #=====================================
 
 
@@ -106,7 +110,8 @@ def create_acc(user, pwd):
 
 #AUTHENTICATE USER
 #---------------------------------------
-#returns (has passwords?, correct password?)
+#returns true or false
+#previously (has passwords?, correct password?)
 def auth(user, pwd):
     global db
     try:
@@ -117,13 +122,13 @@ def auth(user, pwd):
         close_db()
     except:
         print "Error: authenticate call not made"
-        return (False,False)
+        return False #(False, False)
     if len(pwds) == 0:
-        return (False, False)
-    if pwds[0][0] == pwd:
-        return (True, True)
+        return False #(False, False)
+    if pwds[0][0] == pwd: 
+        return True #(True, True)
     else:
-        return (False, True)
+        return False #(False, True)
 #========================================
 
 
@@ -335,12 +340,12 @@ def flag_word(cat, word):
 #========================================
 
 
-#-TEST-TEST-TEST-TEST-TEST-TEST-
+#---TEST---TEST---TEST---TEST---TEST---TEST---
 #print create_acc("jon", "snow") #t
 #print create_acc("jon", "snow") #f
-#print auth("jon","snow") #both correct t,t
-#print auth("jack","snow") #user wrong f,f
-#print auth("jon","slew") #pwd wrong f,t
+#print auth("jon","snow") #both correct t
+#print auth("jack","snow") #user wrong f
+#print auth("jon","slew") #pwd wrong f
 
 #print update_pts("jon", 60)
 #print update_pts("jack", 20) #will not say anything if username wrong, but is still not inputted
@@ -368,6 +373,6 @@ def flag_word(cat, word):
 #print flag_gif('c1','w2','ggg')#t
 #print is_gif_flagged('c1','w2','ggg')#t
 
-print is_word_flagged('c3','w4') #f
-print flag_word('c3','w4') #t
-print is_word_flagged('c3','w4') #t
+#print is_word_flagged('c3','w4') #f
+#print flag_word('c3','w4') #t
+#print is_word_flagged('c3','w4') #t
