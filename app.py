@@ -5,7 +5,7 @@
 
 from flask import Flask, render_template, request, redirect, flash, Markup, url_for
 import requests, os
-# from util import
+from utils import database as db
 
 app = Flask(__name__)
 app.secret_key = os.urandom(128)
@@ -29,4 +29,5 @@ def log_in():
 
 if __name__ == "__main__":
     app.debug = True
+    db.setup()
     app.run()

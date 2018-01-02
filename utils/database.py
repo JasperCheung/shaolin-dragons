@@ -58,7 +58,7 @@ from time import gmtime, strftime
 #open database
 def open_db():
     global db
-    f = "data/something.db"
+    f = "data/playgame.db"
     db = sqlite3.connect(f, check_same_thread = False)
     return db.cursor()
 
