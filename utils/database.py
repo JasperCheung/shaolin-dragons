@@ -5,6 +5,8 @@
 
 
 ''' List of methods
+setup() - sets up db
+
 create_acc(user,pwd) - adds acc to db
     returns T/F
 
@@ -56,7 +58,7 @@ from time import gmtime, strftime
 #open database
 def open_db():
     global db
-    f = "something.db"
+    f = "data/something.db"
     db = sqlite3.connect(f, check_same_thread = False)
     return db.cursor()
 
@@ -69,18 +71,20 @@ def close_db():
 
 #SETUP - TO BE RUN EACH TIME
 #------------------------------------
-c= open_db()
-stmt= "CREATE TABLE IF NOT EXISTS accounts(user TEXT PRIMARY KEY, pass TEXT, pts INTEGER)"
-c.execute(stmt)
-stmt= "CREATE TABLE IF NOT EXISTS flaggedgif(category TEXT, word TEXT, url TEXT, PRIMARY KEY (category, word, url))"
-c.execute(stmt)
-stmt = "CREATE TABLE IF NOT EXISTS flaggedword(category TEXT, word TEXT, PRIMARY KEY (category, word))"
-c.execute(stmt)
-stmt = "CREATE TABLE IF NOT EXISTS history(user TEXT, category TEXT, word TEXT, PRIMARY KEY (user, category, word))"
-c.execute(stmt)
-stmt = "CREATE TABLE IF NOT EXISTS saved(category TEXT, word TEXT, g1 TEXT, g2 TEXT, g3 TEXT, g4 TEXT, PRIMARY KEY (category, word))"
-c.execute(stmt)
-close_db()
+def setup():
+    c= open_db()
+    stmt= "CREATE TABLE IF NOT EXISTS accounts(user TEXT PRIMARY KEY, pass TEXT, pts INTEGER)"
+    c.execute(stmt)
+    stmt= "CREATE TABLE IF NOT EXISTS flaggedgif(category TEXT, word TEXT, url TEXT, PRIMARY KEY (category, word, url))"
+    c.execute(stmt)
+    stmt = "CREATE TABLE IF NOT EXISTS flaggedword(category TEXT, word TEXT, PRIMARY KEY (category, word))"
+    c.execute(stmt)
+    stmt = "CREATE TABLE IF NOT EXISTS history(user TEXT, category TEXT, word TEXT, PRIMARY KEY (user, category, word))"
+    c.execute(stmt)
+    stmt = "CREATE TABLE IF NOT EXISTS saved(category TEXT, word TEXT, g1 TEXT, g2 TEXT, g3 TEXT, g4 TEXT, PRIMARY KEY (category, word))"
+    c.execute(stmt)
+    close_db()
+    return
 #=====================================
 
 
