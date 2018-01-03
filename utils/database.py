@@ -346,7 +346,8 @@ def flag_word(cat, word):
         print "Error: could not flag word"
         return False
     return True
-if __name__ == "__main__":
+
+# if __name__ == "__main__":
 #========================================
     #-TEST-TEST-TEST-TEST-TEST-TEST-
     #print create_acc("jon", "snow") #t
