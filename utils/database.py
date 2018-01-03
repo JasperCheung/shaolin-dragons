@@ -7,8 +7,8 @@
 ''' List of methods
 setup() - sets up db
 
-create_acc(user,pwd) - adds acc to db
-    returns T/F
+create_acc(user,pwd1,pwd2) - sees if input is valid, adds acc to db
+    returns (T/F, T/F) -- (is username valid, is password valid)
 
 auth(user,pwd) - checks if user and pwd match
     returns T/F
@@ -90,7 +90,7 @@ def setup():
 
 #CREATE AN ACCOUNT
 #-------------------------------------
-def create_acc(user, pwd):
+def create_acc(user, pwd1, pwd2):
     global db
     try:
         c = open_db()
@@ -103,8 +103,11 @@ def create_acc(user, pwd):
         close_db()
     except:
         print "Error: account cannot be created"
-        return False
-    return True
+        return (False, False)
+    if pwd1 == pwd2
+        return (True, True)
+    else:
+        return (True, False)
 #=======================================
 
 
