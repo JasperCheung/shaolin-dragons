@@ -77,3 +77,9 @@ Added saved words to database, testing and working
 Can crossreference w/ table and get gif urls
 Added gif flagging and word flagging, tested and working
 Can check to see if a gif or a word has been flagged
+
+lauS -- 2018-01-02 13:19
+------------------
+Made footer stick to the bottom
+Flashed messages!
+Began login/signup pages
