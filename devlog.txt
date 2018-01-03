@@ -84,6 +84,12 @@ Made footer stick to the bottom
 Flashed messages!
 Began login/signup pages
 
+panC -- 2018-01-02 13:19
+------------------
+Created files for login/signup
+Imports database.py into app.py
+Create database in data folder
+
 yeH -- 2018-01-02 13:19
 ------------------
 Add temporary test files for categories and game page

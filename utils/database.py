@@ -7,8 +7,8 @@
 ''' List of methods
 setup() - sets up db
 
-create_acc(user,pwd) - adds acc to db
-    returns T/F
+create_acc(user,pwd1,pwd2) - sees if input is valid, adds acc to db
+    returns (T/F, T/F) -- (is username valid, is password valid)
 
 auth(user,pwd) - checks if user and pwd match
     returns T/F
@@ -90,7 +90,7 @@ def setup():
 
 #CREATE AN ACCOUNT
 #-------------------------------------
-def create_acc(user, pwd):
+def create_acc(user, pwd1, pwd2):
     global db
     try:
         c = open_db()
@@ -99,12 +99,21 @@ def create_acc(user, pwd):
         hash_pwd = obj.hexdigest()
         '''
         command = "INSERT INTO accounts VALUES(?,?,0)"
-        c.execute(command, (user,pwd))
-        close_db()
-    except:
+        c.execute(command, (user,pwd1)) #try to see if user exists
+
+        #if pwds don't match
+        if pwd1 != pwd2:
+            db.close() #don't commit and close
+        else:
+            close_db() #commit and close
+            
+    except: #if user exists, code will jump here
         print "Error: account cannot be created"
-        return False
-    return True
+        return (False, False)
+    
+    if pwd1 != pwd2:
+        return (True, False)
+    return (True, True)        
 #=======================================
 
 
@@ -372,6 +381,6 @@ if __name__ == "__main__":
     #print flag_gif('c1','w2','ggg')#t
     #print is_gif_flagged('c1','w2','ggg')#t
 
-    print is_word_flagged('c3','w4') #f
-    print flag_word('c3','w4') #t
-    print is_word_flagged('c3','w4') #t
+    #print is_word_flagged('c3','w4') #f
+    #print flag_word('c3','w4') #t
+    #print is_word_flagged('c3','w4') #t
