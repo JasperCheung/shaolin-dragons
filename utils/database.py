@@ -99,21 +99,19 @@ def create_acc(user, pwd1, pwd2):
         hash_pwd = obj.hexdigest()
         '''
         command = "INSERT INTO accounts VALUES(?,?,0)"
-        c.execute(command, (user,pwd1)) #try to see if user exists
-
+        c.execute(command, (user,"yolo")) #try to see if user exists
         #if pwds don't match
         if pwd1 != pwd2:
             db.close() #don't commit and close
+            return (True, False)
         else:
             close_db() #commit and close
+            return (True, True) 
             
     except: #if user exists, code will jump here
         print "Error: account cannot be created"
         return (False, False)
-    
-    if pwd1 != pwd2:
-        return (True, False)
-    return (True, True)        
+      
 #=======================================
 
 
@@ -349,39 +347,43 @@ def flag_word(cat, word):
 
 # if __name__ == "__main__":
 #========================================
-    #-TEST-TEST-TEST-TEST-TEST-TEST-
-    #print create_acc("jon", "snow") #t
-    #print create_acc("jon", "snow") #f
-    #print auth("jon","snow") #both correct t,t
-    #print auth("jack","snow") #user wrong f,f
-    #print auth("jon","slew") #pwd wrong f,t
+#-TEST-TEST-TEST-TEST-TEST-TEST-
+#setup()
+#print create_acc("jon", "snow", "hail") #t,f
+#print create_acc("jon", "snow", "snow") #t,t
+#print create_acc("jon", "snow", "hail") #f,f
+#print create_acc("jon", "snow", "snow") #f,f
 
-    #print update_pts("jon", 60)
-    #print update_pts("jack", 20) #will not say anything if username wrong, but is still not inputted
+#print auth("jon","snow") #both correct t,t
+#print auth("jack","snow") #user wrong f,f
+#print auth("jon","slew") #pwd wrong f,t
 
-    #create_acc("bilbo","baggins")
-    #update_pts("bilbo", 120)
-    #print get_score("bilbo") #120
-    #print get_scores()#returns [(u'bilbo', 120),(u'jon', 60)]
+#print update_pts("jon", 60)
+#print update_pts("jack", 20) #will not say anything if username wrong, but is still not inputted
 
-    #print add_history("jon", "emotions", "happy")
-    #print add_history("jon", "phrase", "yolo")
-    #print user_history("jon")
+#create_acc("bilbo","baggins")
+#update_pts("bilbo", 120)
+#print get_score("bilbo") #120
+#print get_scores()#returns [(u'bilbo', 120),(u'jon', 60)]
 
-    #print save_word("c1","w1",["g1","g2","g3","g4"])
-    #print save_word("c1","w2",["g1","g2","g3"])
-    #print save_word("c2","w1",["g1","g2"])
-    #print save_word("c1","w1",["g1","g2","g3","g4"]) #error
+#print add_history("jon", "emotions", "happy")
+#print add_history("jon", "phrase", "yolo")
+#print user_history("jon")
 
-    #print get_word('c1','w2') #(u'c1', u'w2', u'g1', u'g2', u'g3', None)
-    #print get_word('c3','w1') # None
+#print save_word("c1","w1",["g1","g2","g3","g4"])
+#print save_word("c1","w2",["g1","g2","g3"])
+#print save_word("c2","w1",["g1","g2"])
+#print save_word("c1","w1",["g1","g2","g3","g4"]) #error
 
-    #print update_word('c1','w2', ['g1'])
+#print get_word('c1','w2') #(u'c1', u'w2', u'g1', u'g2', u'g3', None)
+#print get_word('c3','w1') # None
 
-    #print is_gif_flagged('c1','w2','ggg') #f
-    #print flag_gif('c1','w2','ggg')#t
-    #print is_gif_flagged('c1','w2','ggg')#t
+#print update_word('c1','w2', ['g1'])
 
-    #print is_word_flagged('c3','w4') #f
-    #print flag_word('c3','w4') #t
-    #print is_word_flagged('c3','w4') #t
+#print is_gif_flagged('c1','w2','ggg') #f
+#print flag_gif('c1','w2','ggg')#t
+#print is_gif_flagged('c1','w2','ggg')#t
+
+#print is_word_flagged('c3','w4') #f
+#print flag_word('c3','w4') #t
+#print is_word_flagged('c3','w4') #t
