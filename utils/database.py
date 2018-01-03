@@ -99,15 +99,21 @@ def create_acc(user, pwd1, pwd2):
         hash_pwd = obj.hexdigest()
         '''
         command = "INSERT INTO accounts VALUES(?,?,0)"
-        c.execute(command, (user,pwd))
-        close_db()
-    except:
+        c.execute(command, (user,pwd1)) #try to see if user exists
+
+        #if pwds don't match
+        if pwd1 != pwd2:
+            db.close() #don't commit and close
+        else:
+            close_db() #commit and close
+            
+    except: #if user exists, code will jump here
         print "Error: account cannot be created"
         return (False, False)
-    if pwd1 == pwd2
-        return (True, True)
-    else:
+    
+    if pwd1 != pwd2:
         return (True, False)
+    return (True, True)        
 #=======================================
 
 
@@ -375,6 +381,6 @@ if __name__ == "__main__":
     #print flag_gif('c1','w2','ggg')#t
     #print is_gif_flagged('c1','w2','ggg')#t
 
-    print is_word_flagged('c3','w4') #f
-    print flag_word('c3','w4') #t
-    print is_word_flagged('c3','w4') #t
+    #print is_word_flagged('c3','w4') #f
+    #print flag_word('c3','w4') #t
+    #print is_word_flagged('c3','w4') #t
