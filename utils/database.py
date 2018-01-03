@@ -337,42 +337,41 @@ def flag_word(cat, word):
         print "Error: could not flag word"
         return False
     return True
+if __name__ == "__main__":
 #========================================
+    #-TEST-TEST-TEST-TEST-TEST-TEST-
+    #print create_acc("jon", "snow") #t
+    #print create_acc("jon", "snow") #f
+    #print auth("jon","snow") #both correct t,t
+    #print auth("jack","snow") #user wrong f,f
+    #print auth("jon","slew") #pwd wrong f,t
 
+    #print update_pts("jon", 60)
+    #print update_pts("jack", 20) #will not say anything if username wrong, but is still not inputted
 
-#---TEST---TEST---TEST---TEST---TEST---TEST---
-#print create_acc("jon", "snow") #t
-#print create_acc("jon", "snow") #f
-#print auth("jon","snow") #both correct t
-#print auth("jack","snow") #user wrong f
-#print auth("jon","slew") #pwd wrong f
+    #create_acc("bilbo","baggins")
+    #update_pts("bilbo", 120)
+    #print get_score("bilbo") #120
+    #print get_scores()#returns [(u'bilbo', 120),(u'jon', 60)]
 
-#print update_pts("jon", 60)
-#print update_pts("jack", 20) #will not say anything if username wrong, but is still not inputted
+    #print add_history("jon", "emotions", "happy")
+    #print add_history("jon", "phrase", "yolo")
+    #print user_history("jon")
 
-#create_acc("bilbo","baggins")
-#update_pts("bilbo", 120)
-#print get_score("bilbo") #120
-#print get_scores()#returns [(u'bilbo', 120),(u'jon', 60)]
+    #print save_word("c1","w1",["g1","g2","g3","g4"])
+    #print save_word("c1","w2",["g1","g2","g3"])
+    #print save_word("c2","w1",["g1","g2"])
+    #print save_word("c1","w1",["g1","g2","g3","g4"]) #error
 
-#print add_history("jon", "emotions", "happy")
-#print add_history("jon", "phrase", "yolo")
-#print user_history("jon")
+    #print get_word('c1','w2') #(u'c1', u'w2', u'g1', u'g2', u'g3', None)
+    #print get_word('c3','w1') # None
 
-#print save_word("c1","w1",["g1","g2","g3","g4"])
-#print save_word("c1","w2",["g1","g2","g3"])
-#print save_word("c2","w1",["g1","g2"])
-#print save_word("c1","w1",["g1","g2","g3","g4"]) #error
+    #print update_word('c1','w2', ['g1'])
 
-#print get_word('c1','w2') #(u'c1', u'w2', u'g1', u'g2', u'g3', None)
-#print get_word('c3','w1') # None
+    #print is_gif_flagged('c1','w2','ggg') #f
+    #print flag_gif('c1','w2','ggg')#t
+    #print is_gif_flagged('c1','w2','ggg')#t
 
-#print update_word('c1','w2', ['g1'])
-
-#print is_gif_flagged('c1','w2','ggg') #f
-#print flag_gif('c1','w2','ggg')#t
-#print is_gif_flagged('c1','w2','ggg')#t
-
-#print is_word_flagged('c3','w4') #f
-#print flag_word('c3','w4') #t
-#print is_word_flagged('c3','w4') #t
+    print is_word_flagged('c3','w4') #f
+    print flag_word('c3','w4') #t
+    print is_word_flagged('c3','w4') #t
