@@ -18,13 +18,13 @@ def home():
 # Displays the sign-up page
 # If credentials are valid, routes to game page
 @app.route("/signup")
-def sign_up():
+def signup():
     return render_template("signup.html")
 
 # Displays the log-in page
-# If credentials are valid, routes to game page
+# If credentials are valid, routes to categories page
 @app.route("/login")
-def log_in():
+def login():
     return render_template("login.html")
 
 @app.route("/categories")
@@ -34,16 +34,24 @@ def categories():
 @app.route("/game")
 def game():
     args = request.args
-    if 'category' not in args:
-        flash("You must select a category to play the game", 'warning')
-        return redirect(url_for('categories'))
+    if "category" not in args:
+        flash("You must select a category to play the game", "warning")
+        return redirect(url_for("categories"))
     print "finding word"
-    category = args['category']
+    category = args["category"]
     hyponyms = filter(api.valid_word, api.find_hyponyms(category))
     word = api.random_word(hyponyms)
     # Maybe make it so use category for specific categories
     gifs = api.find_gifs(word, category, use_category=True)
-    return render_template('game.html', gifs=gifs)
+    return render_template("game.html", gifs=gifs)
+
+@app.route("/leaderboard")
+def leaderboard():
+    return render_template("leaderboard.html") #page not existent atm
+
+@app.route("/appstats")
+def appstats():
+    return render_template("appstats.html") #page not existent atm
 
 if __name__ == "__main__":
     app.debug = True
