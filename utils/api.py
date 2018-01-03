@@ -62,12 +62,17 @@ def valid_word(word, allow_proper=False):
 def random_word(words):
     return random.choice(words)['word']
 
-def find_gifs(query):
+# Find 4 gifs given the query and category
+# Optional usage of category
+def find_gifs(query, category, use_category=False):
     url = GIPHY_URL + 'gifs/search?'
+    if use_category:
+        query += ' ' + category
+    print query
     params = {
             'api_key': GIPHY_KEY,
             'q': query,
-            'rating': 'pg-13',
+            'rating': 'pg',
             'limit': 4,
            }
     res = requests.get(url, params=params)

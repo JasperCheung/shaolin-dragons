@@ -89,3 +89,7 @@ yeH -- 2018-01-02 13:19
 Add temporary test files for categories and game page
 Add routes for above
 Add flash rendering with Bootstrap alerts
+
+yeH -- 2018-01-03 10:00
+------------------
+Add category when searching GIFs

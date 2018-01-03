@@ -41,8 +41,8 @@ def game():
     category = args['category']
     hyponyms = filter(api.valid_word, api.find_hyponyms(category))
     word = api.random_word(hyponyms)
-    print word
-    gifs = api.find_gifs(word)
+    # Maybe make it so use category for specific categories
+    gifs = api.find_gifs(word, category, use_category=True)
     return render_template('game.html', gifs=gifs)
 
 if __name__ == "__main__":
