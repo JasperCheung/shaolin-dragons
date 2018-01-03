@@ -17,15 +17,15 @@ def home():
     return render_template("home.html")
 # Displays the sign-up page
 # If credentials are valid, routes to game page
-@app.route("/sign_up")
+@app.route("/signup")
 def sign_up():
-    return render_template("signup.html") # Page does not exist yet
+    return render_template("signup.html")
 
 # Displays the log-in page
 # If credentials are valid, routes to game page
-@app.route("/log_in")
+@app.route("/login")
 def log_in():
-    return render_template("login.html") # Page does not exist yet
+    return render_template("login.html")
 
 @app.route("/categories")
 def categories():
