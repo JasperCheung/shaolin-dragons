@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{% block title %}4 GIFS 1 WORD{% endblock title %}</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Roboto" rel="stylesheet">
-    <link rel="icon" href="../static/favicon.png">
-    <link rel="stylesheet" type="text/css" href="../static/styles.css">
-  </head>
-  <body>
-    {% block content %}
+    <head>
+        <title>{% block title %}4 GIFS 1 WORD{% endblock title %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Roboto" rel="stylesheet">
+        <link rel="icon" href="../static/favicon.png">
+        <link rel="stylesheet" type="text/css" href="../static/styles.css">
+    </head>
+    <body>
+        {% with msgs = get_flashed_messages(with_categories=true) %}
+        <div class="container">
+            {% for alert_cat, msg in msgs %}
+            <div class="alert alert-{{ alert_cat }} alert-dismissable" role="alert">
+                {{ msg }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endwith %}
 
-    {% set msgs = get_flashed_messages() %}
-    {% for msg in msgs %}
-    {{ msg }}
-    {% endfor %}
-    
-    {% endblock content %}
-    <div class="footer container-fluid text-center">
-      <p>Made with love by <a href="https://github.com/slau8/shaolin-dragons">Shaolin Dragons</a></p>
-    </div>
-  </body>
+        {% block content %}
+
+        {% endblock content %}
+        <div class="footer container-fluid text-center">
+            <p>Made with love by <a href="https://github.com/slau8/shaolin-dragons">Shaolin Dragons</a></p>
+        </div>
+    </body>
 </html>
