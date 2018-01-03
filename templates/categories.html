@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}
+Categories
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Choose a category.</h2>
+    {% for cat in categories %}
+    <a href="{{ url_for('game', category=cat) }}">{{ cat }}</a>
+    <br>
+{% endfor %}
+<br>
+</div>
+{% endblock %}

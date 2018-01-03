@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}
+Game | 4 GIFS 1 WORD!
+{% endblock %}
+
+{% block content %}
+{% for gif in gifs %}
+<img src="{{ gif['images']['fixed_width_small']['url'] }}" alt="4 GIFS 1 WORD">
+<br>
+{% endfor %}
+{% endblock %}

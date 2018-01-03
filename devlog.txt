@@ -83,3 +83,9 @@ lauS -- 2018-01-02 13:19
 Made footer stick to the bottom
 Flashed messages!
 Began login/signup pages
+
+yeH -- 2018-01-02 13:19
+------------------
+Add temporary test files for categories and game page
+Add routes for above
+Add flash rendering with Bootstrap alerts
