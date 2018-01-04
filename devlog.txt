@@ -99,3 +99,9 @@ Add flash rendering with Bootstrap alerts
 yeH -- 2018-01-03 10:00
 ------------------
 Add category when searching GIFs
+
+lauS -- 2018-01-03 15:35
+------------------
+Completed styling for the sign up and log in pages
+Linked the homepage buttons to their respective pages
+Need to figure out sizing; especially for smaller windows
