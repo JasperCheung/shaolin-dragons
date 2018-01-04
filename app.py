@@ -45,9 +45,9 @@ def game():
     gifs = api.find_gifs(word, category, use_category=True)
     return render_template("game.html", gifs=gifs)
 
-@app.route("/leaderboard")
+@app.route("/rankings")
 def leaderboard():
-    return render_template("leaderboard.html") #page not existent atm
+    return render_template("rankings.html") #page not existent atm
 
 @app.route("/appstats")
 def appstats():
