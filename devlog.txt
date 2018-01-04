@@ -105,3 +105,9 @@ lauS -- 2018-01-03 15:35
 Completed styling for the sign up and log in pages
 Linked the homepage buttons to their respective pages
 Need to figure out sizing; especially for smaller windows
+
+yeH -- 2018-01-04 16:30
+------------------
+Save past words to database and use them instead of API calls
+Add a constant in utils/api.py to make it easier to choose which GIF type to
+    use (e.g. fixed_width_small vs. original

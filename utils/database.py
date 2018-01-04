@@ -345,10 +345,10 @@ def flag_word(cat, word):
         return False
     return True
 
-# if __name__ == "__main__":
 #========================================
 #-TEST-TEST-TEST-TEST-TEST-TEST-
-#setup()
+# if __name__ == "__main__":
+#     setup()
 #print create_acc("jon", "snow", "hail") #t,f
 #print create_acc("jon", "snow", "snow") #t,t
 #print create_acc("jon", "snow", "hail") #f,f

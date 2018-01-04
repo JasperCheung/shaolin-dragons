@@ -6,6 +6,7 @@
 import requests
 import json
 import random
+import database as db
 
 f = open("./.secrets.txt", 'rU')
 keys = json.loads(f.read())
@@ -15,6 +16,8 @@ GIPHY_KEY = keys['giphy']
 
 GIPHY_URL = "http://api.giphy.com/v1/"
 DATAMUSE_URL = "http://api.datamuse.com/words?"
+
+GIF_TYPE = 'fixed_width_small'
 
 # Read categories in categories file
 with open('categories.txt') as f:
@@ -64,20 +67,40 @@ def random_word(words):
 
 # Find 4 gifs given the query and category
 # Optional usage of category
-def find_gifs(query, category, use_category=False):
+def find_gifs(query, limit=4, offset=0):
     url = GIPHY_URL + 'gifs/search?'
-    if use_category:
-        query += ' ' + category
     print query
     params = {
             'api_key': GIPHY_KEY,
             'q': query,
             'rating': 'pg',
-            'limit': 4,
+            'limit': limit,
+            'offset': offset,
            }
     res = requests.get(url, params=params)
     gifs = res.json()
     return gifs['data']
+
+def gifs_for_word(category, word, use_category=True):
+    db_word = db.get_word(category, word)
+    if db_word:
+        gifs = db_word[2:]
+    else:
+        query = word
+        if use_category:
+            query += " " + category
+        gifs = find_gifs(query)
+        gif_list = list()
+        for gif in gifs:
+            gif_list.append(gif['images'][GIF_TYPE]['url'])
+        lst = [category, word]
+        lst.extend(gif_list)
+        if db.save_word(category, word, gif_list):
+            print "Saved [" + word  + "] in category: " + category
+        else:
+            print "Error saving [" +  word  + "] in category: " + category
+        gifs = lst[2:]
+    return gifs
 
 if __name__ == "__main__":
     print(CATEGORIES)
@@ -92,3 +115,5 @@ if __name__ == "__main__":
         print "1: " + random_word(cat1)
 
     # print find_gifs('donut')
+    db.setup()
+    gifs_for_word('foodstuff', 'coffee')

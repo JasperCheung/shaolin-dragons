@@ -42,8 +42,8 @@ def game():
     hyponyms = filter(api.valid_word, api.find_hyponyms(category))
     word = api.random_word(hyponyms)
     # Maybe make it so use category for specific categories
-    gifs = api.find_gifs(word, category, use_category=True)
-    return render_template("game.html", gifs=gifs)
+    gifs = api.gifs_for_word(category, word)
+    return render_template('game.html', gifs=gifs, word=word, category=category)
 
 @app.route("/rankings")
 def leaderboard():
