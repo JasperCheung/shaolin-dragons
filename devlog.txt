@@ -116,3 +116,10 @@ lauS -- 2018-01-04 16:30
 ------------------
 Set up the rest of the webpages
 Fixed the buggy footer 
+
+lauS -- 2018-01-04 20:03
+------------------
+Finished auth verifications (login isn't tracked past the home page)
+Auth with error messsages
+     - login: incorrect username/password
+     - signup: username already exists; passwords don't match
