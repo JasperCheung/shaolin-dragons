@@ -88,9 +88,10 @@ def score():
     if logged_in():
         return db.get_score(username())
     elif session.get("score"):
-        return int(session["score"])
+        return session["score"]
     else:
         session["score"] = "0"
+        return "0"
 
 if __name__ == "__main__":
     app.debug = True
