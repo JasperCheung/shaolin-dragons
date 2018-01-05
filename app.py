@@ -81,7 +81,7 @@ def username():
     if logged_in():
         return session["username"].upper()
     else:
-        return ""
+        return "GUEST"
 
 # Returns score of the logged in person/guest
 def score():
