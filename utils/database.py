@@ -48,6 +48,9 @@ is_word_flagged(cat,word)
 
 flag_word(cat,word) - flags a word as problematic
     retuns T/F
+
+gif_offset(cat,word) - finds the number of gifs flagged for this word
+    returns int
 '''
 
 global db
@@ -349,11 +352,28 @@ def flag_word(cat, word):
         print "Error: could not flag word"
         return False
     return True
+#========================================
 
+#FIND GIF OFFSET
+#----------------------------------------
+def gif_offset(cat, word):
+    global db
+    try:
+        c=open_db()
+        command="SELECT * FROM flaggedgif WHERE category=? AND word=?"
+        c.execute(command, (cat,word))
+        data=c.fetchall()
+    except:
+        print "Error: could not get gif offset"
+        return 0
+    count = 0
+    for entry in data:
+        count += 1
+    return count
 #========================================
 #-TEST-TEST-TEST-TEST-TEST-TEST-
 # if __name__ == "__main__":
-#setup()
+setup()
 #print create_acc("jon", "snow", "hail") #t,f
 #print create_acc("jack", "snow", "snow") #t,t
 #print create_acc("jon", "snow", "hail") #f,f
@@ -392,3 +412,9 @@ def flag_word(cat, word):
 #print is_word_flagged('c3','w4') #f
 #print flag_word('c3','w4') #t
 #print is_word_flagged('c3','w4') #t
+
+#print flag_gif('c1','w2','gggg')#t
+#print flag_gif('c1','w2','ggg')#t
+#print flag_gif('c1','w2','gg')#t
+#print flag_gif('c1','w2','g')#t
+#print gif_offset('c1','w2')#should return 4
