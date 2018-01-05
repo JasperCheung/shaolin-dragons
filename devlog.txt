@@ -100,6 +100,10 @@ yeH -- 2018-01-03 10:00
 ------------------
 Add category when searching GIFs
 
+panC -- 2018-01-03 13:10
+------------------
+Filtered user inputs in creating account
+
 lauS -- 2018-01-03 15:35
 ------------------
 Completed styling for the sign up and log in pages
@@ -123,3 +127,8 @@ Finished auth verifications (login isn't tracked past the home page)
 Auth with error messsages
      - login: incorrect username/password
      - signup: username already exists; passwords don't match
+     
+panC -- 2018-01-04 20:37
+------------------
+Hashed passwords when inserting to database
+Stripped leading and trailing whitespaces from username input
