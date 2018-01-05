@@ -5,8 +5,7 @@
 
 {% extends "base.html" %}
 
-{% block content %}
-
+{% block nav %}
 <div class="container-fluid bg-gradient banner">
     <nav class="navbar">
       <div class="container" id="nav">
@@ -21,10 +20,12 @@
       </div>
     </nav>
 </div>
+{% endblock nav %}
 
+{% block content %}
 <div class="card card-center">
   <h1 class="card-header">SIGN UP</h1>
-  <form action="/login" method="POST">
+  <form action="/signup" method="POST">
      <div class="form-group">
        <input type="text" class="form-control text-round" placeholder="Username" name="username" required>
      </div>
@@ -34,11 +35,11 @@
       <div class="form-group">
        <input type="password" class="form-control text-round" placeholder="Confirm Password" name="confirm_password" required>
      </div>
-     <input class="btn btn-block" type="submit" value="GO" name="login">
+     <input class="btn btn-block" type="submit" value="GO" name="signup">
   </form><br>
   <div class="text-right">
     <a href="/categories" class="link-dotted">or play as Guest</a>
     </div>
 </div>
 
-{% endblock %}
+{% endblock content %}

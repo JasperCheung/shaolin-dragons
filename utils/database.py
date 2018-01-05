@@ -20,7 +20,7 @@ get_score(user) - gets score of one user
     returns score or None
 
 get_scores() - gets scores of all users
-    returns tuple of scores 
+    returns tuple of scores
 
 add_history(user,cat,word) - adds history
     returns T/F
@@ -99,19 +99,19 @@ def create_acc(user, pwd1, pwd2):
         hash_pwd = obj.hexdigest()
         '''
         command = "INSERT INTO accounts VALUES(?,?,0)"
-        c.execute(command, (user,"yolo")) #try to see if user exists
+        c.execute(command, (user,pwd1)) #try to see if user exists
         #if pwds don't match
         if pwd1 != pwd2:
             db.close() #don't commit and close
             return (True, False)
         else:
             close_db() #commit and close
-            return (True, True) 
-            
+            return (True, True)
+
     except: #if user exists, code will jump here
         print "Error: account cannot be created"
         return (False, False)
-      
+
 #=======================================
 
 
@@ -132,7 +132,7 @@ def auth(user, pwd):
         return False #(False, False)
     if len(pwds) == 0:
         return False #(False, False)
-    if pwds[0][0] == pwd: 
+    if pwds[0][0] == pwd:
         return True #(True, True)
     else:
         return False #(False, True)
@@ -296,7 +296,7 @@ def is_gif_flagged(word, cat, url):
         db.close()
     except:
         return True
-    return False  
+    return False
 #========================================
 
 

@@ -15,8 +15,12 @@
         <link rel="stylesheet" type="text/css" href="../static/styles.css">
     </head>
     <body>
+        {% block nav %}
+        {% endblock nav %}
+
+        {% block alerts %}
         {% with msgs = get_flashed_messages(with_categories=true) %}
-        <div class="container">
+        <div class="messages">
             {% for alert_cat, msg in msgs %}
             <div class="alert alert-{{ alert_cat }} alert-dismissable" role="alert">
                 {{ msg }}
@@ -24,6 +28,7 @@
             {% endfor %}
         </div>
         {% endwith %}
+        {% endblock alerts %}
 
         {% block content %}
 

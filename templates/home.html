@@ -5,7 +5,7 @@
 
 {% extends "base.html" %}
 
-{% block content %}
+  {% block nav %}
   <div class="container-fluid bg-gradient banner">
     <nav class="navbar">
       <div class="container" id="nav">
@@ -14,11 +14,18 @@
           <a class="navbar-brand" href="/">4 GIFS 1 WORD</a>
         </div>
         <div class="navbar-right">
+          {% if logged_in %}
+          <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+          {% else %}
           <a class="btn btn-outline" href="/login">LOG IN</a>
           <a class="btn btn-outline" href="/signup">SIGN UP</a>
+          {% endif %}
         </div>
       </div>
     </nav>
+    {% endblock nav %}
+
+    {% block content %}
     <div class="homegif">
       <iframe src="https://giphy.com/embed/xT1XH3TI6KbGLmHmuY" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/empire-xT1XH3TI6KbGLmHmuY"></a></p>
     </div>

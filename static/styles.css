@@ -12,6 +12,7 @@ body {
   position: relative;
   padding-bottom: 6rem;
   min-height: 100%;
+  margin-top: 0px;
 }
 
 p {
@@ -26,6 +27,14 @@ a, a:hover, a:active, a:visited {
   text-decoration: none;
   border-bottom: 1px dotted;
   color: #ff9966;
+}
+
+.messages {
+  text-align: center;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-top: .5%;
+  margin-bottom: .5%;
 }
 
 .bg-gradient {
