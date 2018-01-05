@@ -162,6 +162,10 @@ h1 {
   border-color: #FFFFFF;
 }
 
+.btn-icon {
+    width: 50px;
+}
+
 .text-round {
   border-radius: 30px;
   padding: 20px;
