@@ -93,13 +93,14 @@ def setup():
 def create_acc(user, pwd1, pwd2):
     global db
     try:
+        user=user.strip()
         c = open_db()
-        '''#hashing pwd
-        obj = hashlib.sha224(pwd)
+        #hashing pwd
+        obj = hashlib.sha224(pwd1)
         hash_pwd = obj.hexdigest()
-        '''
+        
         command = "INSERT INTO accounts VALUES(?,?,0)"
-        c.execute(command, (user,pwd1)) #try to see if user exists
+        c.execute(command, (user,hash_pwd)) #try to see if user exists
         #if pwds don't match
         if pwd1 != pwd2:
             db.close() #don't commit and close
@@ -122,6 +123,7 @@ def create_acc(user, pwd1, pwd2):
 def auth(user, pwd):
     global db
     try:
+        user=user.strip()
         c = open_db()
         command = "SELECT pass FROM accounts WHERE user=?"
         c.execute(command, (user,))
@@ -132,7 +134,10 @@ def auth(user, pwd):
         return False #(False, False)
     if len(pwds) == 0:
         return False #(False, False)
-    if pwds[0][0] == pwd:
+    #hashing pwd
+    obj = hashlib.sha224(pwd)
+    hash_pwd = obj.hexdigest()
+    if pwds[0][0] == hash_pwd:
         return True #(True, True)
     else:
         return False #(False, True)
@@ -348,15 +353,15 @@ def flag_word(cat, word):
 #========================================
 #-TEST-TEST-TEST-TEST-TEST-TEST-
 # if __name__ == "__main__":
-#     setup()
+#setup()
 #print create_acc("jon", "snow", "hail") #t,f
-#print create_acc("jon", "snow", "snow") #t,t
+#print create_acc("jack", "snow", "snow") #t,t
 #print create_acc("jon", "snow", "hail") #f,f
 #print create_acc("jon", "snow", "snow") #f,f
 
-#print auth("jon","snow") #both correct t,t
-#print auth("jack","snow") #user wrong f,f
-#print auth("jon","slew") #pwd wrong f,t
+#print auth("jon","snow") #both correct t
+#print auth("jack","snow") #user wrong f
+#print auth("jon","slew") #pwd wrong f
 
 #print update_pts("jon", 60)
 #print update_pts("jack", 20) #will not say anything if username wrong, but is still not inputted
