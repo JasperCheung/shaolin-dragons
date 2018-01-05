@@ -22,14 +22,15 @@
             <li class="nav-item"><a class="nav-link" href="/categories">PLAY</a></li>
 	    <li class="nav-item"><a class="nav-link" href="/rankings">RANKINGS</a></li>
 	    <li class="nav-item"><a class="nav-link" href="/appstats">APP STATS</a></li>
-	    <li class="nav-item">{{ username }}</li>	     
+	    <li class="nav-item"><b>WELCOME, {{ username }}</b><span class="badge">{{ score }}</span></li>	     
 	  </ul>
 	 
 
 	  {% else %}
 	  <div class="navbar-right">
-          <a class="btn btn-outline" href="/login">LOG IN</a>
-          <a class="btn btn-outline" href="/signup">SIGN UP</a>
+	    <li class="nav-item"><b>WELCOME, GUEST</b><span class="badge">{{ score }}</span></li>
+            <a class="btn btn-outline" href="/login">LOG IN</a>
+            <a class="btn btn-outline" href="/signup">SIGN UP</a>
 	  </div>
           {% endif %}
        

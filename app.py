@@ -15,7 +15,7 @@ app.secret_key = os.urandom(128)
 # Landing page; displays the home page
 @app.route("/")
 def home():
-    return render_template("home.html", logged_in = logged_in())
+    return render_template("home.html", username = username(), logged_in = logged_in(), score = score())
 
 # Displays the sign-up page and executes sign up procedures
 @app.route("/signup", methods=["GET", "POST"])
@@ -47,7 +47,7 @@ def logout():
 
 @app.route("/categories")
 def categories():
-    return render_template("categories.html", categories = api.CATEGORIES, username = username(), logged_in = logged_in())
+    return render_template("categories.html", categories = api.CATEGORIES, username = username(), logged_in = logged_in(), score = score())
 
 
 @app.route("/game")
@@ -62,15 +62,15 @@ def game():
     word = api.random_word(hyponyms)
     # Maybe make it so use category for specific categories
     gifs = api.gifs_for_word(category, word)
-    return render_template("game.html", gifs = gifs, word = word, category = category, username = username(), logged_in = logged_in())
+    return render_template("game.html", gifs = gifs, word = word, category = category, username = username(), logged_in = logged_in(), score = score())
 
 @app.route("/rankings")
 def leaderboard():
-    return render_template("rankings.html", username = username(), logged_in = logged_in())
+    return render_template("rankings.html", username = username(), logged_in = logged_in(), score = score())
 
 @app.route("/appstats")
 def appstats():
-    return render_template("appstats.html", username = username(), logged_in = logged_in())
+    return render_template("appstats.html", username = username(), logged_in = logged_in(), score = score())
 
 # Checks if logged in
 def logged_in():
@@ -79,9 +79,18 @@ def logged_in():
 # Returns username
 def username():
     if logged_in():
-        return session["username"]
+        return session["username"].upper()
     else:
         return ""
+
+# Returns score of the logged in person/guest
+def score():
+    if logged_in():
+        return db.get_score(username())
+    elif session.get("score"):
+        return int(session["score"])
+    else:
+        session["score"] = "0"
 
 if __name__ == "__main__":
     app.debug = True
