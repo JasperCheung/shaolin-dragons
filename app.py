@@ -22,13 +22,10 @@ def home():
 def signup():
     print "routed successfully"
     if session.get("username"):
-        print "session"
         return redirect("")
     elif request.form.get("signup"):
-        print "correct in if statement"
         return auth.signup()
     else:
-        print "nothing"
         return render_template("signup.html")
 
 # Displays the log-in page and executes log in procedures
@@ -50,8 +47,7 @@ def logout():
 
 @app.route("/categories")
 def categories():
-    #MUST CHECK IF LOGGED IN FIRST!!!!!!!
-    return render_template("categories.html", categories = api.CATEGORIES)
+    return render_template("categories.html", categories = api.CATEGORIES, username = username(), logged_in = logged_in())
 
 
 @app.route("/game")
@@ -66,19 +62,26 @@ def game():
     word = api.random_word(hyponyms)
     # Maybe make it so use category for specific categories
     gifs = api.gifs_for_word(category, word)
-    return render_template("game.html", gifs = gifs, word = word, category = category)
+    return render_template("game.html", gifs = gifs, word = word, category = category, username = username(), logged_in = logged_in())
 
 @app.route("/rankings")
 def leaderboard():
-    return render_template("rankings.html")
+    return render_template("rankings.html", username = username(), logged_in = logged_in())
 
 @app.route("/appstats")
 def appstats():
-    return render_template("appstats.html")
+    return render_template("appstats.html", username = username(), logged_in = logged_in())
 
 # Checks if logged in
 def logged_in():
     return session.get("username")
+
+# Returns username
+def username():
+    if logged_in():
+        return session["username"]
+    else:
+        return ""
 
 if __name__ == "__main__":
     app.debug = True
