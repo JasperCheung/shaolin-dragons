@@ -13,20 +13,19 @@ app = Flask(__name__)
 app.secret_key = os.urandom(128)
 
 # Landing page; displays the home page
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def home():
     return render_template("home.html", username = username(), logged_in = logged_in(), score = score())
 
 # Displays the sign-up page and executes sign up procedures
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
-    print "routed successfully"
     if session.get("username"):
         return redirect("")
     elif request.form.get("signup"):
         return auth.signup()
     else:
-        return render_template("signup.html")
+        return render_template("signup.html", score = score())
 
 # Displays the log-in page and executes log in procedures
 @app.route("/login", methods=["GET", "POST"])
@@ -35,13 +34,14 @@ def login():
         return redirect("")
     elif request.form.get("login"):
         return auth.login()
-    return render_template("login.html")
+    return render_template("login.html", score = score())
 
 # Logs out user (removes from session) and routes to home
 @app.route("/logout", methods=["GET", "POST"])
 def logout():
     if logged_in():
         session.pop("username")
+        flash("Logged out.","warning")
     return redirect("/")
 
 
@@ -68,9 +68,13 @@ def game():
 def leaderboard():
     return render_template("rankings.html", username = username(), logged_in = logged_in(), score = score())
 
-@app.route("/appstats")
+@app.route("/appfun")
 def appstats():
-    return render_template("appstats.html", username = username(), logged_in = logged_in(), score = score())
+    return render_template("appfun.html", username = username(), logged_in = logged_in(), score = score())
+
+@app.route("/error")
+def error():
+    return render_template("error.html", username = username(), logged_in = logged_in(), score = score())
 
 # Checks if logged in
 def logged_in():

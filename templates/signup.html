@@ -7,19 +7,20 @@
 
 {% block nav %}
 <div class="container-fluid bg-gradient banner">
-    <nav class="navbar">
-      <div class="container" id="nav">
-        <a href="/" class="navbar-left" style="margin-right:15px;"><img src="../static/logo.png" width="50" height="50"></a>
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/">4 GIFS 1 WORD</a>
-        </div>
-        <div class="navbar-right">
-          <a class="btn btn-outline" href="/login">LOG IN</a>
-          <a class="btn btn-outline" href="/signup">SIGN UP</a>
-        </div>
+  <nav class="navbar">
+    <div class="container" id="nav">
+      <a href="/" class="navbar-left" style="margin-right:15px;"><img class="img-logo" src="../static/logo.png" width="40" height="40"></a>
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">4 GIFS 1 WORD</a>
       </div>
-    </nav>
-</div>
+      <div class="navbar-right">
+        <a class="btn btn-outline btn-icon" href="/login"><span class="glyphicon glyphicon-log-in"></span></a>
+      </div>
+      <ul class="nav navbar-nav navbar-right nav-name">
+        <li class="nav-item"><b>WELCOME, GUEST</b> <span class="badge">{{ score }}</span></li>
+      </ul>
+    </div>
+  </nav>
 {% endblock nav %}
 
 {% block content %}
@@ -37,9 +38,9 @@
      </div>
      <input class="btn btn-block" type="submit" value="GO" name="signup">
   </form><br>
-  <div class="text-right">
-    <a href="/categories" class="link-dotted">or play as Guest</a>
-    </div>
+  <p>
+    <a href="/login" class="link-dotted">login up here</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="/categories" class="link-dotted">play as guest</a>
+  </p>
 </div>
-
 {% endblock content %}

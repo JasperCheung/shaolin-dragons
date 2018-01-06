@@ -1,5 +1,6 @@
 html {
   height: 100%;
+  width: 100%;
   box-sizing: border-box;
 }
 
@@ -10,13 +11,25 @@ html {
 body {
   font-family: 'Roboto', sans-serif;
   position: relative;
-  padding-bottom: 6rem;
+  padding-bottom: 42px;
   min-height: 100%;
   margin-top: 0px;
+  height: stretch;
+}
+
+h1 {
+  font-family: 'Baloo Chettan', cursive;
 }
 
 p {
   font-size: 16px;
+}
+
+ul {
+  height: 50px;
+  line-height: 50px;
+  padding: auto;
+  font-size: 18px;
 }
 
 a, a:hover, a:active, a:visited {
@@ -27,6 +40,11 @@ a, a:hover, a:active, a:visited {
   text-decoration: none;
   border-bottom: 1px dotted;
   color: #ff9966;
+}
+
+.img-logo {
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 .messages {
@@ -56,8 +74,8 @@ a, a:hover, a:active, a:visited {
   font-size: 40px;
 }
 
-h1 {
-  font-family: 'Baloo Chettan', cursive;
+.nav-name.navbar-right {
+  margin-right: 10px;
 }
 
 .card-header {
@@ -66,8 +84,8 @@ h1 {
 }
 
 .banner {
-  padding-top: 2%;
-  padding-bottom: 1%;
+  padding-top: 1%;
+  padding-bottom: 0%;
 }
 
 #nav {
@@ -118,7 +136,7 @@ h1 {
   align-items: center;
   margin: 0px;
   padding: 0px;
-  padding-bottom: 1%;
+  padding-bottom: 2%;
 }
 
 .btn {
@@ -163,7 +181,9 @@ h1 {
 }
 
 .btn-icon {
-    width: 50px;
+  width: 45px;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
 .text-round {

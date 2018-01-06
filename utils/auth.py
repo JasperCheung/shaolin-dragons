@@ -16,13 +16,14 @@ def signup():
     # isValid[0] represents if the username is valid
     # isValid[1] represents if the passwords match
     if not isValid[0]:
-        flash("Username already exists. Please choose another one.","warning")
+        flash(Markup("Username <b>" + username.upper() + "</b> already exists. Please choose another one."),"warning")
         return redirect("signup")
     if not isValid[1]:
         flash("Passwords do not match. Please try again.","warning")
         return redirect("signup")
     else:
         session["username"] = username
+        flash(Markup("Welcome to 4 GIFS 1 WORD, <b>" + username.upper() + "</b>!"),"warning")
         return redirect("")
 
 
