@@ -74,7 +74,7 @@ def categories():
 def game():
     args = request.args
     if "category" not in args:
-        flash("You must select a category to play the game", "warning")
+        flash("Please select a category to play the game.", "warning")
         return redirect(url_for("categories"))
     print "finding word"
     category = args["category"]
