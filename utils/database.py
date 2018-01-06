@@ -96,7 +96,7 @@ def setup():
 def create_acc(user, pwd1, pwd2):
     global db
     try:
-        user=user.strip()
+        user=user.strip().lower()
         c = open_db()
         #hashing pwd
         obj = hashlib.sha224(pwd1)
@@ -126,7 +126,7 @@ def create_acc(user, pwd1, pwd2):
 def auth(user, pwd):
     global db
     try:
-        user=user.strip()
+        user=user.strip().lower()
         c = open_db()
         command = "SELECT pass FROM accounts WHERE user=?"
         c.execute(command, (user,))
@@ -188,11 +188,16 @@ def get_scores():
         c = open_db()
         command = "SELECT user,pts FROM accounts ORDER BY pts DESC"
         c.execute(command)
-        scores = c.fetchall()
+        data = c.fetchall()
         close_db()
     except:
         print "Error: could not get scores"
         return (None)
+    count = 1
+    scores = {}
+    for entry in data:
+        scores[count] = entry
+        count += 1
     return scores
 #========================================
 
