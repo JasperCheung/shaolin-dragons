@@ -7,11 +7,7 @@
 
 {% block content %}
 <div class="container">
-    <h2>Choose a category.</h2>
-    {% for cat in categories %}
-    <a href="{{ url_for('game', category=cat) }}">{{ cat }}</a>
-    <br>
-{% endfor %}
-<br>
+    <h1 class="header">CHOOSE A CATEGORY</h1>
+    {{ categories }}
 </div>
 {% endblock %}
