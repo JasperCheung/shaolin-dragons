@@ -1,3 +1,5 @@
 foodstuff
 beverage
-sport
+athletics
+nation
+artist
