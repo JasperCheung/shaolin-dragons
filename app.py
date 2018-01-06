@@ -44,7 +44,6 @@ def logout():
         flash("Logged out.","warning")
     return redirect("/")
 
-
 @app.route("/categories")
 def categories():
     count = 0
@@ -90,7 +89,7 @@ def gif_flag():
 
 @app.route("/rankings")
 def leaderboard():
-    return render_template("rankings.html", username = username(), logged_in = logged_in(), score = score())
+    return render_template("rankings.html", rankings = db.get_scores(), username = username(), logged_in = logged_in(), score = score())
 
 @app.route("/appfun")
 def appstats():
