@@ -64,6 +64,10 @@ def game():
     gifs = api.gifs_for_word(category, word)
     return render_template("game.html", gifs = gifs, word = word, category = category, username = username(), logged_in = logged_in(), score = score())
 
+@app.route("/gif_flag")
+def gif_flag():
+    return "gif flagged"
+
 @app.route("/rankings")
 def leaderboard():
     return render_template("rankings.html", username = username(), logged_in = logged_in(), score = score())
