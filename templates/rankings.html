@@ -1,10 +1,17 @@
 <!--Shaolin Dragons
-    Jasper Cheung, Shannon Lau, Carol Pan, Helen Ye
-    SoftDev pd7
-    P02 - 4Gifs1Word -->
+Jasper Cheung, Shannon Lau, Carol Pan, Helen Ye
+SoftDev pd7
+P02 - 4Gifs1Word -->
 
 {% extends "base.html" %}
 
 {% block content %}
 <h1>RANKINGS<h1>
-{% endblock %}
+  {% for item in rankings %}
+  <div class="card card-stack">
+    <h1 style="text-align: left;">{{ loop.index }}. {{ rankings[loop.index][0] }}
+      <span style="float: right;">{{ rankings[loop.index][1] }}</span>
+    </h1>
+  </div>
+  {% endfor %}
+  {% endblock %}

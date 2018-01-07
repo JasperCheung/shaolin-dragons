@@ -89,6 +89,7 @@ def gif_flag():
 
 @app.route("/rankings")
 def leaderboard():
+    print db.get_scores()
     return render_template("rankings.html", rankings = db.get_scores(), username = username(), logged_in = logged_in(), score = score())
 
 @app.route("/appfun")

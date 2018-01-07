@@ -101,7 +101,7 @@ def create_acc(user, pwd1, pwd2):
         #hashing pwd
         obj = hashlib.sha224(pwd1)
         hash_pwd = obj.hexdigest()
-        
+
         command = "INSERT INTO accounts VALUES(?,?,0)"
         c.execute(command, (user,hash_pwd)) #try to see if user exists
         #if pwds don't match
@@ -171,11 +171,18 @@ def get_score(user):
         c = open_db()
         command = "SELECT pts FROM accounts WHERE user=?"
         c.execute(command, (user,))
-        score = c.fetchone()[0]
+        score = c.fetchone()[0] # there is an error here :( or at least any print statements afterwards dont go through
+        #scores = c.fetchall()
+        #print scores
+        #score
+        #for i in scores:
+        #    score = i[0]
+        #    print "score is"
+        #    print score
         close_db()
     except:
         print "Error: could not get score"
-        return 0
+        return None
     return score
 #========================================
 

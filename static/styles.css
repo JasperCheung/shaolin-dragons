@@ -119,6 +119,13 @@ a, a:hover, a:active, a:visited, a:focus {
   padding: 2%;
 }
 
+.card-stack {
+  margin: auto;
+  margin-top: 1%;
+  width: 45%;
+  padding: 2%;
+}
+
 .card-animate {
   -webkit-transition: transform 300ms cubic-bezier(0.34, 2, 0.6, 1), box-shadow 200ms ease;
   -moz-transition: transform 300ms cubic-bezier(0.34, 2, 0.6, 1), box-shadow 200ms ease;
