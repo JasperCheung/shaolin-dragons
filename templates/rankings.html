@@ -6,6 +6,7 @@ P02 - 4Gifs1Word -->
 {% extends "base.html" %}
 
 {% block content %}
+<div class="container" style="padding-bottom: 20px;">
 <h1>RANKINGS<h1>
   {% for item in rankings %}
   <div class="card card-stack">
@@ -13,5 +14,6 @@ P02 - 4Gifs1Word -->
       <span style="float: right;">{{ rankings[loop.index][1] }}</span>
     </h1>
   </div>
-  {% endfor %}
-  {% endblock %}
+{% endfor %}
+</div>
+{% endblock %}

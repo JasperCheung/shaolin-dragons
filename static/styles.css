@@ -73,6 +73,10 @@ a, a:hover, a:active, a:visited, a:focus {
   text-shadow: 2px 2px #ff9966;
 }
 
+.space {
+  letter-spacing: 1px;
+}
+
 .navbar-brand, .navbar-brand:hover, navbar-brand:active, .navbar-brand:focus {
   color: white;
   font-family: 'Baloo Chettan', cursive;
@@ -122,7 +126,7 @@ a, a:hover, a:active, a:visited, a:focus {
 .card-stack {
   margin: auto;
   margin-top: 1%;
-  width: 45%;
+  width: 60%;
   padding: 2%;
 }
 
