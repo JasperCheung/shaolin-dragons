@@ -154,3 +154,8 @@ Finished rankings page
 Moved python categories code as jinja
 More styling stuff (letter spacing, padding)
 However, I found a bug in the get_scores(), badge not displaying properly
+
+lauS -- 2018-01-07 13:05
+------------------
+Finished styling for games!
+Added ids through jinja to the word boxes for later js
