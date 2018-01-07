@@ -119,7 +119,7 @@ Add a constant in utils/api.py to make it easier to choose which GIF type to
 lauS -- 2018-01-04 16:30
 ------------------
 Set up the rest of the webpages
-Fixed the buggy footer 
+Fixed the buggy footer
 
 lauS -- 2018-01-04 20:03
 ------------------
@@ -127,7 +127,7 @@ Finished auth verifications (login isn't tracked past the home page)
 Auth with error messsages
      - login: incorrect username/password
      - signup: username already exists; passwords don't match
-     
+
 panC -- 2018-01-04 20:37
 ------------------
 Hashed passwords when inserting to database
@@ -151,4 +151,6 @@ Finished base.html once and for all
 lauS -- 2018-01-06 21:35
 ------------------
 Finished rankings page
+Moved python categories code as jinja
+More styling stuff (letter spacing, padding)
 However, I found a bug in the get_scores(), badge not displaying properly

@@ -7,7 +7,25 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="header">CHOOSE A CATEGORY</h1>
-    {{ categories }}
+  <h1 class="header">CHOOSE A CATEGORY</h1>
+  
+  {% for cat in categories %}
+  {% if loop.index0 % 3 == 0 %}
+  <div class="row home-btns">
+  {% endif %}
+    <div class="col-sm-4">
+      <a href="{{ url_for('game',category = cat) }}">
+        <div class="card card-animate">
+          <h1> {{ cat }} </h1>
+        </div>
+      </a>
+    </div>
+  {% if loop.index0 % 3 == 2 %}
+  </div>
+  {% endif %}
+  {% endfor %}
+  {% if categories|length%3 != 0 %}
+  </div>
+  {% endif %}
 </div>
 {% endblock %}

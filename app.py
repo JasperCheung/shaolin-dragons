@@ -46,28 +46,7 @@ def logout():
 
 @app.route("/categories")
 def categories():
-    count = 0
-    text = ""
-    for cat in api.CATEGORIES:
-        if count == 0:
-            text += "<div class='row home-btns'>"
-        text += "<div class='col-sm-4'>"
-        text += "<a href='/game?category=" + cat + "'>"
-        text += "<div class='card card-animate'>"
-        text += "<h1>" + cat + "</h1>"
-        text += "</div></a></div>"
-        if count == 2:
-            text += "</div>"
-            count = 0
-        else:
-            count = count + 1
-    if count != 0:
-        # Uncommenting this will uncenter the categories; just leave this
-        # for x in range(count, 3):
-        #    text += "<div class='col-sm-4'></div>"
-        text += "</div>"
-    return render_template("categories.html", categories = Markup(text), username = username(), logged_in = logged_in(), score = score())
-
+    return render_template("categories.html", categories = api.CATEGORIES, username = username(), logged_in = logged_in(), score = score())
 
 @app.route("/game")
 def game():
