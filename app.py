@@ -8,6 +8,7 @@ import requests, os
 from utils import database as db
 from utils import api
 from utils import auth
+from utils import game_tools
 
 app = Flask(__name__)
 app.secret_key = os.urandom(128)
@@ -60,7 +61,8 @@ def game():
     word = api.random_word(hyponyms)
     # Maybe make it so use category for specific categories
     gifs = api.gifs_for_word(category, word)
-    return render_template("game.html", gifs = gifs, word = word, category = category, username = username(), logged_in = logged_in(), score = score())
+    letters = game_tools.random_letter_list(word)
+    return render_template("game.html", gifs = gifs, word = word, category = category, letters = letters, username = username(), logged_in = logged_in(), score = score())
 
 @app.route("/gif_flag")
 def gif_flag():

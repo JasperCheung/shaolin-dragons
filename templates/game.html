@@ -24,7 +24,15 @@ Game | 4 GIFS 1 WORD
     </div>
     {% endfor %}
   </div>
+  <div class="container card-letters" align="center">
+    {% for letter in letters %}
+    <span class="card card-letter card-animate"><b>{{ letter.upper() }}</b></span>
+    {% endfor %}
+  </div>
+  <div class="container card-letters" align="center" style="margin-bottom:10px;">
+    {% for letter in word %}
+    <span class="card-pressed card-letter" id="letter{{ loop.index0 }}">{{ letter.upper() }}</span>
+    {% endfor %}
+  </div>
 </div>
-<br><br>
-<h4>Word: {{ word }} </h4>
 {% endblock %}
