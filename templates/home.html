@@ -66,6 +66,18 @@ P02 - 4Gifs1Word -->
     </div>
   </div>
 </div>
+<div class="container description text-justify">
+  <h1 class="header" style="margin-bottom: 5%;">WELCOME TO 4 GIFS 1 WORD!</h1>
+    <p>Join the hype and play 4 GIFS 1 WORD, the ultimate puzzle game of the 21st century. Choose a category, marvel at four related GIFs, and spell out the word that connects them all together.</p><br>
+    <p>Each word guessed correctly wins you a whopping 100 points—the more you get, the higher you climb on the rankings. Challenge yourself and your friends to see who can get to the top. We believe in you!</p><br>
+    <p class="text-center">
+      {% if logged_in %}
+      <a href="/categories" class="link-dotted">BEGIN PLAYING</a>
+      {% else %}
+      <a href="/signup" class="link-dotted">GET STARTED</a>
+      {% endif %}
+    </p>
+</div>
 {% endblock content %}
 
 {% block enddiv %}

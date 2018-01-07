@@ -71,7 +71,7 @@ def rankings():
     return render_template("rankings.html", rankings = db.get_scores(), username = username(), logged_in = logged_in(), score = score())
 
 @app.route("/appfun")
-def appstats():
+def appfun():
     return render_template("appfun.html", username = username(), logged_in = logged_in(), score = score())
 
 @app.route("/error")
