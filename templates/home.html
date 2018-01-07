@@ -15,7 +15,6 @@ P02 - 4Gifs1Word -->
       <div class="navbar-header">
         <a class="navbar-brand" href="/">4 GIFS 1 WORD</a>
       </div>
-
       <div class="navbar-right">
         {% if logged_in %}
         <a class="btn btn-outline btn-icon" href="/logout"><span class="glyphicon glyphicon-log-out"></span></a>
@@ -23,11 +22,13 @@ P02 - 4Gifs1Word -->
         <a class="btn btn-outline btn-icon" href="/login"><span class="glyphicon glyphicon-log-in"></span></a>
         {% endif %}
       </div>
-
       <ul class="nav navbar-nav navbar-right nav-name">
+        {% if logged_in %}
+        <li class="nav-item space"><a href="{{ url_for('.rankings', _anchor = username.lower()) }}" style="color:white; background-color: transparent;"><b>WELCOME, {{ username }}</b> <span class="badge">{{ score }}</span></a></li>
+        {% else %}
         <li class="nav-item space"><b>WELCOME, {{ username }}</b> <span class="badge">{{ score }}</span></li>
+        {% endif %}
       </ul>
-
     </div>
   </nav>
   {% endblock nav %}
@@ -65,7 +66,6 @@ P02 - 4Gifs1Word -->
     </div>
   </div>
 </div>
-
 {% endblock content %}
 
 {% block enddiv %}

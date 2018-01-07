@@ -31,7 +31,11 @@ P02 - 4Gifs1Word -->
           {% endif %}
         </div>
         <ul class="nav navbar-nav navbar-right nav-name">
+          {% if logged_in %}
+          <li class="nav-item space"><a href="{{ url_for('.rankings', _anchor = username.lower()) }}" style="color:white; background-color: transparent;"><b>WELCOME, {{ username }}</b> <span class="badge">{{ score }}</span></a></li>
+          {% else %}
           <li class="nav-item space"><b>WELCOME, {{ username }}</b> <span class="badge">{{ score }}</span></li>
+          {% endif %}
         </ul>
       </div>
     </nav>

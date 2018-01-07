@@ -31,7 +31,7 @@ def signup():
 def login():
     username = request.form.get("username")
     password = request.form.get("password")
-    if database.auth(username,password): # If
+    if database.auth(username,password): 
         session["username"] = username # Adds username to session
         return redirect("")
     else:
