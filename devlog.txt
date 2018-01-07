@@ -155,7 +155,24 @@ Moved python categories code as jinja
 More styling stuff (letter spacing, padding)
 However, I found a bug in the get_scores(), badge not displaying properly
 
+panC -- 2018-01-06 22:20
+------------------
+Removed leading/trailing whitespace from usernames
+All usernames inputted in lowercase
+get_scores() returns a dictionary with placing
+
 lauS -- 2018-01-07 13:05
 ------------------
 Finished styling for games!
 Added ids through jinja to the word boxes for later js
+
+panC -- 2018-01-07 15:32
+------------------
+get_score() bug resolved
+Created stats.py
+Can find stats for:
+     num of words solved
+     num of users
+     num of words flagged
+     num of gifs flagged
+     user with the next high score
