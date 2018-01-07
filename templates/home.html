@@ -15,7 +15,6 @@ P02 - 4Gifs1Word -->
       <div class="navbar-header">
         <a class="navbar-brand" href="/">4 GIFS 1 WORD</a>
       </div>
-
       <div class="navbar-right">
         {% if logged_in %}
         <a class="btn btn-outline btn-icon" href="/logout"><span class="glyphicon glyphicon-log-out"></span></a>
@@ -23,11 +22,13 @@ P02 - 4Gifs1Word -->
         <a class="btn btn-outline btn-icon" href="/login"><span class="glyphicon glyphicon-log-in"></span></a>
         {% endif %}
       </div>
-
       <ul class="nav navbar-nav navbar-right nav-name">
+        {% if logged_in %}
+        <li class="nav-item space"><a href="{{ url_for('.rankings', _anchor = username.lower()) }}" style="color:white; background-color: transparent;"><b>WELCOME, {{ username }}</b> <span class="badge">{{ score }}</span></a></li>
+        {% else %}
         <li class="nav-item space"><b>WELCOME, {{ username }}</b> <span class="badge">{{ score }}</span></li>
+        {% endif %}
       </ul>
-
     </div>
   </nav>
   {% endblock nav %}
@@ -65,7 +66,18 @@ P02 - 4Gifs1Word -->
     </div>
   </div>
 </div>
-
+<div class="container description text-justify">
+  <h1 class="header" style="margin-bottom: 5%;">WELCOME TO 4 GIFS 1 WORD!</h1>
+    <p>Join the hype and play 4 GIFS 1 WORD, the ultimate puzzle game of the 21st century. Choose a category, marvel at four related GIFs, and spell out the word that connects them all together.</p><br>
+    <p>Each word guessed correctly wins you a whopping 100 points—the more you get, the higher you climb on the rankings. Challenge yourself and your friends to see who can get to the top. We believe in you!</p><br>
+    <p class="text-center">
+      {% if logged_in %}
+      <a href="/categories" class="link-dotted">BEGIN PLAYING</a>
+      {% else %}
+      <a href="/signup" class="link-dotted">GET STARTED</a>
+      {% endif %}
+    </p>
+</div>
 {% endblock content %}
 
 {% block enddiv %}

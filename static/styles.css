@@ -1,19 +1,16 @@
 html {
+  /* Maintains the footer */
   height: 100%;
   width: 100%;
-  box-sizing: border-box;
-}
-
-*, *:before, *:after {
-  box-sizing: inherit;
 }
 
 body {
   font-family: 'Roboto', sans-serif;
   position: relative;
   padding-bottom: 42px;
-  min-height: 100%;
   margin-top: 0px;
+  /* Fixes the footer */
+  min-height: 100%;
   height: stretch;
 }
 
@@ -58,9 +55,11 @@ a, a:hover, a:active, a:visited, a:focus {
 .header {
   margin-top: 3%;
   margin-bottom: 3%;
+  text-align: center;
 }
 
 .bg-gradient {
+  /* Gradient for Safari and Chrome, plain color for unsupported browsers */
   background: #ff9966;
   background: -webkit-linear-gradient(to right, #ff9966, #ff5e62);
   background: linear-gradient(to right, #ff9966, #ff5e62);
@@ -107,6 +106,14 @@ a, a:hover, a:active, a:visited, a:focus {
   margin-bottom: 3%;
 }
 
+.description {
+  /* Styling for home page description */
+  margin-top: 3%;
+  margin-bottom: 5%;
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
 .card {
   font-family: 'Roboto', sans-serif;
   border-radius: 12px;
@@ -124,6 +131,7 @@ a, a:hover, a:active, a:visited, a:focus {
 }
 
 .card-stack {
+  /* Assigned to cards stacked over each other (rankings, appfun) */
   margin: auto;
   margin-top: 1%;
   width: 60%;
@@ -131,6 +139,7 @@ a, a:hover, a:active, a:visited, a:focus {
 }
 
 .card-animate {
+  /* Animation for Safari, Firefox, IE, and Chrome */
   -webkit-transition: transform 300ms cubic-bezier(0.34, 2, 0.6, 1), box-shadow 200ms ease;
   -moz-transition: transform 300ms cubic-bezier(0.34, 2, 0.6, 1), box-shadow 200ms ease;
   -ms-transition: transform 300ms cubic-bezier(0.34, 2, 0.6, 1), box-shadow 200ms ease;
@@ -139,6 +148,7 @@ a, a:hover, a:active, a:visited, a:focus {
 
 .card-animate:hover {
   box-shadow: 0px 12px 19px -7px rgba(0, 0, 0, 0.3);
+  /* Animation for Safari, Firefox, IE, and Chrome */
   -webkit-transform: translateY(-10px);
   -moz-transform: translateY(-10px);
   -ms-transform: translateY(-10px);
@@ -146,6 +156,7 @@ a, a:hover, a:active, a:visited, a:focus {
 }
 
 .home-btns {
+  /* For buttons on home and categories page */
   font-family: 'Roboto', sans-serif;
   display: flex;
   justify-content: center;
@@ -167,6 +178,7 @@ a, a:hover, a:active, a:visited, a:focus {
   font-weight: 600;
   padding: 5px;
   line-height: 2;
+  /* Button fill animation for Safari, Mozilla, IE, and Chrome */
   -webkit-transition: all 200ms linear;
   -moz-transition: all 200ms linear;
   -ms-transition: all 200ms linear;
@@ -208,8 +220,38 @@ a, a:hover, a:active, a:visited, a:focus {
 }
 
 .form-control:focus {
+  /* Orange glow border for text fields */
   border-color: #ff9966;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255,153,102,0.6);
+}
+
+.thumbnail {
+  /* Squares the GIFS */
+  object-fit: cover;
+  width: 180px;
+  height: 180px;
+  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.3);
+}
+
+.img-container {
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 180px;
+    height: 180px;
+}
+.flag-overlay {
+    position: absolute;
+    top: 70%;
+    left: 68%;
+    opacity: 0;
+    color: #FFFFFF;
+}
+
+.img-container:hover .flag-overlay {
+    opacity: 1;
+    transition: .35s;
+    /* background: rgba(0, 0, 0, .6); */
 }
 
 .footer {

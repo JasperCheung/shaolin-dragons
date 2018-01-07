@@ -17,7 +17,7 @@ GIPHY_KEY = keys['giphy']
 GIPHY_URL = "http://api.giphy.com/v1/"
 DATAMUSE_URL = "http://api.datamuse.com/words?"
 
-GIF_TYPE = 'fixed_width_small'
+GIF_TYPE = 'fixed_width'
 
 # Read categories in categories file
 with open('categories.txt') as f:
@@ -73,7 +73,7 @@ def find_gifs(query, limit=4, offset=0):
     params = {
             'api_key': GIPHY_KEY,
             'q': query,
-            'rating': 'pg',
+            'rating': 'g',
             'limit': limit,
             'offset': offset,
            }

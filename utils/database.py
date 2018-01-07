@@ -177,7 +177,7 @@ def get_score(user):
         close_db()
     except:
         print "Error: could not get score"
-        return 0
+        return None
     return score
 #========================================
 

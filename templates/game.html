@@ -2,7 +2,7 @@
     Jasper Cheung, Shannon Lau, Carol Pan, Helen Ye
     SoftDev pd7
     P02 - 4Gifs1Word -->
-    
+
 {% extends "base.html" %}
 
 {% block title %}
@@ -10,9 +10,21 @@ Game | 4 GIFS 1 WORD
 {% endblock %}
 
 {% block content %}
-{% for gif in gifs %}
-<img src="{{ gif }}" alt="4 GIFS 1 WORD">
-<br>
-{% endfor %}
+<div class="container">
+  <h1 class="header">WHAT'S THE WORD?</h1>
+  <div class="row thumbnails">
+    {% for gif in gifs %}
+    <div class="col-sm-3">
+      <div class="img-container">
+        <img class="thumbnail" src="{{ gif }}" alt="4 GIFS 1 WORD">
+        <div class="flag-overlay"><button type="button" class="btn btn-default btn-icon">
+          <span class="glyphicon glyphicon-flag"></span>
+        </button></div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<br><br>
 <h4>Word: {{ word }} </h4>
 {% endblock %}

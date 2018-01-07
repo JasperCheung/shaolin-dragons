@@ -67,12 +67,11 @@ def gif_flag():
     return "gif flagged"
 
 @app.route("/rankings")
-def leaderboard():
-    print db.get_scores()
+def rankings():
     return render_template("rankings.html", rankings = db.get_scores(), username = username(), logged_in = logged_in(), score = score())
 
 @app.route("/appfun")
-def appstats():
+def appfun():
     return render_template("appfun.html", username = username(), logged_in = logged_in(), score = score())
 
 @app.route("/error")
@@ -93,7 +92,7 @@ def username():
 # Returns score of the logged in person/guest
 def score():
     if logged_in():
-        return db.get_score(username())
+        return db.get_score(username().lower())
     elif session.get("score"):
         return session["score"]
     else:
