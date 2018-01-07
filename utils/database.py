@@ -171,18 +171,11 @@ def get_score(user):
         c = open_db()
         command = "SELECT pts FROM accounts WHERE user=?"
         c.execute(command, (user,))
-        score = c.fetchone()[0] # there is an error here :( or at least any print statements afterwards dont go through
-        #scores = c.fetchall()
-        #print scores
-        #score
-        #for i in scores:
-        #    score = i[0]
-        #    print "score is"
-        #    print score
+        score = c.fetchone()[0]
         close_db()
     except:
         print "Error: could not get score"
-        return None
+        return 0
     return score
 #========================================
 
