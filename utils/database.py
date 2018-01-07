@@ -152,6 +152,7 @@ def auth(user, pwd):
 def update_pts(user, pts):
     global db
     try:
+        user=user.strip().lower()
         c = open_db()
         command = "UPDATE accounts SET pts =? WHERE user=?"
         c.execute(command,(pts,user))
@@ -168,6 +169,7 @@ def update_pts(user, pts):
 def get_score(user):
     global db
     try:
+        user=user.strip().lower()
         c = open_db()
         command = "SELECT pts FROM accounts WHERE user=?"
         c.execute(command, (user,))
@@ -207,6 +209,7 @@ def get_scores():
 def add_history(user, cat, word):
     global db
     try:
+        user=user.strip().lower()
         c= open_db()
         command= "INSERT INTO history VALUES (?,?,?)"
         c.execute(command, (user,cat,word))
@@ -223,6 +226,7 @@ def add_history(user, cat, word):
 def user_history(user):
     global db
     try:
+        user=user.strip().lower()
         c= open_db()
         command= "SELECT category,word FROM history WHERE user=?"
         c.execute(command, (user,))
