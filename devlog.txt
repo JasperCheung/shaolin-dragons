@@ -147,3 +147,8 @@ lauS -- 2018-01-05 22:55
 ------------------
 Completed error page at "/error" but not yet connected; depends on API configuration
 Finished base.html once and for all
+
+lauS -- 2018-01-06 21:35
+------------------
+Finished rankings page
+However, I found a bug in the get_scores(), badge not displaying properly
