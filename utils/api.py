@@ -102,6 +102,26 @@ def gifs_for_word(category, word, use_category=True):
         gifs = lst[2:]
     return gifs
 
+# Returns False if fails
+def flag_gif(category, word, gif_url, use_category=True):
+    db_word = db.get_word(category, word)
+    if db_word is None:
+        # DO SOMETHING IF IT FAILS
+        print "Flagging failed!"
+        return False
+    query = word
+    if use_category:
+        query += " " + category
+    db.flag_gif(category, word, gif_url)
+    offset = db.gif_offset(category, word) + 4
+    new = find_gifs(query, limit=1, offset=offset)
+    new = new[0]['images'][GIF_TYPE]['url']
+    new_gifs = list(db_word)
+    new_gifs.remove(gif_url)
+    new_gifs.append(new)
+    db.update_word(new_gifs[0], new_gifs[1], new_gifs[2:])
+    return True
+
 if __name__ == "__main__":
     print(CATEGORIES)
     cat0 = filter(valid_word, find_hyponyms(CATEGORIES[0]))
@@ -116,4 +136,6 @@ if __name__ == "__main__":
 
     # print find_gifs('donut')
     db.setup()
-    gifs_for_word('foodstuff', 'coffee')
+    print gifs_for_word('foodstuff', 'coffee')
+    print flag_gif('foodstuff', 'coffee', 'https://media1.giphy.com/media/Z6vszQ8Mweukw/200w.gif')
+    print gifs_for_word('foodstuff', 'coffee')

@@ -186,3 +186,10 @@ Can find stats for:
      num of words flagged
      num of gifs flagged
      user with the next high score
+
+panC, yeH -- 2018-01-08 13:19
+------------------
+Added method to interact with the database & flag gifs (removing them
+    from the list in the table saved words)
+    *** NEED TO ADD ERROR HANDLING THROUGHOUT utils/api.py
+Add route for flagging (does not yet do anything)
