@@ -125,8 +125,13 @@ lauS -- 2018-01-04 20:03
 ------------------
 Finished auth verifications (login isn't tracked past the home page)
 Auth with error messsages
+<<<<<<< Updated upstream
      - login: incorrect username/password
      - signup: username already exists; passwords don't match
+=======
+- login: incorrect username/password
+- signup: username already exists; passwords don't match
+>>>>>>> Stashed changes
 
 panC -- 2018-01-04 20:37
 ------------------
@@ -136,6 +141,11 @@ Stripped leading and trailing whitespaces from username input
 panC -- 2018-01-04 22:07
 ------------------
 Method for finding gif offset (number of flagged gifs for a word)
+
+yeH -- 2018-01-05 13:19
+------------------
+Add method for generating a random combination of 16 letters (including the
+    letters in the answer)
 
 lauS -- 2018-01-05 13:19
 ------------------
