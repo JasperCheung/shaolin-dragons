@@ -66,7 +66,8 @@ def game():
 
 @app.route("/gif_flag")
 def gif_flag():
-    return "gif flagged"
+    flash("GIF flagged!", 'success')
+    return redirect(url_for('home'))
 
 @app.route("/rankings")
 def rankings():

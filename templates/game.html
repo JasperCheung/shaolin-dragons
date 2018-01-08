@@ -17,9 +17,10 @@ Game | 4 GIFS 1 WORD
     <div class="col-sm-3">
       <div class="img-container">
         <img class="thumbnail" src="{{ gif }}" alt="4 GIFS 1 WORD">
-        <div class="flag-overlay"><button type="button" class="btn btn-default btn-icon">
+        <div class="flag-overlay"><a type="button" class="btn btn-default btn-icon"
+                                                   href="{{ url_for('gif_flag', category=category, word=word, url=gif) }}">
           <span class="glyphicon glyphicon-flag"></span>
-        </button></div>
+        </a></div>
       </div>
     </div>
     {% endfor %}
