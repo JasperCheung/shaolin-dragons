@@ -1,74 +1,126 @@
-word = "" // Word to achieve
-wordIndex = [] // Refers to the letter inputs for the word to be solved
+var key = "bye"; // Word to achieve; provided by python
+var bankLetters = ["a","b","y","e"]; // Letters in the word bank; provided by python
+var wordIndex = []; // Indexes of the letter guessed
 
 // Fill wordIndex with index values
+// -1 denotes an empty slot
 var fillWordIndex = function(){
-    for (i in word){
-	wordIndex.append(-1);
-    }    
+  for (var i in key){
+    wordIndex.push(-1);
+  }
 };
 
-// Check if word is complete 
-var checkFull = function(){
-    for (i in wordIndex){
-	if (wordIndex[i] == -1)
-	    return;
-    }
-    checkWord();
+// Check if word is complete
+var isFull = function(){
+  for (var i in wordIndex){
+    if (wordIndex[i] == -1)
+    return false;
+  }
+  return true;
 };
 
-// Check for word match
+// Check for word match when word is complete
 var checkWord = function(){
-    guess = ""
-    for (i in wordIndex){
-	guess += wordIndex[i];
-    }
-    if (word.equals(guess))
-	correctWord();
-    else
-	returnLetters();
+  guess = "";
+  for (var i in wordIndex){
+    guess += bankLetters[wordIndex[i]];
+  }
+  if (key === guess)
+    correctWord();
+  else
+    returnLetters();
 };
 
 // Send all letters to "bank"
 var returnLetters = function(){
-    return;
+  for (var i in bankLetters){
+    var id = "bank" + i;
+    letter = document.getElementById(id);
+    letter.innerHTML = bankLetters[i];
+    letter.setAttribute("class","card card-letter card-animate");
+  }
+  for (var i in wordIndex){
+    wordIndex[i] = -1;
+    var id = "word" + i;
+    letter = document.getElementById(id);
+    letter.innerHTML = "";
+    letter.setAttribute("class","card-pressed card-letter");
+  }
 };
 
 // Add 100 points to database via python
 // Load new word in the same category
 var correctWord = function(){
-    return;
+  return;
+};
+
+// Return leftmost index of wordIndex whose value is -1
+var leftIndex = function(){
+  for (var i in wordIndex){
+    if (wordIndex[i] == -1)
+      return i;
+  }
+  return -1;
 };
 
 // Run when "bank letters" are clicked
 // Send letter to guessed section
-var bankClick = function(){
-    return;
+var bankCallback = function(e){
+  this.innerHTML = "";
+  this.setAttribute("class","card-pressed card-letter");
+  // extracting # from id = "bank#" and inserting into wordIndex
+  var i = this.getAttribute("id")[4];
+  var j = leftIndex();
+  wordIndex[j] = i;
+  letter = document.getElementById("word" + j);
+  letter.innerHTML = bankLetters[i];
+  letter.setAttribute("class","card card-letter");
 };
 
-// Run when "guessed letters"  are clicked
+// Run when "guessed letters" are clicked
 // Send letter back to bank
-var guessedClick = function(){
-    return;
+var wordCallback = function(e){
+  this.innerHTML = "";
+  this.setAttribute("class","card-pressed card-letter");
+  var i = this.getAttribute("id")[4];
+  var j = wordIndex[i]; // j is index of letter in bankLetters
+  wordIndex[i] = -1;
+  letter = document.getElementById("bank" + j);
+  letter.innerHTML = bankLetters[j];
+  letter.setAttribute("class","card card-letter card-animate");
 };
 
 // Add listeners to bank letters
 var addBankListeners = function(){
-    
+  for (var i in bankLetters){
+    var id = "bank" + i;
+    var letter = document.getElementById(id);
+    letter.addEventListener("click", bankCallback);
+  }
 };
 
 // Add listeners to guessed letters
-var addGuessedListeners = function(){
-
+var addWordListeners = function(){
+  for (var i in wordIndex){
+    var id = "word" + i;
+    var letter = document.getElementById(id);
+    letter.addEventListener("click", wordCallback);
+  }
 };
 
 // Add listener to return button
 var addReturnListeners = function(){
-
+  var button = document.getElementById("return");
+  button.addEventListener("click", returnLetters);
 };
+
+// Add all event listeners
+var addEventListeners = function(){
+  addBankListeners();
+  addWordListeners();
+  addReturnListeners();
+}
 
 // Word play setup
 fillWordIndex();
-addBankListeners();
-addGuessedListeners();
-addReturnListeners();
+addEventListeners();
