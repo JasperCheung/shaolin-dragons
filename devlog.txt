@@ -193,3 +193,11 @@ Added method to interact with the database & flag gifs (removing them
     from the list in the table saved words)
     *** NEED TO ADD ERROR HANDLING THROUGHOUT utils/api.py
 Add route for flagging (does not yet do anything)
+
+lauS -- 2018-01-09 00:56
+------------------
+Wrote almost all JS functions
+    Initializes [] to denote placement of letters and its source
+    Event listeners for buttons, letter bank, and guessed letters
+    Transfers inner HTML between letters
+Requires the word and list of shuffled letters in order to perform; will require AJAX
