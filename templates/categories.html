@@ -13,7 +13,7 @@
   <div class="row home-btns">
   {% endif %}
     <div class="col-sm-4">
-      <a href="{{ url_for('game',category = cat) }}">
+      <a href="{{ url_for('game',category = categories[cat]) }}">
         <div class="card card-animate">
           <h1> {{ cat }} </h1>
         </div>

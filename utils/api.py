@@ -19,11 +19,11 @@ DATAMUSE_URL = "http://api.datamuse.com/words?"
 
 GIF_TYPE = 'fixed_width'
 
-# Read categories in categories file
-with open('categories.txt') as f:
-    CATEGORIES = f.readlines()
+f = open("./static/categories/categories.json", 'rU')
+CATEGORIES = json.loads(f.read())
+f.close()
 
-CATEGORIES = [c.strip() for c in CATEGORIES]
+# ADD FINDING A CATEGORY IN THE LOCAL DIRECTORY BEFORE USING Datamuse
 
 # Given a category, return a list of the words that Datamuse returns
 def find_hyponyms(category):
@@ -145,8 +145,8 @@ def flag_word(category, word, use_category=True):
 
 if __name__ == "__main__":
     print(CATEGORIES)
-    cat0 = filter(valid_word, find_hyponyms(CATEGORIES[0]))
-    cat1 = filter(valid_word, find_hyponyms(CATEGORIES[1]))
+    cat0 = filter(valid_word, find_hyponyms(CATEGORIES['Food']))
+    cat1 = filter(valid_word, find_hyponyms(CATEGORIES['Drinks']))
     print len(cat0)
     print len(cat1)
     # for w in cat0:
