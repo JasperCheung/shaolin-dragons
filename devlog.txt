@@ -201,3 +201,8 @@ Wrote almost all JS functions
     Event listeners for buttons, letter bank, and guessed letters
     Transfers inner HTML between letters
 Requires the word and list of shuffled letters in order to perform; will require AJAX
+
+yeH -- 2018-01-10 09:53
+------------------
+Complete route for flagging GIFs
+    * Flagging GIFs should be functional now
