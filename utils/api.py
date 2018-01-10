@@ -32,7 +32,7 @@ def find_hyponyms(category):
     words = res.json()
     return words
 
-def valid_word(word, allow_proper=False):
+def valid_word(word, category="", allow_proper=False):
     '''
     valid_word returns whether a word is allowed based on the
     following conditions:
@@ -40,6 +40,7 @@ def valid_word(word, allow_proper=False):
         * no spaces,
         * score at least 100,
         * a noun that is not proper.
+        * has been flagged
 
     If allow_proper is true, then proper nouns are allowed.
     '''
@@ -57,6 +58,9 @@ def valid_word(word, allow_proper=False):
         return False
 
     if not allow_proper and 'prop' in word['tags']:
+        return False
+
+    if db.is_word_flagged(category,word['word']):
         return False
 
     return True
@@ -126,6 +130,17 @@ def flag_gif(category, word, gif_url, use_category=True):
     db.update_word(new_gifs[0], new_gifs[1], new_gifs[2:])
     print "Flagged gif: [" + gif_url + "]"
     print "Updated word: [" + word + "]"
+    return True
+
+# Returns False if fails
+def flag_word(category, word, use_category=True):    
+    query = word
+    if use_category:
+        query += " " + category
+    if not db.flag_word(category, word):
+        print "Failed to flag word."
+        return False
+    print "Flagged word: [" + query + "]"
     return True
 
 if __name__ == "__main__":

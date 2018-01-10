@@ -57,7 +57,9 @@ def game():
         return redirect("categories")
     print "FINDING WORD..."
     category = args["category"]
-    hyponyms = filter(api.valid_word, api.find_hyponyms(category))
+    words = api.find_hyponyms(category)
+    print "WORDS: " + str(words)
+    hyponyms = [word for word in words if api.valid_word(word, category)]
     word = api.random_word(hyponyms)
     session["word"] = word
     # Maybe make it so use category for specific categories
@@ -79,7 +81,6 @@ def win():
     category = data.get("category")
     flash(Markup("You scored 100 points for guessing <b>" + word + "</b>! Solve another word."), "success")
     return redirect(url_for("game", category = category))
-
 
 @app.route("/gif_flag")
 def gif_flag():
