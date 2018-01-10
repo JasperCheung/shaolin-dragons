@@ -32,7 +32,7 @@ def find_hyponyms(category):
     words = res.json()
     return words
 
-def valid_word(word, category, allow_proper=False):
+def valid_word(word, category="", allow_proper=False):
     '''
     valid_word returns whether a word is allowed based on the
     following conditions:
@@ -62,7 +62,7 @@ def valid_word(word, category, allow_proper=False):
 
     if db.is_word_flagged(category,word['word']):
         return False
-    
+
     return True
 
 # Return a random hyponym given the list of filtered words

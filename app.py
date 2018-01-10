@@ -57,7 +57,9 @@ def game():
         return redirect(url_for("categories"))
     print "FINDING WORD..."
     category = args["category"]
-    hyponyms = [word for word in find_hyponyms(category) if valid_word(word, category)]
+    words = api.find_hyponyms(category)
+    print "WORDS: " + str(words)
+    hyponyms = [word for word in words if api.valid_word(word, category)]
     word = api.random_word(hyponyms)
     # Maybe make it so use category for specific categories
     gifs = api.gifs_for_word(category, word)
