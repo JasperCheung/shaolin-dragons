@@ -107,12 +107,15 @@ def flag_gif(category, word, gif_url, use_category=True):
     db_word = db.get_word(category, word)
     if db_word is None:
         # DO SOMETHING IF IT FAILS
-        print "Flagging failed!"
+        print "Could not retrieve word, could not flag"
         return False
     query = word
     if use_category:
         query += " " + category
-    db.flag_gif(category, word, gif_url)
+    flagged = db.flag_gif(category, word, gif_url)
+    if not flagged:
+        print "Failed to flag."
+        return False
     offset = db.gif_offset(category, word) + 4
     new = find_gifs(query, limit=1, offset=offset)
     new = new[0]['images'][GIF_TYPE]['url']
@@ -120,6 +123,8 @@ def flag_gif(category, word, gif_url, use_category=True):
     new_gifs.remove(gif_url)
     new_gifs.append(new)
     db.update_word(new_gifs[0], new_gifs[1], new_gifs[2:])
+    print "Flagged gif: [" + gif_url + "]"
+    print "Updated word: [" + word + "]"
     return True
 
 if __name__ == "__main__":
