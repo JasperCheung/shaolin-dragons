@@ -82,6 +82,7 @@ def find_gifs(query, limit=4, offset=0):
     return gifs['data']
 
 def gifs_for_word(category, word, use_category=True):
+    print "GIFs for: " +  word + "--" + category
     db_word = db.get_word(category, word)
     if db_word:
         gifs = db_word[2:]
