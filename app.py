@@ -54,17 +54,32 @@ def game():
     args = request.args
     if "category" not in args:
         flash("Please select a category to play the game.", "warning")
-        return redirect(url_for("categories"))
+        return redirect("categories")
     print "FINDING WORD..."
     category = args["category"]
     hyponyms = filter(api.valid_word, api.find_hyponyms(category))
     word = api.random_word(hyponyms)
+    session["word"] = word
     # Maybe make it so use category for specific categories
     gifs = api.gifs_for_word(category, word)
     letters = game_tools.random_letter_list(word)
     return render_template("game.html", gifs = gifs, word = word, \
             category = category, letters = letters, username = username(), \
             logged_in = logged_in(), score = score())
+
+@app.route("/play")
+def play():
+    response = { "word" : session["word"] }
+    return json.dumps(response)
+
+@app.route("/win")
+def win():
+    data = request.args
+    word = data.get("word").upper()
+    category = data.get("category")
+    flash(Markup("You scored 100 points for guessing <b>" + word + "</b>! Solve another word."), "success")
+    return redirect(url_for("game", category = category))
+
 
 @app.route("/gif_flag")
 def gif_flag():
@@ -77,7 +92,7 @@ def gif_flag():
     url = args['url']
     flagged = api.flag_gif(category, word, url)
     if flagged:
-        flash("GIF successfully flagged. New word.", "success")
+        flash("GIF successfully flagged. Solve a new word.", "warning")
     else:
         flash("Failed to flag GIF.", "warning")
     return redirect(url_for("game", category = request.args["category"]))
