@@ -215,3 +215,9 @@ Wrote all of the JS and AJAX functions except...it doesn't work--yet (i shall de
     and many more but those are the key ones
 At the moment, it appears that the JS isn't even functioning; it's like it's not there
 Also need to figure out the category files
+
+lauS -- 2018-01-11 03:41
+
+Debugged most of the JS--selecting letters and deselecting works beautifully 
+Need to figure out how to load a completely different page from JS
+App stats is complete as well
