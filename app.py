@@ -60,7 +60,6 @@ def game():
     print "FINDING WORD..."
     category = args["category"]
     words, is_file = api.find_hyponyms(category)
-    print "WORDS: " + str(words)
     if not is_file:
         hyponyms = [word for word in words if api.valid_word(word, category)]
         word = api.random_word(hyponyms)
@@ -84,13 +83,9 @@ def win():
     data = request.args
     word = data.get("word").upper()
     category = data.get("category")
-    print "score?"
-    print score()
-    if logged_in:
+    if logged_in():
         db.update_pts(username(),int(score()) + 100)
     else:
-        print "updated guest score?"
-        print str(int(score()) + 100)
         session["score"] = str(int(score()) + 100)
     flash(Markup("You scored 100 points for guessing <b>" + word + "</b>! Solve another word."), "success")
     return redirect(url_for("game", category = category))
@@ -142,16 +137,13 @@ def username():
 
 # Returns score of the logged in person/guest
 def score():
-    print "logged in?"
-    print logged_in()
     if logged_in():
-        print "logged in"
         return db.get_score(username().lower())
     elif "score" in session:
-        print "existing session for score"
+        print "Existing session for score"
         return session["score"]
     else:
-        print "not existing session for score"
+        print "Nonexisting session for score"
         session["score"] = "0"
         return "0"
 

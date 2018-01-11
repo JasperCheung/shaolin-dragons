@@ -1,5 +1,5 @@
 var key = ""; // Word to achieve; provided by python
-var bankSize = 16;
+var bankSize = 12;
 var bankLetters = []; // Letters in the word bank; provided by python
 var wordIndex = []; // Indexes of the letter guessed
 var category = "";

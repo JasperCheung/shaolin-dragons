@@ -31,7 +31,7 @@ f.close()
 
 # Given a category, return a list of the words that Datamuse returns
 def find_hyponyms(category):
-    # If the category is just a list of words 
+    # If the category is just a list of words
     is_file = False
     try:
         path = CATEGORY_LOC + category + ".txt"
@@ -40,7 +40,7 @@ def find_hyponyms(category):
         words = [word.strip() for word in words]
         print path
         is_file = True
-    except FileNotFoundError:
+    except:
         url = DATAMUSE_URL + 'md=p&rel_gen={}'.format(category)
         res = requests.get(url)
         words = res.json()
@@ -100,7 +100,7 @@ def find_gifs(query, limit=4, offset=0):
     return gifs['data']
 
 def gifs_for_word(category, word, use_category=True):
-    print "GIFs for: " +  word + "--" + category
+    print "GIFs for: " +  word + " -- " + category
     db_word = db.get_word(category, word)
     if db_word:
         gifs = db_word[2:]
@@ -147,7 +147,7 @@ def flag_gif(category, word, gif_url, use_category=True):
     return True
 
 # Returns False if fails
-def flag_word(category, word, use_category=True):    
+def flag_word(category, word, use_category=True):
     query = word
     if use_category:
         query += " " + category
