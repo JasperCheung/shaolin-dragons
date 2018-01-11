@@ -69,7 +69,7 @@ def game():
     session["word"] = word
     # Maybe make it so use category for specific categories
     gifs = api.gifs_for_word(category, word)
-    letters = game_tools.random_letter_list(word)
+    letters = game_tools.random_letter_list(word, 12)
     if "score" in args:
         flash(Markup("You scored 100 points for guessing <b>" + word + "</b>! Solve another word."), "success")
         if logged_in:
