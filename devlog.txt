@@ -125,13 +125,8 @@ lauS -- 2018-01-04 20:03
 ------------------
 Finished auth verifications (login isn't tracked past the home page)
 Auth with error messsages
-<<<<<<< Updated upstream
      - login: incorrect username/password
      - signup: username already exists; passwords don't match
-=======
-- login: incorrect username/password
-- signup: username already exists; passwords don't match
->>>>>>> Stashed changes
 
 panC -- 2018-01-04 20:37
 ------------------
@@ -227,3 +222,9 @@ yeH -- 2018-01-11 10:15
 Use category files found in static/categories if they exist instead of
     Datamuse
 Change number of letters to choose from, 16 -> 12
+
+lauS -- 2018-01-11 15:05
+------------------
+POINT SYSTEM WORKS!! for both guests and logged in users :) 
+Also I notice that some words only produce 2 GIFs, we should probably eliminate those
+
