@@ -151,6 +151,8 @@ a, a:hover, a:active, a:visited, a:focus {
   display: inline-block;
   width: 40px;
   height: 40px;
+  font-weight: 900;
+  vertical-align: middle;
 }
 
 .card-letters {
@@ -158,7 +160,7 @@ a, a:hover, a:active, a:visited, a:focus {
   margin-top: 30px;
   width:100%;
   height:100%;
-  display:box;
+  display:inline-block;
   box-orient:horizontal;
   box-pack:center;
   box-align:center;

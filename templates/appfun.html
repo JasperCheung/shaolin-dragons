@@ -6,7 +6,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
+<div class="container" style="padding-bottom: 30px;">
   <h1 class="header">APP FUN</h1>
+    {% for key,value in stat.items() %}
+    <div class="card card-stack">
+      <h1 style="text-align:left;">
+        {{ key }}
+        <span style="float:right;">{{ value }}</span>
+      </h1>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}

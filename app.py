@@ -4,11 +4,12 @@
 #P02 - 4Gifs1Word
 
 from flask import Flask, render_template, request, redirect, flash, Markup, url_for, session
-import requests, os
+import requests, os, json
 from utils import database as db
 from utils import api
 from utils import auth
 from utils import game_tools
+from utils import stats
 
 app = Flask(__name__)
 app.secret_key = os.urandom(128)
@@ -65,6 +66,13 @@ def game():
     # Maybe make it so use category for specific categories
     gifs = api.gifs_for_word(category, word)
     letters = game_tools.random_letter_list(word)
+    if "score" in args:
+        flash(Markup("You scored 100 points for guessing <b>" + word + "</b>! Solve another word."), "success")
+        if logged_in:
+            user = session["username"]
+            update_pts(user,get_score(user) + 100)
+        else:
+            session["score"] = int(score()) + 100
     return render_template("game.html", gifs = gifs, word = word, \
             category = category, letters = letters, username = username(), \
             logged_in = logged_in(), score = score())
@@ -104,7 +112,13 @@ def rankings():
 
 @app.route("/appfun")
 def appfun():
-    return render_template("appfun.html", username = username(), logged_in = logged_in(), score = score())
+    stat = {
+        "words solved" : stats.words_solved(),
+        "users" : stats.num_users(),
+        "words flagged" : stats.num_words_flagged(),
+        "GIFs flagged" : stats.num_gifs_flagged()
+    }
+    return render_template("appfun.html", username = username(), logged_in = logged_in(), score = score(), stat = stat)
 
 @app.route("/error")
 def error():

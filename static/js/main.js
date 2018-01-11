@@ -1,5 +1,5 @@
 var key = ""; // Word to achieve; provided by python
-var bankSize = 12;
+var bankSize = 16;
 var bankLetters = []; // Letters in the word bank; provided by python
 var wordIndex = []; // Indexes of the letter guessed
 var category = "";
@@ -13,6 +13,7 @@ var retrieveKey = function(e){
       console.log(d);
       d = JSON.parse(d);
       key = d["word"];
+      setUp();
     }
   })
 };
@@ -33,7 +34,7 @@ var fillWordIndex = function(){
 var fillBankLetters = function(){
   for (var i = 0; i < bankSize; i++){
     var id = "bank" + i;
-    letter = document.getElementById(id);
+    var letter = document.getElementById(id);
     bankLetters[i] = letter.innerHTML;
   }
 };
@@ -49,29 +50,56 @@ var isFull = function(){
 
 // Check for word match when word is complete
 var checkWord = function(){
-  guess = "";
+  var guess = "";
   for (var i in wordIndex){
     guess += bankLetters[wordIndex[i]];
   }
-  if (key === guess)
-    correctWord();
-  else
-    returnLetters();
+  console.log(guess);
+  if (key === guess.toLowerCase()){
+    for (var i in key){
+      var id = "word" + i;
+      var letter = document.getElementById(id);
+      letter.setAttribute("style","margin-bottom:10px;background-color:#26AD2F;")
+    }
+    window.setTimeout(function(){
+      for (var i in key){
+        var id = "word" + i;
+        var letter = document.getElementById(id);
+        letter.setAttribute("style","margin-bottom:10px;")
+      }
+      correctWord();
+    },700);
+  }
+  else {
+    for (var i in key){
+      var id = "word" + i;
+      var letter = document.getElementById(id);
+      letter.setAttribute("style","margin-bottom:10px;background-color:#E84855;")
+    }
+    window.setTimeout(function(){
+      for (var i in key){
+        var id = "word" + i;
+        var letter = document.getElementById(id);
+        letter.setAttribute("style","margin-bottom:10px;")
+      }
+      returnLetters();
+    },700);
+  }
 };
 
 // Send all letters to "bank"
 var returnLetters = function(){
   for (var i in bankLetters){
     var id = "bank" + i;
-    letter = document.getElementById(id);
+    var letter = document.getElementById(id);
     letter.innerHTML = bankLetters[i];
     letter.setAttribute("class","card card-letter card-animate");
   }
   for (var i in wordIndex){
     wordIndex[i] = -1;
     var id = "word" + i;
-    letter = document.getElementById(id);
-    letter.innerHTML = "";
+    var letter = document.getElementById(id);
+    letter.innerHTML = " ";
     letter.setAttribute("class","card-pressed card-letter");
   }
 };
@@ -79,21 +107,23 @@ var returnLetters = function(){
 // Add 100 points to database via python
 // Load new word in the same category
 var correctWord = function(){
-  $.ajax({
-    url: "/win",
-    type: "GET",
-    data: {"word" : key, "category" : category},
-    success: function(d){
-      return;
-    }
-  })
+  window.location.href = "localhost:5000/game?category=" + category + "&word=" + key + "&score=100";
+  // $.ajax({
+  //   url: "/win",
+  //   type: "GET",
+  //   data: {"word" : key, "category" : category}
+    // ,
+    // success: function(d){
+    //   return;
+    // }
+  // })
 };
 
 // Return leftmost index of wordIndex whose value is -1
 var leftIndex = function(){
   for (var i in wordIndex){
     if (wordIndex[i] == -1)
-    return i;
+      return i;
   }
   return -1;
 };
@@ -101,26 +131,29 @@ var leftIndex = function(){
 // Run when "bank letters" are clicked
 // Send letter to guessed section
 var bankCallback = function(e){
-  if (this.getAttribute("class").equals("card card-letter card-animate")){
-    this.innerHTML = "";
+  if (this.getAttribute("class") === "card card-letter card-animate" && !isFull()){
+    this.innerHTML = " ";
     this.setAttribute("class","card-pressed card-letter");
     // extracting # from id = "bank#" and inserting into wordIndex
-    var i = this.getAttribute("id")[4];
+    var i = Number(this.getAttribute("id").substring(4));
     var j = leftIndex();
     wordIndex[j] = i;
     letter = document.getElementById("word" + j);
     letter.innerHTML = bankLetters[i];
     letter.setAttribute("class","card card-letter");
+    console.log(wordIndex);
+    if (isFull())
+      checkWord();
   }
 };
 
 // Run when "guessed letters" are clicked
 // Send letter back to bank
 var wordCallback = function(e){
-  if (this.getAttribute("class").equals("card card-letter")){
-    this.innerHTML = "";
+  if (this.getAttribute("class") === "card card-letter"){
+    this.innerHTML = " ";
     this.setAttribute("class","card-pressed card-letter");
-    var i = this.getAttribute("id")[4];
+    var i = this.getAttribute("id").substring(4);
     var j = wordIndex[i]; // j is index of letter in bankLetters
     wordIndex[i] = -1;
     letter = document.getElementById("bank" + j);
@@ -162,11 +195,11 @@ var addEventListeners = function(){
 
 // Word play setup
 var setUp = function(){
-  retrieveKey();
+  console.log("setUp has occurred.")
   setCategory();
   fillWordIndex();
   fillBankLetters();
   addEventListeners();
 };
 
-setUp();
+retrieveKey();
