@@ -66,13 +66,6 @@ def game():
     # Maybe make it so use category for specific categories
     gifs = api.gifs_for_word(category, word)
     letters = game_tools.random_letter_list(word)
-    if "score" in args:
-        flash(Markup("You scored 100 points for guessing <b>" + word + "</b>! Solve another word."), "success")
-        if logged_in:
-            user = session["username"]
-            update_pts(user,get_score(user) + 100)
-        else:
-            session["score"] = int(score()) + 100
     return render_template("game.html", gifs = gifs, word = word, \
             category = category, letters = letters, username = username(), \
             logged_in = logged_in(), score = score())
@@ -87,6 +80,14 @@ def win():
     data = request.args
     word = data.get("word").upper()
     category = data.get("category")
+    print "score?"
+    print score()
+    if logged_in:
+        db.update_pts(username(),int(score()) + 100)
+    else:
+        print "updated guest score?"
+        print str(int(score()) + 100)
+        session["score"] = str(int(score()) + 100)
     flash(Markup("You scored 100 points for guessing <b>" + word + "</b>! Solve another word."), "success")
     return redirect(url_for("game", category = category))
 
@@ -126,7 +127,7 @@ def error():
 
 # Checks if logged in
 def logged_in():
-    return session.get("username")
+    return "username" in session
 
 # Returns username
 def username():
@@ -137,11 +138,16 @@ def username():
 
 # Returns score of the logged in person/guest
 def score():
+    print "logged in?"
+    print logged_in()
     if logged_in():
+        print "logged in"
         return db.get_score(username().lower())
-    elif session.get("score"):
+    elif "score" in session:
+        print "existing session for score"
         return session["score"]
     else:
+        print "not existing session for score"
         session["score"] = "0"
         return "0"
 

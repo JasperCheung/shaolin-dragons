@@ -107,7 +107,7 @@ var returnLetters = function(){
 // Add 100 points to database via python
 // Load new word in the same category
 var correctWord = function(){
-  window.location.href = "localhost:5000/game?category=" + category + "&word=" + key + "&score=100";
+  window.location.href = "/win?category=" + category + "&word=" + key + "&score=100";
   // $.ajax({
   //   url: "/win",
   //   type: "GET",
