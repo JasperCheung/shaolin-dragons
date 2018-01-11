@@ -206,9 +206,9 @@ yeH -- 2018-01-10 09:53
 ------------------
 Complete route for flagging GIFs
     * Flagging GIFs should be functional now
-    
-lauS -- 2018-01-10 15:12
 
+lauS -- 2018-01-10 15:12
+------------------
 Wrote all of the JS and AJAX functions except...it doesn't work--yet (i shall debug in a few)
     retrieveKey() takes the word from the session via Python
     setCategory() takes the category from the query string
@@ -217,7 +217,12 @@ At the moment, it appears that the JS isn't even functioning; it's like it's not
 Also need to figure out the category files
 
 lauS -- 2018-01-11 03:41
-
+------------------
 Debugged most of the JS--selecting letters and deselecting works beautifully 
 Need to figure out how to load a completely different page from JS
 App stats is complete as well
+
+yeH -- 2018-01-11 09:52
+------------------
+Use category files found in static/categories if they exist instead of
+    Datamuse
