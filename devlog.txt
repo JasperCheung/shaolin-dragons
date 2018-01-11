@@ -222,7 +222,8 @@ Debugged most of the JS--selecting letters and deselecting works beautifully
 Need to figure out how to load a completely different page from JS
 App stats is complete as well
 
-yeH -- 2018-01-11 09:52
+yeH -- 2018-01-11 10:15
 ------------------
 Use category files found in static/categories if they exist instead of
     Datamuse
+Change number of letters to choose from, 16 -> 12
