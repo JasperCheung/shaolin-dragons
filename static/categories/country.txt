@@ -12,4 +12,15 @@ germany
 france
 brazil
 india
-
+britain
+spain
+italy
+greece
+egypt
+chile
+peru
+iceland
+switzerland
+thailand
+portugal
+morocco

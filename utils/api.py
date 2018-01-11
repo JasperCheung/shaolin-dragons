@@ -19,18 +19,32 @@ DATAMUSE_URL = "http://api.datamuse.com/words?"
 
 GIF_TYPE = 'fixed_width'
 
-f = open("./static/categories/categories.json", 'rU')
+CATEGORY_LOC = './static/categories/'
+
+f = open(CATEGORY_LOC + "categories.json", 'rU')
 CATEGORIES = json.loads(f.read())
 f.close()
 
 # ADD FINDING A CATEGORY IN THE LOCAL DIRECTORY BEFORE USING Datamuse
 
+# This has to do with using the .txt files
+
 # Given a category, return a list of the words that Datamuse returns
 def find_hyponyms(category):
-    url = DATAMUSE_URL + 'md=p&rel_gen={}'.format(category)
-    res = requests.get(url)
-    words = res.json()
-    return words
+    # If the category is just a list of words 
+    is_file = False
+    try:
+        path = CATEGORY_LOC + category + ".txt"
+        with open(path) as f:
+            words = f.readlines()
+        words = [word.strip() for word in words]
+        print path
+        is_file = True
+    except FileNotFoundError:
+        url = DATAMUSE_URL + 'md=p&rel_gen={}'.format(category)
+        res = requests.get(url)
+        words = res.json()
+    return words, is_file
 
 def valid_word(word, category="", allow_proper=False):
     '''

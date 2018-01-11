@@ -5,6 +5,7 @@
 
 from flask import Flask, render_template, request, redirect, flash, Markup, url_for, session
 import requests, os, json
+import random
 from utils import database as db
 from utils import api
 from utils import auth
@@ -58,14 +59,17 @@ def game():
         return redirect("categories")
     print "FINDING WORD..."
     category = args["category"]
-    words = api.find_hyponyms(category)
+    words, is_file = api.find_hyponyms(category)
     print "WORDS: " + str(words)
-    hyponyms = [word for word in words if api.valid_word(word, category)]
-    word = api.random_word(hyponyms)
+    if not is_file:
+        hyponyms = [word for word in words if api.valid_word(word, category)]
+        word = api.random_word(hyponyms)
+    else:
+        word = random.choice(words)
     session["word"] = word
     # Maybe make it so use category for specific categories
     gifs = api.gifs_for_word(category, word)
-    letters = game_tools.random_letter_list(word)
+    letters = game_tools.random_letter_list(word, 12)
     return render_template("game.html", gifs = gifs, word = word, \
             category = category, letters = letters, username = username(), \
             logged_in = logged_in(), score = score())
