@@ -1,0 +1,16 @@
+rowing
+soccer
+football
+pingpong
+baseball
+tennis
+skating
+swimming
+skiing
+snowboarding
+dance
+gymnastics
+wrestling
+weightlifting
+running
+karate

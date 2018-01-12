@@ -228,3 +228,6 @@ lauS -- 2018-01-11 15:05
 POINT SYSTEM WORKS!! for both guests and logged in users :) 
 Also I notice that some words only produce 2 GIFs, we should probably eliminate those
 
+yeH -- 2018-01-12 11:15
+------------------
+Adding some sports in the file
