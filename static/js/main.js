@@ -105,9 +105,33 @@ var returnLetters = function(){
 };
 
 var returnLetter = function(){
-    if (this.getAttribute("class") === "card card-letter"){
+  i = rightIndex();
+  if (i == -1)
+    return;
+  var id = "word" + i;
+  var letter = document.getElementById(id);
+  letter.innerHTML = " ";
+  letter.setAttribute("class","card-pressed card-letter");
+  var j = wordIndex[i];
+  wordIndex[i] = -1;
+  var bLetter = document.getElementById("bank" + j);
+  bLetter.innerHTML = bankLetters[j];
+  bLetter.setAttribute("class", "card card-letter card-animate");
+}
 
-    }
+var sendLetter = function(i){
+  var id = "bank" + i;
+  var letter = document.getElementById(id);
+  letter.innerHTML = " ";
+  letter.setAttribute("class","card-pressed card-letter");
+  var j = leftIndex();
+  wordIndex[j] = Number(i);
+  var wLetter = document.getElementById("word" + j);
+  wLetter.innerHTML = bankLetters[i];
+  wLetter.setAttribute("class", "card card-letter");
+  console.log(wordIndex);
+  if (isFull())
+    checkWord();
 }
 
 // Add 100 points to database via python
@@ -125,11 +149,13 @@ var leftIndex = function(){
   return -1;
 };
 
+// Return rightmost index of wordIndex whose value is not -1
 var rightIndex = function(){
-    for (var i = wordIndex.length - 1; i > -1; i--){
-	if (wordIndex[i] == -1)
-	    return i;
+  for (var i = wordIndex.length - 1; i > -1; i--){
+	  if (wordIndex[i] != -1)
+      return i;
     }
+    return -1;
 };
 
 // Run when "bank letters" are clicked
@@ -142,7 +168,7 @@ var bankCallback = function(e){
     var i = Number(this.getAttribute("id").substring(4));
     var j = leftIndex();
     wordIndex[j] = i;
-    letter = document.getElementById("word" + j);
+    var letter = document.getElementById("word" + j);
     letter.innerHTML = bankLetters[i];
     letter.setAttribute("class","card card-letter");
     console.log(wordIndex);
@@ -160,7 +186,7 @@ var wordCallback = function(e){
     var i = this.getAttribute("id").substring(4);
     var j = wordIndex[i]; // j is index of letter in bankLetters
     wordIndex[i] = -1;
-    letter = document.getElementById("bank" + j);
+    var letter = document.getElementById("bank" + j);
     letter.innerHTML = bankLetters[j];
     letter.setAttribute("class","card card-letter card-animate");
   }
@@ -197,18 +223,38 @@ var addEventListeners = function(){
   addReturnListeners();
 };
 
-$(document).keypress(function(e) {
-    var uni = event.which;
-    if (uni == 32)
-	returnLetters();
-    if (uni == 8)
-	returnLetter();
-    var keyPressed = String.fromCharCode(uni);
+$(document).keydown(function(e) {
+  var uni = event.which;
+  var keyPressed = String.fromCharCode(uni);
+  console.log(String(uni) + " " + keyPressed);
+  if (uni == 32){
+    console.log("Space clicked.");
+    returnLetters();
+  }
+  else if (uni == 8){
+    console.log("Backspace clicked.");
+    returnLetter();
+  }
+  else {
     for (var i in bankLetters){
-	return;
+	if (keyPressed === bankLetters[i] && document.getElementById("bank" + i).innerHTML !== " "){
+            sendLetter(i);
+            return;
+	}
     }
+    // for (var i in bankLetters){
+    //   if (keyPressed === bankLetters[i]){
+    //     for (var j in wordIndex){
+    //       if (i == wordIndex[j])
+    //         break;
+    //     }
+    //     sendLetter(i);
+    //     return(i);
+    //   }
+    // }
+  }
 });
-    
+
 
 // Word play setup
 var setUp = function(){
