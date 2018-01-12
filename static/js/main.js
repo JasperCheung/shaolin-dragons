@@ -104,19 +104,16 @@ var returnLetters = function(){
   }
 };
 
+var returnLetter = function(){
+    if (this.getAttribute("class") === "card card-letter"){
+
+    }
+}
+
 // Add 100 points to database via python
 // Load new word in the same category
 var correctWord = function(){
   window.location.href = "/win?category=" + category + "&word=" + key + "&score=100";
-  // $.ajax({
-  //   url: "/win",
-  //   type: "GET",
-  //   data: {"word" : key, "category" : category}
-    // ,
-    // success: function(d){
-    //   return;
-    // }
-  // })
 };
 
 // Return leftmost index of wordIndex whose value is -1
@@ -126,6 +123,13 @@ var leftIndex = function(){
       return i;
   }
   return -1;
+};
+
+var rightIndex = function(){
+    for (var i = wordIndex.length - 1; i > -1; i--){
+	if (wordIndex[i] == -1)
+	    return i;
+    }
 };
 
 // Run when "bank letters" are clicked
@@ -192,6 +196,19 @@ var addEventListeners = function(){
   addWordListeners();
   addReturnListeners();
 };
+
+$(document).keypress(function(e) {
+    var uni = event.which;
+    if (uni == 32)
+	returnLetters();
+    if (uni == 8)
+	returnLetter();
+    var keyPressed = String.fromCharCode(uni);
+    for (var i in bankLetters){
+	return;
+    }
+});
+    
 
 // Word play setup
 var setUp = function(){
