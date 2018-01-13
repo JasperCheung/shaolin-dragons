@@ -8,11 +8,11 @@
 {% block content %}
 <div class="container" style="padding-bottom: 30px;">
   <h1 class="header">APP FUN</h1>
-    {% for key,value in stat.items() %}
+    {% for item in stat %}
     <div class="card card-stack">
       <h1 style="text-align:left;">
-        {{ key }}
-        <span style="float:right;">{{ value }}</span>
+        {{ item[0] }}
+        <span style="float:right;">{{ item[1] }}</span>
       </h1>
     </div>
     {% endfor %}

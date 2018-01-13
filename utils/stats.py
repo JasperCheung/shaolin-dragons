@@ -22,17 +22,17 @@ def words_solved():
     global db
     try:
         c=database.open_db()
-        command = "SELECT * FROM history"
+        command = "SELECT pts FROM accounts"
         c.execute(command)
         data = c.fetchall()
         database.close_db()
     except:
         print "Error: could not get words solved"
         return 0
-    count = 0
+    total = 0
     for entry in data:
-        count += 1
-    return count
+        total += entry[0]/100
+    return total
 
 #NUMBER OF USERS IN ALL OF HISTORY
 def num_users():
@@ -100,8 +100,7 @@ def next_high_score(user):
         return None
     return data
 
-
-#print words_solved()
+print words_solved()
 #print num_users()
 #print num_words_flagged()
 #print num_gifs_flagged()
