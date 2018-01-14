@@ -2,11 +2,11 @@ america
 australia
 canada
 china
-japan
+korea
 mexico
 turkey
 korea
-taiwan 
+taiwan
 russia
 germany
 france
@@ -21,6 +21,4 @@ chile
 peru
 iceland
 switzerland
-thailand
 portugal
-morocco

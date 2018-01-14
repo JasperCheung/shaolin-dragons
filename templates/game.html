@@ -6,7 +6,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Game | 4 GIFS 1 WORD
+4 GIFS 1 WORD
 {% endblock %}
 
 {% block content %}
@@ -29,7 +29,16 @@ Game | 4 GIFS 1 WORD
   </div>
   <div class="container card-letters" align="center">
     {% for letter in letters %}
+    {% if loop.index0 < (letters|length)/2 %}
     <span class="card card-letter card-animate" id="bank{{ loop.index0 }}">{{ letter.upper() }}</span>
+    {% endif %}
+    {% endfor %}
+  </div>
+  <div class="container card-letters" align="center" style="margin-top: 15px;">
+    {% for letter in letters %}
+    {% if loop.index0 >= (letters|length)/2 %}
+    <span class="card card-letter card-animate" id="bank{{ loop.index0 }}">{{ letter.upper() }}</span>
+    {% endif %}
     {% endfor %}
   </div>
   <div class="container card-letters" align="center" style="margin-bottom:10px;">

@@ -100,7 +100,7 @@ def next_high_score(user):
         return None
     return data
 
-print words_solved()
+#print words_solved()
 #print num_users()
 #print num_words_flagged()
 #print num_gifs_flagged()

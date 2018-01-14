@@ -1,22 +1,8 @@
 var key = ""; // Word to achieve; provided by python
-var bankSize = 12;
+var bankSize = 0;
 var bankLetters = []; // Letters in the word bank; provided by python
 var wordIndex = []; // Indexes of the letter guessed
 var category = "";
-
-var retrieveKey = function(e){
-  $.ajax({
-    url: "/play",
-    type: "GET",
-    data: {},
-    success: function(d) {
-      console.log(d);
-      d = JSON.parse(d);
-      key = d["word"];
-      setUp();
-    }
-  })
-};
 
 var setCategory = function(){
   category = location.search.substring(1).split("=")[1]
@@ -30,7 +16,7 @@ var fillWordIndex = function(){
   }
 };
 
-// Retrieves bank letters and fills bankLetters array
+// Retrieve bank letters and fill bankLetters array
 var fillBankLetters = function(){
   for (var i = 0; i < bankSize; i++){
     var id = "bank" + i;
@@ -223,10 +209,10 @@ var addEventListeners = function(){
   addReturnListeners();
 };
 
+// Check which key is pressed
 $(document).keydown(function(e) {
   var uni = event.which;
   var keyPressed = String.fromCharCode(uni);
-  console.log(String(uni) + " " + keyPressed);
   if (uni == 32){
     console.log("Space clicked.");
     returnLetters();
@@ -236,25 +222,31 @@ $(document).keydown(function(e) {
     returnLetter();
   }
   else {
+    console.log(keyPressed + " clicked.")
     for (var i in bankLetters){
-	if (keyPressed === bankLetters[i] && document.getElementById("bank" + i).innerHTML !== " "){
-            sendLetter(i);
-            return;
-	}
+    	if (keyPressed === bankLetters[i] && document.getElementById("bank" + i).innerHTML !== " "){
+        sendLetter(i);
+        return;
+    	}
     }
-    // for (var i in bankLetters){
-    //   if (keyPressed === bankLetters[i]){
-    //     for (var j in wordIndex){
-    //       if (i == wordIndex[j])
-    //         break;
-    //     }
-    //     sendLetter(i);
-    //     return(i);
-    //   }
-    // }
   }
 });
 
+// Gather word information from python
+var retrieveKey = function(e){
+  $.ajax({
+    url: "/play",
+    type: "GET",
+    data: {},
+    success: function(d) {
+      console.log(d);
+      d = JSON.parse(d);
+      key = d["word"]
+      bankSize = d["bank_length"]
+      setUp();
+    }
+  })
+};
 
 // Word play setup
 var setUp = function(){

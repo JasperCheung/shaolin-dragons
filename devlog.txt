@@ -213,7 +213,7 @@ Also need to figure out the category files
 
 lauS -- 2018-01-11 03:41
 ------------------
-Debugged most of the JS--selecting letters and deselecting works beautifully 
+Debugged most of the JS--selecting letters and deselecting works beautifully
 Need to figure out how to load a completely different page from JS
 App stats is complete as well
 
@@ -225,9 +225,23 @@ Change number of letters to choose from, 16 -> 12
 
 lauS -- 2018-01-11 15:05
 ------------------
-POINT SYSTEM WORKS!! for both guests and logged in users :) 
+POINT SYSTEM WORKS!! for both guests and logged in users :)
 Also I notice that some words only produce 2 GIFs, we should probably eliminate those
 
 yeH -- 2018-01-12 11:15
 ------------------
 Adding some sports in the file
+
+lauS -- 2018-01-12 15:35
+------------------
+Typing works!
+Backspace = delete rightmost letter
+Space = return all
+Typing any letter will send it to the guessed section, only if it is found in the bankSize
+
+lauS -- 2018-01-13 16:49
+------------------
+Added more features to appfun
+Fixed words_solved so that it calculates number of words solved from the score and not history (which isn't working)
+Added brand.txt and added brand into the categories file
+Made letter bank into two different lines 

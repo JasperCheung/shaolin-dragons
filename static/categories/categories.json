@@ -3,5 +3,6 @@
     "Sports": "sports",
     "Food": "foodstuff",
     "Drinks": "beverage",
-    "Arts": "artist"
+    "Arts": "artist",
+    "Brands" : "brand"
 }

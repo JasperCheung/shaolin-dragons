@@ -68,14 +68,16 @@ def game():
     session["word"] = word
     # Maybe make it so use category for specific categories
     gifs = api.gifs_for_word(category, word)
-    letters = game_tools.random_letter_list(word, 12)
+    bank_length = 12
+    letters = game_tools.random_letter_list(word, bank_length)
+    session["bank_length"] = bank_length
     return render_template("game.html", gifs = gifs, word = word, \
             category = category, letters = letters, username = username(), \
             logged_in = logged_in(), score = score())
 
 @app.route("/play")
 def play():
-    response = { "word" : session["word"] }
+    response = { "word" : session["word"], "bank_length" : session["bank_length"] }
     return json.dumps(response)
 
 @app.route("/win")
@@ -141,10 +143,8 @@ def score():
     if logged_in():
         return db.get_score(username().lower())
     elif "score" in session:
-        print "Existing session for score"
         return session["score"]
     else:
-        print "Nonexisting session for score"
         session["score"] = "0"
         return "0"
 
