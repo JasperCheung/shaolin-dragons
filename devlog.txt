@@ -244,4 +244,10 @@ lauS -- 2018-01-13 16:49
 Added more features to appfun
 Fixed words_solved so that it calculates number of words solved from the score and not history (which isn't working)
 Added brand.txt and added brand into the categories file
-Made letter bank into two different lines 
+Made letter bank into two different lines
+
+lauS -- 2018-01-14 13:20
+------------------
+Added back button to the game page to go back to the categories (or user can click esc)
+Simplified signup and login templates
+Cleaned up main.js to eliminate extraneous code
