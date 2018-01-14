@@ -11,7 +11,18 @@
 
 {% block content %}
 <div class="container">
-  <h1 class="header">WHAT'S THE WORD?</h1>
+  <div class="row header">
+    <div class="col-sm-2" id="back">
+      <a type="button" class="btn btn-outline btn-icon" href="/categories">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+    </div>
+    <div class="col-sm-8">
+      <h1 style="margin: 0">WHAT'S THE WORD?<h1>
+    </div>
+    <div class="col-sm-2">
+    </div>
+  </div>
   <div class="row thumbnails">
     {% for gif in gifs %}
     <div class="col-sm-3">

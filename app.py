@@ -28,7 +28,7 @@ def signup():
     elif request.form.get("signup"):
         return auth.signup()
     else:
-        return render_template("signup.html", score = score())
+        return render_template("signup.html", username = username(), logged_in = logged_in(), score = score())
 
 # Displays the log-in page and executes log in procedures
 @app.route("/login", methods=["GET", "POST"])
@@ -37,7 +37,7 @@ def login():
         return redirect("")
     elif request.form.get("login"):
         return auth.login()
-    return render_template("login.html", score = score())
+    return render_template("login.html", username = username(), logged_in = logged_in(), score = score())
 
 # Logs out user (removes from session) and routes to home
 @app.route("/logout", methods=["GET", "POST"])

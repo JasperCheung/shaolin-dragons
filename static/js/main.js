@@ -3,13 +3,16 @@ var bankSize = 0;
 var bankLetters = []; // Letters in the word bank; provided by python
 var wordIndex = []; // Indexes of the letter guessed
 var category = "";
+var isValidating = false;
+
+//---------------------------------------------------------
+// INITIALIZATION FUNCTIONS
 
 var setCategory = function(){
   category = location.search.substring(1).split("=")[1]
 };
 
-// Fill wordIndex with index values
-// -1 denotes an empty slot
+// Fill wordIndex with index values; -1 denotes empty slot
 var fillWordIndex = function(){
   for (var i in key){
     wordIndex.push(-1);
@@ -25,7 +28,10 @@ var fillBankLetters = function(){
   }
 };
 
-// Check if word is complete
+//---------------------------------------------------------
+// ACCESSOR FUNCTIONS
+
+// Check if word guess is full
 var isFull = function(){
   for (var i in wordIndex){
     if (wordIndex[i] == -1)
@@ -34,97 +40,14 @@ var isFull = function(){
   return true;
 };
 
-// Check for word match when word is complete
-var checkWord = function(){
-  var guess = "";
+// Check if word guess is empty
+var isEmpty = function(){
   for (var i in wordIndex){
-    guess += bankLetters[wordIndex[i]];
+    if (wordIndex[i] != -1)
+      return false;
   }
-  console.log(guess);
-  if (key === guess.toLowerCase()){
-    for (var i in key){
-      var id = "word" + i;
-      var letter = document.getElementById(id);
-      letter.setAttribute("style","margin-bottom:10px;background-color:#26AD2F;")
-    }
-    window.setTimeout(function(){
-      for (var i in key){
-        var id = "word" + i;
-        var letter = document.getElementById(id);
-        letter.setAttribute("style","margin-bottom:10px;")
-      }
-      correctWord();
-    },700);
-  }
-  else {
-    for (var i in key){
-      var id = "word" + i;
-      var letter = document.getElementById(id);
-      letter.setAttribute("style","margin-bottom:10px;background-color:#E84855;")
-    }
-    window.setTimeout(function(){
-      for (var i in key){
-        var id = "word" + i;
-        var letter = document.getElementById(id);
-        letter.setAttribute("style","margin-bottom:10px;")
-      }
-      returnLetters();
-    },700);
-  }
-};
-
-// Send all letters to "bank"
-var returnLetters = function(){
-  for (var i in bankLetters){
-    var id = "bank" + i;
-    var letter = document.getElementById(id);
-    letter.innerHTML = bankLetters[i];
-    letter.setAttribute("class","card card-letter card-animate");
-  }
-  for (var i in wordIndex){
-    wordIndex[i] = -1;
-    var id = "word" + i;
-    var letter = document.getElementById(id);
-    letter.innerHTML = " ";
-    letter.setAttribute("class","card-pressed card-letter");
-  }
-};
-
-var returnLetter = function(){
-  i = rightIndex();
-  if (i == -1)
-    return;
-  var id = "word" + i;
-  var letter = document.getElementById(id);
-  letter.innerHTML = " ";
-  letter.setAttribute("class","card-pressed card-letter");
-  var j = wordIndex[i];
-  wordIndex[i] = -1;
-  var bLetter = document.getElementById("bank" + j);
-  bLetter.innerHTML = bankLetters[j];
-  bLetter.setAttribute("class", "card card-letter card-animate");
+  return true;
 }
-
-var sendLetter = function(i){
-  var id = "bank" + i;
-  var letter = document.getElementById(id);
-  letter.innerHTML = " ";
-  letter.setAttribute("class","card-pressed card-letter");
-  var j = leftIndex();
-  wordIndex[j] = Number(i);
-  var wLetter = document.getElementById("word" + j);
-  wLetter.innerHTML = bankLetters[i];
-  wLetter.setAttribute("class", "card card-letter");
-  console.log(wordIndex);
-  if (isFull())
-    checkWord();
-}
-
-// Add 100 points to database via python
-// Load new word in the same category
-var correctWord = function(){
-  window.location.href = "/win?category=" + category + "&word=" + key + "&score=100";
-};
 
 // Return leftmost index of wordIndex whose value is -1
 var leftIndex = function(){
@@ -140,41 +63,122 @@ var rightIndex = function(){
   for (var i = wordIndex.length - 1; i > -1; i--){
 	  if (wordIndex[i] != -1)
       return i;
-    }
-    return -1;
+  }
+  return -1;
 };
 
-// Run when "bank letters" are clicked
-// Send letter to guessed section
-var bankCallback = function(e){
-  if (this.getAttribute("class") === "card card-letter card-animate" && !isFull()){
-    this.innerHTML = " ";
-    this.setAttribute("class","card-pressed card-letter");
-    // extracting # from id = "bank#" and inserting into wordIndex
-    var i = Number(this.getAttribute("id").substring(4));
-    var j = leftIndex();
-    wordIndex[j] = i;
-    var letter = document.getElementById("word" + j);
-    letter.innerHTML = bankLetters[i];
-    letter.setAttribute("class","card card-letter");
-    console.log(wordIndex);
-    if (isFull())
-      checkWord();
+//---------------------------------------------------------
+// WORD VALIDATION FUNCTIONS
+
+// Check for word match when word is complete
+var checkWord = function(){
+  isValidating = true;
+  var guess = "";
+  for (var i in wordIndex){
+    guess += bankLetters[wordIndex[i]];
+  }
+  console.log(guess);
+  if (key === guess.toLowerCase()){
+    changeColor("#26AD2F");
+    console.log("isValidating: " + isValidating);
+    window.setTimeout(function(){
+      changeColor("revert");
+      isValidating = false;
+      correctWord();
+    },700);
+  }
+  else {
+    changeColor("#E84855");
+    window.setTimeout(function(){
+      changeColor("revert");
+      isValidating = false;
+      returnLetters();
+    },700);
   }
 };
 
-// Run when "guessed letters" are clicked
-// Send letter back to bank
+// Route to /win which will add 100 points and load new word
+var correctWord = function(){
+  window.location.href = "/win?category=" + category + "&word=" + key + "&score=100";
+};
+
+// Change color of letters to denote correct or incorrect guess
+  // Green: #26AD2F
+  // Red: #E84855
+var changeColor = function(color){
+  for (var i in key){
+    var id = "word" + i;
+    var letter = document.getElementById(id);
+    if (color !== "revert")
+      letter.setAttribute("style","margin-bottom:10px;background-color:" + color + ";");
+    else
+      letter.setAttribute("style","margin-bottom:10px;");
+  }
+};
+
+//---------------------------------------------------------
+// LETTER MOVEMENT FUNCTIONS
+
+// Send letter of index i from bank to the the guessed section
+var sendLetter = function(i){
+  if (isFull())
+    return;
+  var id = "bank" + i;
+  var letter = document.getElementById(id);
+  letter.innerHTML = " ";
+  letter.setAttribute("class","card-pressed card-letter");
+  var j = leftIndex();
+  wordIndex[j] = Number(i);
+  var wLetter = document.getElementById("word" + j);
+  wLetter.innerHTML = bankLetters[i];
+  wLetter.setAttribute("class", "card card-letter");
+  console.log(wordIndex);
+  if (isFull())
+    checkWord();
+};
+
+// Return a letter of index i from wordIndex to the letter bank
+var returnLetter = function(i){
+  if (isEmpty() || isValidating){
+    return;
+  }
+  var id = "word" + i;
+  var letter = document.getElementById(id);
+  letter.innerHTML = " ";
+  letter.setAttribute("class","card-pressed card-letter");
+  var j = wordIndex[i];
+  wordIndex[i] = -1;
+  var bLetter = document.getElementById("bank" + j);
+  bLetter.innerHTML = bankLetters[j];
+  bLetter.setAttribute("class", "card card-letter card-animate");
+  console.log(wordIndex);
+};
+
+// Return all letters to "bank"
+var returnLetters = function(){
+  if (isValidating)
+    return;
+  while (!isEmpty()){
+    returnLetter(rightIndex());
+  }
+};
+
+//---------------------------------------------------------
+// EVENT TRIGGER/LISTENER FUNCTIONS
+
+// Run when "bank letters" are clicked to send letter to guessed section
+var bankCallback = function(e){
+  if (this.getAttribute("class") === "card card-letter card-animate" && !isFull()){
+    var i = Number(this.getAttribute("id").substring(4));
+    sendLetter(i);
+  }
+};
+
+// Run when guessed letters are clicked to return letters back to bank
 var wordCallback = function(e){
   if (this.getAttribute("class") === "card card-letter"){
-    this.innerHTML = " ";
-    this.setAttribute("class","card-pressed card-letter");
-    var i = this.getAttribute("id").substring(4);
-    var j = wordIndex[i]; // j is index of letter in bankLetters
-    wordIndex[i] = -1;
-    var letter = document.getElementById("bank" + j);
-    letter.innerHTML = bankLetters[j];
-    letter.setAttribute("class","card card-letter card-animate");
+    var i = Number(this.getAttribute("id").substring(4));
+    returnLetter(i);
   }
 };
 
@@ -209,7 +213,10 @@ var addEventListeners = function(){
   addReturnListeners();
 };
 
-// Check which key is pressed
+//---------------------------------------------------------
+// KEYBOARD FUNCTIONS
+
+// Check which key is pressed to activate letter movement
 $(document).keydown(function(e) {
   var uni = event.which;
   var keyPressed = String.fromCharCode(uni);
@@ -219,7 +226,12 @@ $(document).keydown(function(e) {
   }
   else if (uni == 8){
     console.log("Backspace clicked.");
-    returnLetter();
+    if (rightIndex() != -1)
+      returnLetter(rightIndex());
+  }
+  else if (uni == 27){
+    console.log("Escape clicked.");
+    window.location.href = "/categories";
   }
   else {
     console.log(keyPressed + " clicked.")
@@ -232,8 +244,11 @@ $(document).keydown(function(e) {
   }
 });
 
-// Gather word information from python
-var retrieveKey = function(e){
+//---------------------------------------------------------
+// SET UP FUNCTIONS
+
+// Gather word information from python and activate setUp()
+var retrieveData = function(e){
   $.ajax({
     url: "/play",
     type: "GET",
@@ -241,8 +256,8 @@ var retrieveKey = function(e){
     success: function(d) {
       console.log(d);
       d = JSON.parse(d);
-      key = d["word"]
-      bankSize = d["bank_length"]
+      key = d["word"];
+      bankSize = d["bank_length"];
       setUp();
     }
   })
@@ -250,11 +265,11 @@ var retrieveKey = function(e){
 
 // Word play setup
 var setUp = function(){
-  console.log("setUp has occurred.")
   setCategory();
   fillWordIndex();
   fillBankLetters();
   addEventListeners();
+  console.log("setUp is complete.")
 };
 
-retrieveKey();
+retrieveData();

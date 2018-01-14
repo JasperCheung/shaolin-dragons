@@ -20,5 +20,4 @@ egypt
 chile
 peru
 iceland
-switzerland
 portugal

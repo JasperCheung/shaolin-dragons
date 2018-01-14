@@ -54,7 +54,7 @@ def valid_word(word, category="", allow_proper=False):
         * no spaces,
         * score at least 100,
         * a noun that is not proper.
-        * has been flagged
+        * has not been flagged
 
     If allow_proper is true, then proper nouns are allowed.
     '''

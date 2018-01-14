@@ -58,6 +58,10 @@ a, a:hover, a:active, a:visited, a:focus {
   text-align: center;
 }
 
+.header.row {
+  margin-bottom: 1%;
+}
+
 .bg-gradient {
   /* Gradient for Safari and Chrome, plain color for unsupported browsers */
   background: #ff9966;
@@ -224,6 +228,10 @@ a, a:hover, a:active, a:visited, a:focus {
   color: #FFFFFF;
 }
 
+.btn-default {
+  background-color: white;
+}
+
 .btn-outline {
   border-color: #FFFFFF;
   color: #FFFFFF;
@@ -237,6 +245,7 @@ a, a:hover, a:active, a:visited, a:focus {
 }
 
 .btn-icon {
+  line-height: 1.8;
   width: 45px;
   margin-top: 4px;
   margin-bottom: 4px;
