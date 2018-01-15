@@ -251,3 +251,10 @@ lauS -- 2018-01-14 13:20
 Added back button to the game page to go back to the categories (or user can click esc)
 Simplified signup and login templates
 Cleaned up main.js to eliminate extraneous code
+
+lauS -- 2018-01-14 18:59
+------------------
+Changed favicon.png to different color background
+Added animals category
+Updated README (mostly copying my previous README since I already worked with Giphy)
+  Featuring a shmancy banner screenshotted from our website

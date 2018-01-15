@@ -4,5 +4,6 @@
     "Food": "foodstuff",
     "Drinks": "beverage",
     "Arts": "artist",
-    "Brands" : "brand"
+    "Brands" : "brand",
+    "Animals" : "animal"
 }

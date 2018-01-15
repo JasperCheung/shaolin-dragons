@@ -52,21 +52,18 @@ For your [Giphy](https://developers.giphy.com) API key:
 4. Your key will appear on your dashboard.
 
 ### Start playing
-1. Clone the repo by running:
+1. Clone the repo and move into it:
 ```
 $ git clone git@github.com:slau8/shaolin-dragons.git
-```
-2. With your virtual environment activated, run these commands:
-```
 $ cd shaolin-dragons
 ```
-3. Add your API key in its appropriate location in ``` .secrets.txt ```. For example:
+2. Open ``` .secrets.txt ``` and add your API key in its appropriate location. For example:
 ```
 {
   "giphy" : "this_is_my_api_key"
 }
 ```
-4. Run the following:
+3. With your virtual environment activated, run:
 ```
 $ python app.py
 ```
