@@ -119,7 +119,7 @@ def appfun():
         ["words solved by you", str(int(score())/100)],
         ["words solved by everyone", stats.words_solved()],
         ["words flagged by everyone", stats.num_words_flagged()],
-        ["GIFs flagged by everyone", stats.num_gifs_flagged()]
+        ["gifs flagged by everyone", stats.num_gifs_flagged()]
     ]
     return render_template("appfun.html", username = username(), logged_in = logged_in(), score = score(), stat = stat)
 
