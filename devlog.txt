@@ -258,3 +258,7 @@ Changed favicon.png to different color background
 Added animals category
 Updated README (mostly copying my previous README since I already worked with Giphy)
   Featuring a shmancy banner screenshotted from our website
+
+yeH -- 2018-01-16 13:24
+------------------
+Add error handling for when api does not return word and fix bug where word flags dont work for words in file
