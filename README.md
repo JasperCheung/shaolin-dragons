@@ -1,6 +1,6 @@
 ![4 GIFS 1 WORD](static/img/banner.png)
 # Shaolin Dragons Present: **4 GIFS 1 WORD**
-Join the hype and play 4 GIFS 1 WORD, the ultimate puzzle game of the 21st century. Choose a category, marvel at four related GIFs, and spell out the word that connects them all together. Each word guessed correctly wins you a whopping 100 points—the more you get, the higher you climb on the rankings. Challenge yourself and your friends to see who can get to the top.
+Join the hype and play 4 GIFS 1 WORD, the ultimate puzzle game of the 21st century. Choose a category, marvel at four related gifs, and spell out the word that connects them all together. Each word guessed correctly wins you a whopping 100 points—the more you get, the higher you climb on the rankings. Challenge yourself and your friends to see who can get to the top.
 
 ## Features
 * Variety of word categories
@@ -10,6 +10,9 @@ Join the hype and play 4 GIFS 1 WORD, the ultimate puzzle game of the 21st centu
 * Saved scores and rankings for authenticated users
 
 ## How It Works
+4 GIFS 1 WORD uses the [Datamuse API](https://www.datamuse.com/api/) to find hyponyms (words of more specific meaning than a general term) of specific hand-picked categories. From a set of hyponyms, a selected keyword is generated, along with four corresponding gifs from the [Giphy API](https://developers.giphy.com).
+
+When a user plays the game, their score and history are saved in database tables so that each round produces fresh, tasteful gifs. Users can additionally flag inaccurate or inappropriate words and gifs. 
 
 ### Dependencies
 * Python 2.7
@@ -69,7 +72,7 @@ After you run the app, you may receive an error due to one of these issues:
 2. Incorrect API key
 3. Exhausted API key
 
-To remedy all of these issues, execute the API configuration instructions again. (An exhausted API key may require retrieving a new key).
+These issues can be fixed by executing the API configuration instructions again. (An exhausted API key may require retrieving a new key).
 
 ### Launching the App
 With your virtual environment activated, run:
