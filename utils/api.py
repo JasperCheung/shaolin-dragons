@@ -33,6 +33,7 @@ f.close()
 def find_hyponyms(category):
     # If the category is just a list of words
     is_file = False
+
     try:
         path = CATEGORY_LOC + category + ".txt"
         with open(path) as f:
@@ -40,13 +41,16 @@ def find_hyponyms(category):
         words = [word.strip() for word in words]
         print path
         is_file = True
+
     except FileNotFoundError:
         try:
             url = DATAMUSE_URL + 'md=p&rel_gen={}'.format(category)
             res = requests.get(url)
             words = res.json()
+
         except:
             return None, False
+
     return words, is_file
 
 def valid_word(word, category="", allow_proper=False, is_file=False):
@@ -97,6 +101,7 @@ def random_word(words, is_file=False):
 def find_gifs(query, limit=4, offset=0):
     url = GIPHY_URL + 'gifs/search?'
     print query
+
     params = {
             'api_key': GIPHY_KEY,
             'q': query,
@@ -104,30 +109,38 @@ def find_gifs(query, limit=4, offset=0):
             'limit': limit,
             'offset': offset,
            }
+
     try:
         res = requests.get(url, params=params)
         gifs = res.json()
     except:
         return None
+
     return gifs['data']
 
 def gifs_for_word(category, word, use_category=True):
     print "GIFs for: " +  word + " -- " + category
     db_word = db.get_word(category, word)
+
     if db_word:
         gifs = db_word[2:]
     else:
         query = word
+
         if use_category:
             query += " " + category
         gifs = find_gifs(query)
+
         if gifs is None:
             return None
+
         gif_list = list()
         for gif in gifs:
             gif_list.append(gif['images'][GIF_TYPE]['url'])
+
         lst = [category, word]
         lst.extend(gif_list)
+
         if db.save_word(category, word, gif_list):
             print "Saved [" + word  + "] in category: " + category
         else:
@@ -138,36 +151,51 @@ def gifs_for_word(category, word, use_category=True):
 # Returns False if fails
 def flag_gif(category, word, gif_url, use_category=True):
     db_word = db.get_word(category, word)
+
     if db_word is None:
         # DO SOMETHING IF IT FAILS
         print "Could not retrieve word, could not flag"
         return False
+
     query = word
+
     if use_category:
         query += " " + category
+
     flagged = db.flag_gif(category, word, gif_url)
     if not flagged:
         print "Failed to flag."
         return False
+
     offset = db.gif_offset(category, word) + 4
-    new = find_gifs(query, limit=1, offset=offset)
-    new = new[0]['images'][GIF_TYPE]['url']
-    new_gifs = list(db_word)
-    new_gifs.remove(gif_url)
-    new_gifs.append(new)
-    db.update_word(new_gifs[0], new_gifs[1], new_gifs[2:])
+    try:
+        new = find_gifs(query, limit=1, offset=offset)
+        new = new[0]['images'][GIF_TYPE]['url']
+
+        new_gifs = list(db_word)
+        new_gifs.remove(gif_url)
+        new_gifs.append(new)
+        db.update_word(new_gifs[0], new_gifs[1], new_gifs[2:])
+    except:
+        print "Couldn't find new gif."
+        return False
+
     print "Flagged gif: [" + gif_url + "]"
     print "Updated word: [" + word + "]"
+
     return True
 
 # Returns False if fails
 def flag_word(category, word, use_category=True):
     query = word
+
     if use_category:
         query += " " + category
+
     if not db.flag_word(category, word):
         print "Failed to flag word."
         return False
+
     print "Flagged word: [" + query + "]"
     return True
 
