@@ -48,22 +48,31 @@ Download SQLite3 [here](https://www.sqlite.org/download.html).
 For your [Giphy](https://developers.giphy.com) API key:
 1. Click *Create an App*.
 2. Enter account credentials.
-3. Enter app name and description (4 GIFS 1 WORD, word puzzle game with gifs.)
+3. Enter app name and description (4 GIFS 1 WORD, word puzzle game with gifs).
 4. Your key will appear on your dashboard.
 
-### Start playing
-1. Clone the repo and move into it:
+Clone the repo and move into it:
 ```
 $ git clone git@github.com:slau8/shaolin-dragons.git
 $ cd shaolin-dragons
 ```
-2. Open ``` .secrets.txt ``` and add your API key in its appropriate location. For example:
+Open ``` .secrets.txt ``` and add your API key in its appropriate location. For example:
 ```
 {
   "giphy" : "this_is_my_api_key"
 }
 ```
-3. With your virtual environment activated, run:
+
+#### Troubleshooting
+After you run the app, you may receive an error due to one of these issues:
+1. Incorrect .secrets.txt format
+2. Incorrect API key
+3. Exhausted API key
+
+To remedy all of these issues, execute the API configuration instructions again. (An exhausted API key may require retrieving a new key).
+
+### Launching the App
+With your virtual environment activated, run:
 ```
 $ python app.py
 ```
