@@ -40,13 +40,16 @@ def find_hyponyms(category):
         words = [word.strip() for word in words]
         print path
         is_file = True
-    except:
-        url = DATAMUSE_URL + 'md=p&rel_gen={}'.format(category)
-        res = requests.get(url)
-        words = res.json()
+    except FileNotFoundError:
+        try:
+            url = DATAMUSE_URL + 'md=p&rel_gen={}'.format(category)
+            res = requests.get(url)
+            words = res.json()
+        except:
+            return None, False
     return words, is_file
 
-def valid_word(word, category="", allow_proper=False):
+def valid_word(word, category="", allow_proper=False, is_file=False):
     '''
     valid_word returns whether a word is allowed based on the
     following conditions:
@@ -58,29 +61,35 @@ def valid_word(word, category="", allow_proper=False):
 
     If allow_proper is true, then proper nouns are allowed.
     '''
-    if ' ' in word['word']:
+
+    if not is_file:
+        if word['score'] < 100:
+            return False
+
+        if 'n' not in word['tags']:
+            return False
+
+        if not allow_proper and 'prop' in word['tags']:
+            return False
+
+        word = word['word']
+
+    if ' ' in word:
         return False
 
-    l = len(word['word'])
+    l = len(word)
     if l < 3 or l > 10:
         return False
 
-    if word['score'] < 100:
-        return False
-
-    if 'n' not in word['tags']:
-        return False
-
-    if not allow_proper and 'prop' in word['tags']:
-        return False
-
-    if db.is_word_flagged(category,word['word']):
+    if db.is_word_flagged(category,word):
         return False
 
     return True
 
 # Return a random hyponym given the list of filtered words
-def random_word(words):
+def random_word(words, is_file=False):
+    if is_file:
+        return random.choice(words)
     return random.choice(words)['word']
 
 # Find 4 gifs given the query and category
@@ -95,8 +104,11 @@ def find_gifs(query, limit=4, offset=0):
             'limit': limit,
             'offset': offset,
            }
-    res = requests.get(url, params=params)
-    gifs = res.json()
+    try:
+        res = requests.get(url, params=params)
+        gifs = res.json()
+    except:
+        return None
     return gifs['data']
 
 def gifs_for_word(category, word, use_category=True):
@@ -109,6 +121,8 @@ def gifs_for_word(category, word, use_category=True):
         if use_category:
             query += " " + category
         gifs = find_gifs(query)
+        if gifs is None:
+            return None
         gif_list = list()
         for gif in gifs:
             gif_list.append(gif['images'][GIF_TYPE]['url'])

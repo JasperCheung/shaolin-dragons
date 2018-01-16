@@ -57,20 +57,27 @@ def game():
     if "category" not in args:
         flash("Please select a category to play the game.", "warning")
         return redirect("categories")
+
     print "FINDING WORD..."
     category = args["category"]
     words, is_file = api.find_hyponyms(category)
-    if not is_file:
-        hyponyms = [word for word in words if api.valid_word(word, category)]
-        word = api.random_word(hyponyms)
-    else:
-        word = random.choice(words)
+
+    if words is None:
+        return redirect(url_for("error"))
+
+    hyponyms = [word for word in words if api.valid_word(word, category, is_file=is_file)]
+    word = api.random_word(hyponyms, is_file=is_file)
+
     session["word"] = word
-    # Maybe make it so use category for specific categories
+
     gifs = api.gifs_for_word(category, word)
+    if gifs is None:
+        return redirect(url_for('error'))
+
     bank_length = 12
     letters = game_tools.random_letter_list(word, bank_length)
     session["bank_length"] = bank_length
+
     return render_template("game.html", gifs = gifs, word = word, \
             category = category, letters = letters, username = username(), \
             logged_in = logged_in(), score = score())
@@ -96,8 +103,8 @@ def win():
 def gif_flag():
     args = request.args
     if 'category' not in args or 'word' not in args or 'url' not in args:
-        flash("Not enough information received to flag gif", "danger")
-        return redirect(url_for("game", category = request.args["category"]))
+        flash("Not enough information received to flag gif!", "danger")
+        return redirect(url_for("categories"))
     category = args['category']
     word = args['word']
     url = args['url']
