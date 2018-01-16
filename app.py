@@ -96,7 +96,7 @@ def win():
 def gif_flag():
     args = request.args
     if 'category' not in args or 'word' not in args or 'url' not in args:
-        flash("Not enough information received to flag word", "danger")
+        flash("Not enough information received to flag gif", "danger")
         return redirect(url_for("game", category = request.args["category"]))
     category = args['category']
     word = args['word']
@@ -108,6 +108,21 @@ def gif_flag():
         flash("Failed to flag GIF.", "warning")
     return redirect(url_for("game", category = request.args["category"]))
 
+@app.route("/word_flag")
+def word_flag():
+    args = request.args
+    if 'category' not in args or 'word' not in args:
+        flash("Not enough information received to flag word", "danger")
+        return redirect(url_for("game",category=request.args["category"]))
+    category = args['category']
+    word = args['word']
+    flagged = api.flag_word(category, word)
+    if flagged:
+        flash("Word successfully flagged. Solve a new word.", "warning")
+    else:
+        flash("Failed to flag word.", "warning")
+    return redirect(url_for("game", category = request.args["category"]))
+    
 @app.route("/rankings")
 def rankings():
     return render_template("rankings.html", rankings = db.get_scores(), username = username(), logged_in = logged_in(), score = score())
