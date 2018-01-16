@@ -30,3 +30,12 @@ seal
 shark
 fish
 zebra
+snake
+baboon
+panda
+dragon
+octopus
+manatee
+tiger
+elmo
+octocat
