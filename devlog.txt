@@ -259,6 +259,8 @@ Added animals category
 Updated README (mostly copying my previous README since I already worked with Giphy)
   Featuring a shmancy banner screenshotted from our website
 
-yeH -- 2018-01-16 13:24
+panC -- 2018-01-16 13:11
 ------------------
-Add error handling for when api does not return word and fix bug where word flags dont work for words in file
+Wrote code for word flagging
+Added route for word flagging
+Tested and it works
