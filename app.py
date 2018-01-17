@@ -94,6 +94,7 @@ def win():
     category = data.get("category")
     if logged_in():
         db.update_pts(username(),int(score()) + 100)
+        db.add_history(username(), category, word)
     else:
         session["score"] = str(int(score()) + 100)
     flash(Markup("You scored 100 points for guessing <b>" + word + "</b>! Solve another word."), "success")
