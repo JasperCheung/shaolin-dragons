@@ -7,7 +7,18 @@
 
 {% block content %}
 <div class="container" style="padding-bottom: 30px;">
-  <h1 class="header">APP FUN</h1>
+  <div class="row header">
+    <div class="col-sm-2" id="back">
+      <a type="button" class="btn btn-outline btn-icon" href="/">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+    </div>
+    <div class="col-sm-8">
+      <h1 style="margin: 0">APP FUN<h1>
+    </div>
+    <div class="col-sm-2">
+    </div>
+  </div>
     {% for item in stat %}
     <div class="card card-stack">
       <h1 style="text-align:left;">
