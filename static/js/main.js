@@ -229,9 +229,13 @@ $(document).keydown(function(e) {
     if (rightIndex() != -1)
       returnLetter(rightIndex());
   }
-  else if (uni == 27){
-    console.log("Escape clicked.");
-    window.location.href = "/categories";
+  // else if (uni == 27){
+  //   console.log("Escape clicked.");
+  //   window.location.href = "/categories";
+  // }
+  else if (uni >= 49 && uni <= 52){
+    console.log(uni);
+    $("#modal" + String(uni - 49)).modal("toggle");
   }
   else {
     console.log(keyPressed + " clicked.")

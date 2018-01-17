@@ -27,30 +27,31 @@
     {% for gif in gifs %}
     <div class="col-sm-3">
       <div class="img-container">
-        <a href="#modal{{ loop.index0 }}" data-toggle="modal" data-target="modal{{ loop.index0 }}">
-	   <img class="thumbnail" src="{{ gif }}" alt="4 GIFS 1 WORD">
-        <div class="flag-overlay">
-          <a type="button" class="btn btn-default btn-icon"
+        <a href="#modal{{ loop.index0 }}" data-toggle="modal" data-target="#modal{{ loop.index0 }}" data-keyboard="true">
+          <img class="thumbnail" src="{{ gif }}" alt="4 GIFS 1 WORD">
+          <div class="flag-overlay">
+            <a type="button" class="btn btn-default btn-icon"
           href="{{ url_for('gif_flag', category = category, word = word, url = gif) }}">
-            <span class="glyphicon glyphicon-flag"></span>
-          </a>
-        </div>
-	</a>
+              <span class="glyphicon glyphicon-flag"></span>
+            </a>
+          </div>
+	      </a>
       </div>
     </div>
+    {% endfor %}
+    {% for gif in gifs %}
     <div id="modal{{ loop.index0 }}" class="modal fade" role="dialog">
       <div class="modal-dialog modal-md">
-	<div class="modal-content">
-	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal">&times;</button>
-	  </div>
-	  <div class="modal-body">
-	    <img src="{{ gif }}">
-	  </div>
-	</div>
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <img src="{{ gif }}" width="100%">
+          </div>
+        </div>
       </div>
     </div>
-    
     {% endfor %}
   </div>
   <div class="container card-letters" align="center">
@@ -83,5 +84,5 @@
 </div>
 {% endblock %}
 {% block script %}
-  <script src="../static/js/main.js"></script>
+  <script type="text/javascript" src="../static/js/main.js"></script>
 {% endblock script %}

@@ -187,6 +187,25 @@ a, a:hover, a:active, a:visited, a:focus {
   transform: translateY(-10px);
 }
 
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
 .home-btns {
   /* For buttons on home and categories page */
   font-family: 'Roboto', sans-serif;
