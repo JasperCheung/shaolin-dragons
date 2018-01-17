@@ -20,15 +20,15 @@ Proj 2
 Example timestamp (for copy/pasting) : topherM -- 1999-12-31 23:59
 ----
 
-cheungJ -- 2017-12-15 17:15
+jasperC -- 2017-12-15 17:15
 ------------------
 gave birth to the devlog
 
-cheungJ, lauS, panC, yeH -- 2017-12-21 13:19
+jasperC, shannonL, carolP, helenY -- 2017-12-21 13:19
 ------------------
 worked on design doc
 
-cheungJ, lauS, yeH -- 2017-12-22 13:19
+jasperC, shannonL, helenY -- 2017-12-22 13:19
 ------------------
 reviewed design doc
 changes:
@@ -37,33 +37,33 @@ changes:
     - add info about letter limit and point system
     - specify caching guest history
 
-yeH -- 2017-12-26 12:00
+helenY -- 2017-12-26 12:00
 ------------------
 Add category text file for easy editing
 Add methods to return words for use from Datamuse
 
-lauS -- 2017-12-28 10:10
+shannonL -- 2017-12-28 10:10
 ------------------
 Created home Page
 Added some fire css!
 Created necessary dirs and files
 Next: working on log-in/sign-up and linking it to app.py
 
-yeH -- 2017-12-28 23:30
+helenY -- 2017-12-28 23:30
 ------------------
 Reformatted Datamuse code for readability
 Added code to make calls to GIPHY
 
-lauS -- 2017-12-29 3:22
+shannonL -- 2017-12-29 3:22
 ------------------
 Created app.py with basic skeleton
 Cleaned up CSS
 
-lauS -- 2017-12-29 15:54
+shannonL -- 2017-12-29 15:54
 ------------------
 Created base.html for other templates
 
-panC -- 2017-12-29 19:39
+carolP -- 2017-12-29 19:39
 ------------------
 Set up database
 Added accounts to database, tested and working
@@ -71,107 +71,107 @@ Can authenticate a user given username and pwd
 Added history to database, tested and working
 Can call user's history
 
-panC -- 2017-12-29 20:30
+carolP -- 2017-12-29 20:30
 ------------------
 Added saved words to database, testing and working
 Can crossreference w/ table and get gif urls
 Added gif flagging and word flagging, tested and working
 Can check to see if a gif or a word has been flagged
 
-lauS -- 2018-01-02 13:19
+shannonL -- 2018-01-02 13:19
 ------------------
 Made footer stick to the bottom
 Flashed messages!
 Began login/signup pages
 
-panC -- 2018-01-02 13:19
+carolP -- 2018-01-02 13:19
 ------------------
 Created files for login/signup
 Imports database.py into app.py
 Create database in data folder
 
-yeH -- 2018-01-02 13:19
+helenY -- 2018-01-02 13:19
 ------------------
 Add temporary test files for categories and game page
 Add routes for above
 Add flash rendering with Bootstrap alerts
 
-yeH -- 2018-01-03 10:00
+helenY -- 2018-01-03 10:00
 ------------------
 Add category when searching GIFs
 
-panC -- 2018-01-03 13:10
+carolP -- 2018-01-03 13:10
 ------------------
 Filtered user inputs in creating account
 
-lauS -- 2018-01-03 15:35
+shannonL -- 2018-01-03 15:35
 ------------------
 Completed styling for the sign up and log in pages
 Linked the homepage buttons to their respective pages
 Need to figure out sizing; especially for smaller windows
 
-yeH -- 2018-01-04 16:30
+helenY -- 2018-01-04 16:30
 ------------------
 Save past words to database and use them instead of API calls
 Add a constant in utils/api.py to make it easier to choose which GIF type to
     use (e.g. fixed_width_small vs. original
 
-lauS -- 2018-01-04 16:30
+shannonL -- 2018-01-04 16:30
 ------------------
 Set up the rest of the webpages
 Fixed the buggy footer
 
-lauS -- 2018-01-04 20:03
+shannonL -- 2018-01-04 20:03
 ------------------
 Finished auth verifications (login isn't tracked past the home page)
 Auth with error messsages
      - login: incorrect username/password
      - signup: username already exists; passwords don't match
 
-panC -- 2018-01-04 20:37
+carolP -- 2018-01-04 20:37
 ------------------
 Hashed passwords when inserting to database
 Stripped leading and trailing whitespaces from username input
 
-panC -- 2018-01-04 22:07
+carolP -- 2018-01-04 22:07
 ------------------
 Method for finding gif offset (number of flagged gifs for a word)
 
-yeH -- 2018-01-05 13:19
+helenY -- 2018-01-05 13:19
 ------------------
 Add method for generating a random combination of 16 letters (including the
     letters in the answer)
 
-lauS -- 2018-01-05 13:19
+shannonL -- 2018-01-05 13:19
 ------------------
 Identified new categories
 { "Food" : "foodstuff", "Drinks" : "beverage", "Countries" : "nation", "Art" : "artist", "Sports" : "athletics" }
 Category "Brands" can also map to a text file with a different brands on each line
 
-lauS -- 2018-01-05 22:55
+shannonL -- 2018-01-05 22:55
 ------------------
 Completed error page at "/error" but not yet connected; depends on API configuration
 Finished base.html once and for all
 
-lauS -- 2018-01-06 21:35
+shannonL -- 2018-01-06 21:35
 ------------------
 Finished rankings page
 Moved python categories code as jinja
 More styling stuff (letter spacing, padding)
 However, I found a bug in the get_scores(), badge not displaying properly
 
-panC -- 2018-01-06 22:20
+carolP -- 2018-01-06 22:20
 ------------------
 Removed leading/trailing whitespace from usernames
 All usernames inputted in lowercase
 get_scores() returns a dictionary with placing
 
-lauS -- 2018-01-07 13:05
+shannonL -- 2018-01-07 13:05
 ------------------
 Finished styling for games!
 Added ids through jinja to the word boxes for later js
 
-panC -- 2018-01-07 15:32
+carolP -- 2018-01-07 15:32
 ------------------
 get_score() bug resolved
 Created stats.py
@@ -182,14 +182,14 @@ Can find stats for:
      num of gifs flagged
      user with the next high score
 
-panC, yeH -- 2018-01-08 13:19
+carolP, helenY -- 2018-01-08 13:19
 ------------------
 Added method to interact with the database & flag gifs (removing them
     from the list in the table saved words)
     *** NEED TO ADD ERROR HANDLING THROUGHOUT utils/api.py
 Add route for flagging (does not yet do anything)
 
-lauS -- 2018-01-09 00:56
+shannonL -- 2018-01-09 00:56
 ------------------
 Wrote almost all JS functions
     Initializes [] to denote placement of letters and its source
@@ -197,12 +197,12 @@ Wrote almost all JS functions
     Transfers inner HTML between letters
 Requires the word and list of shuffled letters in order to perform; will require AJAX
 
-yeH -- 2018-01-10 09:53
+helenY -- 2018-01-10 09:53
 ------------------
 Complete route for flagging GIFs
     * Flagging GIFs should be functional now
 
-lauS -- 2018-01-10 15:12
+shannonL -- 2018-01-10 15:12
 ------------------
 Wrote all of the JS and AJAX functions except...it doesn't work--yet (i shall debug in a few)
     retrieveKey() takes the word from the session via Python
@@ -211,62 +211,67 @@ Wrote all of the JS and AJAX functions except...it doesn't work--yet (i shall de
 At the moment, it appears that the JS isn't even functioning; it's like it's not there
 Also need to figure out the category files
 
-lauS -- 2018-01-11 03:41
+shannonL -- 2018-01-11 03:41
 ------------------
 Debugged most of the JS--selecting letters and deselecting works beautifully
 Need to figure out how to load a completely different page from JS
 App stats is complete as well
 
-yeH -- 2018-01-11 10:15
+helenY -- 2018-01-11 10:15
 ------------------
 Use category files found in static/categories if they exist instead of
     Datamuse
 Change number of letters to choose from, 16 -> 12
 
-lauS -- 2018-01-11 15:05
+shannonL -- 2018-01-11 15:05
 ------------------
 POINT SYSTEM WORKS!! for both guests and logged in users :)
 Also I notice that some words only produce 2 GIFs, we should probably eliminate those
 
-yeH -- 2018-01-12 11:15
+helenY -- 2018-01-12 11:15
 ------------------
 Adding some sports in the file
 
-lauS -- 2018-01-12 15:35
+shannonL -- 2018-01-12 15:35
 ------------------
 Typing works!
 Backspace = delete rightmost letter
 Space = return all
 Typing any letter will send it to the guessed section, only if it is found in the bankSize
 
-lauS -- 2018-01-13 16:49
+shannonL -- 2018-01-13 16:49
 ------------------
 Added more features to appfun
 Fixed words_solved so that it calculates number of words solved from the score and not history (which isn't working)
 Added brand.txt and added brand into the categories file
 Made letter bank into two different lines
 
-lauS -- 2018-01-14 13:20
+shannonL -- 2018-01-14 13:20
 ------------------
 Added back button to the game page to go back to the categories (or user can click esc)
 Simplified signup and login templates
 Cleaned up main.js to eliminate extraneous code
 
-lauS -- 2018-01-14 18:59
+shannonL -- 2018-01-14 18:59
 ------------------
 Changed favicon.png to different color background
 Added animals category
 Updated README (mostly copying my previous README since I already worked with Giphy)
   Featuring a shmancy banner screenshotted from our website
 
-panC -- 2018-01-16 13:11
+carolP -- 2018-01-16 13:11
 ------------------
 Wrote code for word flagging
 Added route for word flagging
 Tested and it works
 
-lauS -- 2018-01-16 22:54
+shannonL -- 2018-01-16 22:54
 ------------------
 Finished toggle popup with vertical alignment
   1, 2, 3, 4 keyboard inputs
 Removed Esc feature because it feels confusing
+
+shannonL -- 2018-01-17 00:47
+------------------
+Fixed devlog to conform to correct capitalization standards
+Fixed README to be more thorough

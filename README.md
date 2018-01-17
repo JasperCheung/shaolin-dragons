@@ -2,9 +2,12 @@
 # Shaolin Dragons Present: **4 GIFS 1 WORD**
 Join the hype and play 4 GIFS 1 WORD, the ultimate puzzle game of the 21st century. Choose a category, marvel at four related gifs, and spell out the word that connects them all together. Each word guessed correctly wins you a whopping 100 points—the more you get, the higher you climb on the rankings. Challenge yourself and your friends to see who can get to the top.
 
+Watch our demo [here](http://www.theuselessweb.com/)!
+
 ## Features
 * Variety of word categories
 * Automatic gameplay with both mouse-click and keyboard input
+* Gif zoom popups
 * Gif and word flagging option
 * Realtime app statistics
 * Saved scores and rankings for authenticated users
@@ -12,7 +15,7 @@ Join the hype and play 4 GIFS 1 WORD, the ultimate puzzle game of the 21st centu
 ## How It Works
 4 GIFS 1 WORD uses the [Datamuse API](https://www.datamuse.com/api/) to find hyponyms (words of more specific meaning than a general term) of specific hand-picked categories. From a set of hyponyms, a selected keyword is generated, along with four corresponding gifs from the [Giphy API](https://developers.giphy.com).
 
-When a user plays the game, their score and history are saved in database tables so that each round produces fresh, tasteful gifs. Users can additionally flag inaccurate or inappropriate words and gifs. 
+When a user plays the game, their score and history are saved in database tables so that each round produces fresh, tasteful gifs. Users can additionally flag inaccurate or inappropriate words and gifs.
 
 ### Dependencies
 * Python 2.7
@@ -48,6 +51,8 @@ $ pip install requests
 Download SQLite3 [here](https://www.sqlite.org/download.html).
 
 ### API Configuration
+The Giphy API provides a collection of gifs based a query string. 4 GIFS 1 WORD uses this API to retrieve gifs corresponding to a given word.
+
 For your [Giphy](https://developers.giphy.com) API key:
 1. Click *Create an App*.
 2. Enter account credentials.
@@ -79,7 +84,14 @@ With your virtual environment activated, run:
 ```
 $ python app.py
 ```
-You can then view the webpage by opening the URL `localhost:5000` in a web browser.
+You can now view the webpage by opening the URL `localhost:5000` in a web browser.
 
 ## Contributors
 Jasper Cheung, Shannon Lau, Carol Pan, Helen Ye
+
+| Name        | Role                         |
+| ------------|------------------------------|
+| Jasper (PM) | Category and word selection  |
+| Shannon     | Front-end, game animations   |
+| Carol       | Databases, word flagging     |
+| Helen       | API processing, gif flagging |
