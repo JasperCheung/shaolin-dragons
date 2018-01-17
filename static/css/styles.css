@@ -294,26 +294,13 @@ a, a:hover, a:active, a:visited, a:focus {
   border-radius: 20px;
 }
 
-.img-container {
-    position: relative;
-    display: block;
-    margin: auto;
-    width: 180px;
-    height: 180px;
-}
 .flag-overlay {
     position: absolute;
-    top: 70%;
-    left: 68%;
-    opacity: 0;
+    right: 20px;
+    bottom: 20px;
     color: #FFFFFF;
 }
 
-.img-container:hover .flag-overlay {
-    opacity: 1;
-    transition: .35s;
-    /* background: rgba(0, 0, 0, .6); */
-}
 
 .footer {
   position: absolute;

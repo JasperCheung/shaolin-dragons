@@ -265,6 +265,10 @@ Wrote code for word flagging
 Added route for word flagging
 Tested and it works
 
+helenY-- 2018-01-16 13:24
+------------------
+Add error handling for when api does not return word and fix bug where word flags dont work for words in file
+
 shannonL -- 2018-01-16 22:54
 ------------------
 Finished toggle popup with vertical alignment
@@ -275,3 +279,7 @@ shannonL -- 2018-01-17 00:47
 ------------------
 Fixed devlog to conform to correct capitalization standards
 Fixed README to be more thorough
+
+helenY -- 2018-01-17 12:45
+------------------
+Fixed bug in which wrong error was caught
