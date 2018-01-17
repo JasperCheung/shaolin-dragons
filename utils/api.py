@@ -42,7 +42,7 @@ def find_hyponyms(category):
         print path
         is_file = True
 
-    except FileNotFoundError:
+    except IOError:
         try:
             url = DATAMUSE_URL + 'md=p&rel_gen={}'.format(category)
             res = requests.get(url)
