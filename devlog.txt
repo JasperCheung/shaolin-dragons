@@ -264,3 +264,9 @@ panC -- 2018-01-16 13:11
 Wrote code for word flagging
 Added route for word flagging
 Tested and it works
+
+lauS -- 2018-01-16 22:54
+------------------
+Finished toggle popup with vertical alignment
+  1, 2, 3, 4 keyboard inputs
+Removed Esc feature because it feels confusing
