@@ -65,7 +65,10 @@ def game():
     if words is None:
         return redirect(url_for("error"))
 
-    hyponyms = [word for word in words if api.valid_word(word, category, is_file=is_file)]
+    hyponyms = [word for word in words if api.valid_word(word, username(), category=category, is_file=is_file)]
+    if len(hyponyms) == 0:
+        flash("No words left in category!", "warning")
+        return redirect(url_for("categories"))
     word = api.random_word(hyponyms, is_file=is_file)
 
     session["word"] = word
@@ -94,6 +97,7 @@ def win():
     category = data.get("category")
     if logged_in():
         db.update_pts(username(),int(score()) + 100)
+        db.add_history(username(), category, word)
     else:
         session["score"] = str(int(score()) + 100)
     flash(Markup("You scored 100 points for guessing <b>" + word + "</b>! Solve another word."), "success")

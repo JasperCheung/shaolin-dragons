@@ -280,6 +280,7 @@ shannonL -- 2018-01-17 00:47
 Fixed devlog to conform to correct capitalization standards
 Fixed README to be more thorough
 
-helenY -- 2018-01-17 12:45
+helenY -- 2018-01-17 13:19
 ------------------
 Fixed bug in which wrong error was caught
+Checked if word used in history and do not show if it was already shown

@@ -53,7 +53,7 @@ def find_hyponyms(category):
 
     return words, is_file
 
-def valid_word(word, category="", allow_proper=False, is_file=False):
+def valid_word(word, username, category="", allow_proper=False, is_file=False):
     '''
     valid_word returns whether a word is allowed based on the
     following conditions:
@@ -65,6 +65,12 @@ def valid_word(word, category="", allow_proper=False, is_file=False):
 
     If allow_proper is true, then proper nouns are allowed.
     '''
+
+    if username != "GUEST":
+        hist = db.user_history(username)
+        for item in hist:
+            if word.upper() in item:
+                return False
 
     if not is_file:
         if word['score'] < 100:
@@ -92,6 +98,7 @@ def valid_word(word, category="", allow_proper=False, is_file=False):
 
 # Return a random hyponym given the list of filtered words
 def random_word(words, is_file=False):
+    print words
     if is_file:
         return random.choice(words)
     return random.choice(words)['word']
@@ -201,18 +208,20 @@ def flag_word(category, word, use_category=True):
 
 if __name__ == "__main__":
     print(CATEGORIES)
-    cat0 = filter(valid_word, find_hyponyms(CATEGORIES['Food']))
-    cat1 = filter(valid_word, find_hyponyms(CATEGORIES['Drinks']))
-    print len(cat0)
-    print len(cat1)
-    # for w in cat0:
-    #     print w['word']
-    for i in range(5):
-        print "0: " + random_word(cat0)
-        print "1: " + random_word(cat1)
+    # cat0 = filter(valid_word, find_hyponyms(CATEGORIES['Food']))
+    # cat1 = filter(valid_word, find_hyponyms(CATEGORIES['Drinks']))
+    # print len(cat0)
+    # print len(cat1)
+    # # for w in cat0:
+    # #     print w['word']
+    # for i in range(5):
+    #     print "0: " + random_word(cat0)
+    #     print "1: " + random_word(cat1)
 
     # print find_gifs('donut')
     db.setup()
     print gifs_for_word('foodstuff', 'coffee')
     print flag_gif('foodstuff', 'coffee', 'https://media1.giphy.com/media/Z6vszQ8Mweukw/200w.gif')
     print gifs_for_word('foodstuff', 'coffee')
+
+    print valid_word("platypus", "joe", category="what", is_file=True)
