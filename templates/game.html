@@ -26,9 +26,11 @@
   <div class="row thumbnails">
     {% for gif in gifs %}
     <div class="col-sm-3">
-      <a href="#modal{{ loop.index0 }}" data-toggle="modal" data-target="#modal{{ loop.index0 }}" data-keyboard="true">
+      <div class="img-container">
+      <a href="#modal{{ loop.index0 }}" data-toggle="modal" data-target="#modal{{ loop.index0 }}">
         <img class="thumbnail" src="{{ gif }}" alt="4 GIFS 1 WORD">
       </a>
+      </div>
     </div>
     {% endfor %}
     {% for gif in gifs %}
@@ -39,7 +41,6 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
-	    <div class="img-container">
               <img src="{{ gif }}" width="100%">
 	      <div class="flag-overlay">
 		<a type="button" class="btn btn-default btn-icon"
@@ -47,7 +48,6 @@
 		  <span class="glyphicon glyphicon-flag"></span>
 		</a>
 	      </div>
-            </div>
           </div>
         </div>
       </div>
