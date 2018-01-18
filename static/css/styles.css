@@ -281,6 +281,12 @@ a, a:hover, a:active, a:visited, a:focus {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255,153,102,0.6);
 }
 
+.img-container {
+    float: none;
+    margin: 0 auto;
+    display: inline-block;
+}
+
 .thumbnails {
   padding-bottom: 10px;
 }
