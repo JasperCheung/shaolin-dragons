@@ -66,12 +66,6 @@ def valid_word(word, username, category="", allow_proper=False, is_file=False):
     If allow_proper is true, then proper nouns are allowed.
     '''
 
-    if username != "GUEST":
-        hist = db.user_history(username)
-        for item in hist:
-            if word.upper() in item:
-                return False
-
     if not is_file:
         if word['score'] < 100:
             return False
@@ -83,6 +77,13 @@ def valid_word(word, username, category="", allow_proper=False, is_file=False):
             return False
 
         word = word['word']
+
+    if username != "GUEST":
+        hist = db.user_history(username)
+        for item in hist:
+            print "Filtering out old words: " + str(item)
+            if word.upper() in item:
+                return False
 
     if ' ' in word:
         return False

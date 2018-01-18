@@ -284,3 +284,8 @@ helenY -- 2018-01-17 13:19
 ------------------
 Fixed bug in which wrong error was caught
 Checked if word used in history and do not show if it was already shown
+
+helenY -- 2018-01-17 13:19
+------------------
+Fixed bug where it would try to index dictionary
+    (Dictionary was input word from API call)
