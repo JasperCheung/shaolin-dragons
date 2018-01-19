@@ -6,5 +6,9 @@
     "Arts": "artist",
     "Brands" : "brand",
     "Animals" : "animal",
-    "Music" : "music"
+    "Music" : "music",
+    "Photography" : "photo",
+    "Transportation" : "transportation",
+    "Vehicles" : "car",
+    "Clothing" : "clothe"
 }

@@ -299,3 +299,8 @@ Fixed bug where the word could be seen by scrolling over the gif flagging button
 carolP -- 2018-01-18 20:07
 ------------------
 Word flagging is now done through POST request.
+
+shannonLau -- 2018-01-18 20:41
+------------------
+Updated design doc to reflect current project format
+Added more categories
