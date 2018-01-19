@@ -99,7 +99,6 @@ def valid_word(word, username, category="", allow_proper=False, is_file=False):
 
 # Return a random hyponym given the list of filtered words
 def random_word(words, is_file=False):
-    print words
     if is_file:
         return random.choice(words)
     return random.choice(words)['word']
@@ -179,6 +178,7 @@ def flag_gif(category, word, gif_url, use_category=True):
     try:
         new = find_gifs(query, limit=1, offset=offset)
         new = new[0]['images'][GIF_TYPE]['url']
+        print "Flagging: new gif [" + new + "]"
 
         new_gifs = list(db_word)
         new_gifs.remove(gif_url)

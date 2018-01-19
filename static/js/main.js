@@ -182,6 +182,15 @@ var wordCallback = function(e){
   }
 };
 
+var flagGIF = function(e) {
+    var link = $(this).data("url");
+    window.location.href = "/gif_flag?category=" + category + "&word=" + key + "&url=" + link;
+}
+
+var flagWord = function(e) {
+    window.location.href = "/word_flag?category=" + category + "&word=" + key;
+}
+
 // Add listeners to bank letters
 var addBankListeners = function(){
   for (var i in bankLetters){
@@ -206,11 +215,21 @@ var addReturnListeners = function(){
   button.addEventListener("click", returnLetters);
 };
 
+var addGIFFlagListener = function() {
+    $( ".gif-flag" ).click(flagGIF);
+}
+
+var addWordFlagListener = function() {
+    $( ".word-flag" ).click(flagWord);
+}
+
 // Add all event listeners
 var addEventListeners = function(){
   addBankListeners();
   addWordListeners();
   addReturnListeners();
+  addGIFFlagListener();
+  addWordFlagListener();
 };
 
 //---------------------------------------------------------

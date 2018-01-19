@@ -116,7 +116,7 @@ def gif_flag():
     if flagged:
         flash("GIF successfully flagged. Solve a new word.", "warning")
     else:
-        flash("Failed to flag GIF.", "warning")
+        flash("Failed to flag GIF.", "danger")
     return redirect(url_for("game", category = request.args["category"]))
 
 @app.route("/word_flag")

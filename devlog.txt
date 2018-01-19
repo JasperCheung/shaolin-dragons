@@ -289,3 +289,8 @@ helenY -- 2018-01-17 13:19
 ------------------
 Fixed bug where it would try to index dictionary
     (Dictionary was input word from API call)
+
+helenY -- 2018-01-18 21:35
+------------------
+Fixed bug where the word could be seen by scrolling over the flagging button
+    Used AJAX instead of an anchor href
