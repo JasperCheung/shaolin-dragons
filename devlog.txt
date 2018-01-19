@@ -224,6 +224,7 @@ Use category files found in static/categories if they exist instead of
 Change number of letters to choose from, 16 -> 12
 
 shannonL -- 2018-01-11 15:05
+
 ------------------
 POINT SYSTEM WORKS!! for both guests and logged in users :)
 Also I notice that some words only produce 2 GIFs, we should probably eliminate those
@@ -289,3 +290,7 @@ helenY -- 2018-01-17 13:19
 ------------------
 Fixed bug where it would try to index dictionary
     (Dictionary was input word from API call)
+
+carolP -- 2018-01-18 20:07
+------------------
+Word flagging is now done through POST request.
