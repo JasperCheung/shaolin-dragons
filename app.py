@@ -119,9 +119,11 @@ def gif_flag():
         flash("Failed to flag GIF.", "danger")
     return redirect(url_for("game", category = request.args["category"]))
 
-@app.route("/word_flag")
+@app.route("/word_flag", methods=['GET', 'POST'])
 def word_flag():
-    args = request.args
+    if request.method == "GET":
+        flash("Error", "danger")
+    args = request.form
     if 'category' not in args or 'word' not in args:
         flash("Not enough information received to flag word", "danger")
         return redirect(url_for("game",category=request.args["category"]))
@@ -132,7 +134,7 @@ def word_flag():
         flash("Word successfully flagged. Solve a new word.", "warning")
     else:
         flash("Failed to flag word.", "warning")
-    return redirect(url_for("game", category = request.args["category"]))
+    return redirect(url_for("game", category = args["category"]))
     
 @app.route("/rankings")
 def rankings():

@@ -219,17 +219,12 @@ var addGIFFlagListener = function() {
     $( ".gif-flag" ).click(flagGIF);
 }
 
-var addWordFlagListener = function() {
-    $( ".word-flag" ).click(flagWord);
-}
-
 // Add all event listeners
 var addEventListeners = function(){
   addBankListeners();
   addWordListeners();
   addReturnListeners();
   addGIFFlagListener();
-  addWordFlagListener();
 };
 
 //---------------------------------------------------------

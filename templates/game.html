@@ -67,8 +67,12 @@
       {% endif %}
       {% endfor %}
   </div>
+  <form id="form" method="post" action="/word_flag">
+    <input type="hidden" name="category" value={{category}} />
+    <input type="hidden" name="word" value={{word}} />
+  </form>
   <div class="container card-letters" align="center" style="margin-bottom:10px;">
-    <a type="button" class="btn btn-default btn-icon word-flag">
+    <a type="button" class="btn btn-default btn-icon" onclick="document.getElementById('form').submit(); return false;">
       <span class="glyphicon glyphicon-flag"></span>
     </a>
     &nbsp;&nbsp;&nbsp;&nbsp;
