@@ -232,13 +232,18 @@ var addEventListeners = function(){
 
 // Check which key is pressed to activate letter movement
 $(document).keydown(function(e) {
-  var uni = event.which;
+  var uni = e.which;
   var keyPressed = String.fromCharCode(uni);
+//  var rx = /INPUT|SELECT|TEXTAREA/i;
   if (uni == 32){
+    e.preventDefault();
     console.log("Space clicked.");
     returnLetters();
   }
   else if (uni == 8){
+    e.preventDefault();
+  //  if(!rx.test(e.target.tagName) || e.target.disabled || e.target.readOnly )
+    //e.preventDefault();
     console.log("Backspace clicked.");
     if (rightIndex() != -1)
       returnLetter(rightIndex());
