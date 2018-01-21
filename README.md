@@ -2,7 +2,7 @@
 # Shaolin Dragons Present: **4 GIFS 1 WORD**
 Join the hype and play 4 GIFS 1 WORD, the ultimate puzzle game of the 21st century. Choose a category, marvel at four related gifs, and spell out the word that connects them all together. Each word guessed correctly wins you a whopping 100 points—the more you get, the higher you climb on the rankings. Challenge yourself and your friends to see who can get to the top.
 
-Watch our demo [here](http://www.theuselessweb.com/)!
+**Watch our demo [here](https://youtu.be/aSXudnaZqlw)!**
 
 ## Features
 * Variety of word categories
