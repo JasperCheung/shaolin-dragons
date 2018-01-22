@@ -313,3 +313,8 @@ Basically done, will rewatch / "proofread" tomorrow
 shannonLau -- 2018-01-21 1:33
 ------------------
 Published demo video https://youtu.be/aSXudnaZqlw
+
+shannonLau -- 2018-01-22 8:46
+------------------
+Officially works in all three browsers
+Updated readme to adhere to project specs

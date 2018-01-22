@@ -7,7 +7,7 @@ Join the hype and play 4 GIFS 1 WORD, the ultimate puzzle game of the 21st centu
 ## Features
 * Variety of word categories
 * Automatic gameplay with both mouse-click and keyboard input
-* Gif zoom popups
+* Gif zoom pop-ups
 * Gif and word flagging option
 * Realtime app statistics
 * Saved scores and rankings for authenticated users
@@ -16,6 +16,8 @@ Join the hype and play 4 GIFS 1 WORD, the ultimate puzzle game of the 21st centu
 4 GIFS 1 WORD uses the [Datamuse API](https://www.datamuse.com/api/) to find hyponyms (words of more specific meaning than a general term) of specific hand-picked categories. From a set of hyponyms, a selected keyword is generated, along with four corresponding gifs from the [Giphy API](https://developers.giphy.com).
 
 When a user plays the game, their score and history are saved in database tables so that each round produces fresh, tasteful gifs. Users can additionally flag inaccurate or inappropriate words and gifs.
+
+This app works on Chrome, Safari, and Firefox.
 
 ### Dependencies
 * Python 2.7
@@ -39,7 +41,7 @@ $ . <name>/bin/activate
 ```
 On Windows:
 ```
-$ . <name>/Script/activate
+$ . <name>/Scripts/activate
 ```
 In your activated venv, run the following:
 ```
@@ -84,7 +86,7 @@ With your virtual environment activated, run:
 ```
 $ python app.py
 ```
-You can now view the webpage by opening the URL `localhost:5000` in a web browser.
+You can now view the webpage by opening the URL `localhost:5000` in Chrome, Firefox, or Safari.
 
 ## Contributors
 Jasper Cheung, Shannon Lau, Carol Pan, Helen Ye
@@ -94,4 +96,4 @@ Jasper Cheung, Shannon Lau, Carol Pan, Helen Ye
 | Jasper (PM) | Category and word selection  |
 | Shannon     | Front-end, game animations   |
 | Carol       | Databases, word flagging     |
-| Helen       | API processing, gif flagging |
+| Helen       | API calls, gif flagging      |
