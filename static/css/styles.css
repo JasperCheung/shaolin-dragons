@@ -1,5 +1,5 @@
+/* Maintains the footer */
 html {
-  /* Maintains the footer */
   height: 100%;
   width: 100%;
 }
@@ -22,6 +22,7 @@ p {
   font-size: 16px;
 }
 
+/* Navbar alignment */
 ul {
   height: 50px;
   line-height: 50px;
@@ -33,6 +34,7 @@ a, a:hover, a:active, a:visited, a:focus {
   text-decoration: none;
 }
 
+/* Dotted link */
 .link-dotted, .link-dotted:hover, .link-dotted:active, .link-dotted:visited {
   text-decoration: none;
   border-bottom: 1px dotted;
@@ -44,6 +46,7 @@ a, a:hover, a:active, a:visited, a:focus {
   margin-top: 5px;
 }
 
+/* Flashed messages */
 .messages {
   text-align: center;
   margin-left: 30%;
@@ -52,6 +55,7 @@ a, a:hover, a:active, a:visited, a:focus {
   margin-bottom: .5%;
 }
 
+/* Page headings */
 .header {
   margin-top: 3%;
   margin-bottom: 3%;
@@ -62,6 +66,7 @@ a, a:hover, a:active, a:visited, a:focus {
   margin-bottom: 1%;
 }
 
+/* Background gradients */
 .bg-gradient {
   /* Gradient for Safari and Chrome, plain color for unsupported browsers */
   background: #ff9966;
@@ -71,6 +76,7 @@ a, a:hover, a:active, a:visited, a:focus {
   text-align: center;
 }
 
+/* Play game shadow */
 .color-shadow {
   color: 333333;
   text-shadow: 2px 2px #ff9966;
@@ -80,6 +86,7 @@ a, a:hover, a:active, a:visited, a:focus {
   letter-spacing: 1px;
 }
 
+/* Navbar styling */
 .navbar-brand, .navbar-brand:hover, navbar-brand:active, .navbar-brand:focus {
   color: white;
   font-family: 'Baloo Chettan', cursive;
@@ -90,34 +97,45 @@ a, a:hover, a:active, a:visited, a:focus {
   margin-right: 10px;
 }
 
-.card-header {
-  text-align: center;
-  margin-bottom: 10%;
-}
-
-.banner {
-  padding-top: 1%;
-  padding-bottom: 0%;
-}
-
 #nav {
   padding-left: 30px;
   padding-right: 30px;
 }
 
+/* Home page banner */
+.banner {
+  padding-top: 1%;
+  padding-bottom: 0%;
+}
+
+/* Home page gif */
 .homegif {
   margin-top: 3%;
   margin-bottom: 3%;
 }
 
+/* Home page (3 btns) */
+.home-btns {
+  /* For buttons on home and categories page */
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+  padding: 0px;
+  padding-bottom: 2%;
+}
+
+
+/* Home page description */
 .description {
-  /* Styling for home page description */
   margin-top: 3%;
   margin-bottom: 5%;
   padding-left: 20%;
   padding-right: 20%;
 }
 
+/* Display cards */
 .card {
   font-family: 'Roboto', sans-serif;
   border-radius: 12px;
@@ -136,6 +154,12 @@ a, a:hover, a:active, a:visited, a:focus {
   padding: 10px;
 }
 
+.card-header {
+  text-align: center;
+  margin-bottom: 10%;
+}
+
+/* Centering cards in Sign up, Log in, and Error */
 .card-center {
   margin: auto;
   margin-top: 3%;
@@ -143,14 +167,15 @@ a, a:hover, a:active, a:visited, a:focus {
   padding: 2%;
 }
 
+/* Cards stacked over each other in Rankings and App Fun */
 .card-stack {
-  /* Assigned to cards stacked over each other (rankings, appfun) */
   margin: auto;
   margin-top: 1%;
   width: 60%;
   padding: 2%;
 }
 
+/* Game letter cards */
 .card-letter {
   display: inline-block;
   width: 40px;
@@ -187,6 +212,7 @@ a, a:hover, a:active, a:visited, a:focus {
   transform: translateY(-10px);
 }
 
+/* Gif pop-ups through bootstrap */
 .modal {
   text-align: center;
   padding: 0!important;
@@ -206,17 +232,7 @@ a, a:hover, a:active, a:visited, a:focus {
   vertical-align: middle;
 }
 
-.home-btns {
-  /* For buttons on home and categories page */
-  font-family: 'Roboto', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0px;
-  padding: 0px;
-  padding-bottom: 2%;
-}
-
+/* Rounded buttons */
 .btn {
   margin-left: 5px;
   margin-right: 5px;
@@ -251,6 +267,7 @@ a, a:hover, a:active, a:visited, a:focus {
   background-color: white;
 }
 
+/* Fade button */
 .btn-outline {
   border-color: #FFFFFF;
   color: #FFFFFF;
@@ -263,6 +280,7 @@ a, a:hover, a:active, a:visited, a:focus {
   border-color: #FFFFFF;
 }
 
+/* Icon button */
 .btn-icon {
   line-height: 1.8;
   width: 45px;
@@ -270,18 +288,20 @@ a, a:hover, a:active, a:visited, a:focus {
   margin-bottom: 4px;
 }
 
+/* Text input field */
 .text-round {
   border-radius: 30px;
   padding-left: 20px;
   height: 40px;
 }
 
+/* Orange glow border for text fields */
 .form-control:focus {
-  /* Orange glow border for text fields */
   border-color: #ff9966;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255,153,102,0.6);
 }
 
+/* Image display for game */
 .img-container {
     float: none;
     margin: 0 auto;
@@ -297,13 +317,13 @@ a, a:hover, a:active, a:visited, a:focus {
   border-radius: 20px;
 }
 
+/* Flag positioning */
 .flag-overlay {
     position: absolute;
     right: 20px;
     bottom: 20px;
     color: #FFFFFF;
 }
-
 
 .footer {
   position: absolute;

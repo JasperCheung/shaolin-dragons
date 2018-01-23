@@ -182,11 +182,13 @@ var wordCallback = function(e){
   }
 };
 
+// Flag selected gif
 var flagGIF = function(e) {
     var link = $(this).data("url");
     window.location.href = "/gif_flag?category=" + category + "&word=" + key + "&url=" + link;
 }
 
+// Flag current word
 var flagWord = function(e) {
     window.location.href = "/word_flag?category=" + category + "&word=" + key;
 }
@@ -214,9 +216,10 @@ var addReturnListeners = function(){
   var button = document.getElementById("return");
   button.addEventListener("click", returnLetters);
 };
-
-var addGIFFlagListener = function() {
-    $( ".gif-flag" ).click(flagGIF);
+// Add listener to flag button
+var addFlagListeners = function() {
+    $(".gif-flag").click(flagGIF);
+    $(".word-flag").click(flagWord);
 }
 
 // Add all event listeners
@@ -224,7 +227,7 @@ var addEventListeners = function(){
   addBankListeners();
   addWordListeners();
   addReturnListeners();
-  addGIFFlagListener();
+  addFlagListeners();
 };
 
 //---------------------------------------------------------
@@ -234,7 +237,6 @@ var addEventListeners = function(){
 $(document).keydown(function(e) {
   var uni = e.which;
   var keyPressed = String.fromCharCode(uni);
-//  var rx = /INPUT|SELECT|TEXTAREA/i;
   if (uni == 32){
     e.preventDefault();
     console.log("Space clicked.");
@@ -242,8 +244,6 @@ $(document).keydown(function(e) {
   }
   else if (uni == 8){
     e.preventDefault();
-  //  if(!rx.test(e.target.tagName) || e.target.disabled || e.target.readOnly )
-    //e.preventDefault();
     console.log("Backspace clicked.");
     if (rightIndex() != -1)
       returnLetter(rightIndex());

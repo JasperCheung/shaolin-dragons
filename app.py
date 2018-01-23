@@ -47,10 +47,12 @@ def logout():
         flash("Logged out.","warning")
     return redirect("/")
 
+# Displays categories page
 @app.route("/categories")
 def categories():
     return render_template("categories.html", categories = api.CATEGORIES, username = username(), logged_in = logged_in(), score = score())
 
+# Displays game page
 @app.route("/game")
 def game():
     args = request.args
@@ -85,6 +87,7 @@ def game():
             category = category, letters = letters, username = username(), \
             logged_in = logged_in(), score = score())
 
+# Return current game's word and
 @app.route("/play")
 def play():
     response = { "word" : session["word"], "bank_length" : session["bank_length"] }
@@ -121,12 +124,10 @@ def gif_flag():
 
 @app.route("/word_flag", methods=['GET', 'POST'])
 def word_flag():
-    if request.method == "GET":
-        flash("Error", "danger")
-    args = request.form
+    args = request.args
     if 'category' not in args or 'word' not in args:
-        flash("Not enough information received to flag word", "danger")
-        return redirect(url_for("game",category=request.args["category"]))
+        flash("Not enough information received to flag word.", "danger")
+        return redirect(url_for("game", category = request.args["category"]))
     category = args['category']
     word = args['word']
     flagged = api.flag_word(category, word)
@@ -135,7 +136,7 @@ def word_flag():
     else:
         flash("Failed to flag word.", "warning")
     return redirect(url_for("game", category = args["category"]))
-    
+
 @app.route("/rankings")
 def rankings():
     return render_template("rankings.html", rankings = db.get_scores(), username = username(), logged_in = logged_in(), score = score())

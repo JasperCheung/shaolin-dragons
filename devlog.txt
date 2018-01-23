@@ -318,3 +318,8 @@ shannonLau -- 2018-01-22 8:46
 ------------------
 Officially works in all three browsers
 Updated readme to adhere to project specs
+
+shannonLau -- 2018-01-23 13:36
+------------------
+Removed hidden input
+Connected word flag to js
