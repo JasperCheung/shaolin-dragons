@@ -13,7 +13,7 @@ Join the hype and play 4 GIFS 1 WORD, the ultimate puzzle game of the 21st centu
 * Saved scores and rankings for authenticated users
 
 ## How It Works
-4 GIFS 1 WORD uses the [Datamuse API](https://www.datamuse.com/api/) to find hyponyms (words of more specific meaning than a general term) of specific hand-picked categories. From a set of hyponyms, a selected keyword is generated, along with four corresponding gifs from the [Giphy API](https://developers.giphy.com).
+4 GIFS 1 WORD uses the [Datamuse API](https://www.datamuse.com/api/) to find hyponyms (words of more specific meaning than a general term) of specific hand-picked categories. From a set of hyponyms, a selected keyword is generated, along with four corresponding gifs from the [Giphy API](https://developers.giphy.com). *Note: Some words are selected from plain text files for greater word accuracy to its respective category.*
 
 When a user plays the game, their score and history are saved in database tables so that each round produces fresh, tasteful gifs. Users can additionally flag inaccurate or inappropriate words and gifs.
 

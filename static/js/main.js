@@ -277,7 +277,6 @@ var retrieveData = function(e){
     type: "GET",
     data: {},
     success: function(d) {
-      console.log(d);
       d = JSON.parse(d);
       key = d["word"];
       bankSize = d["bank_length"];
