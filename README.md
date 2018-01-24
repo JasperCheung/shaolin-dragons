@@ -30,7 +30,7 @@ This app works on Chrome, Safari, and Firefox.
 ### Virtual Environment, Flask, and Requests
 Flask needs to be installed in order to run this program. It is ideally stored in a virtual environment (venv).
 
-To install a venv called <name>, run these commands in your terminal:
+To install a venv called `<name>`, run these commands in your terminal:
 ```
 $ pip install virtualenv
 $ virtualenv <name>
